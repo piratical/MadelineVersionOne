@@ -1,0 +1,105 @@
+<html>
+ <head>
+  <title>The FUSION Study and Madeline's FUSION-Specific Functionality
+ </head>
+ <body>
+
+ <center>
+  <h2>
+   The FUSION Study and Madeline's FUSION-Specific Functionality
+  </h2>
+ </center>
+ 
+<p>
+<center>
+<table border="1" cellspacing="0" cellpadding="5" width="75%">
+ <tr>
+  <td bgcolor="#ffffee">
+   <center>
+    <img src="images/fusion.png"></img>
+    <br><h3>FUSION
+    <br>The Finland-United States Investigation of NIDDM Genetics Study</h3>
+   </center>
+
+   <p>
+   The aim of the FUSION study is to map and identify susceptibility genes for non-insulin
+   dependent diabetes mellitus (NIDDM) and for the intermediate quantitative traits 
+   associated with NIDDM.
+   <p>
+   FUSION individual IDs are eight characters long.  The first four characters represent
+   the family ID.  This is followed by a dash sign, plus sign or a letter between A-Z.  
+   Finally, three unique digits specify individuals within each pedigree.
+  </td>
+ </tr>
+ <tr>
+  <td bgcolor="#eeeeee">
+  <pre>
+
+
+<b>Sample ID:</b>                 <b><font color="#0000cc">1021+402</b></font>
+                           |   |  |
+         +-----------------+   |  +---------------------+
+         |                     |                        |
+<b><u>Family ID begins with:</u>  <u>Encoded flag symbol:</u>       <u>Individual ID:</u></b>
+- "0" for FUSION 1      "-" for FUSION 1           "100" for probands
+- "1" for FUSION 2 fam. "+" for FUSION 2           "200" for fathers
+- "C" for control fam.  "A" to "Z" for resampled   "300" for mothers
+- "T" for Trios         FUSION records             "400" for siblings of the
+                                                         proband (enumerated)
+                                                   "500" for proband spouses 
+                                                         (enumerated)
+                                                   "600" for proband offspring
+                                                         (enumerated)
+                                                   "700" for sibling spouses
+                                                         (enumerated)
+                                                   "800" for sibling offspring
+                                                         (enumerated)
+
+  </pre>
+  </td>
+ </tr>
+ <tr>
+  <td bgcolor="#ffffee">
+   <p>
+   Madeline is internally aware of the structure of FUSION IDs and uses 
+   this information in specific situations to:
+  
+   <p>
+   <ul>
+    <li>Determine family IDs when a family ID field is not provided 
+        in the pedigree table.</li>
+    <li>Determine the proband in a sibship when a proband indicator field 
+        is not provided in the pedigree table.</li>
+    <li>Insert virtual FUSION parents in a family when only 
+        siblings were sampled, <i>even when</i> the father and mother fields contain missing
+        values.</li>
+    <li>Connect spouses to one another even if they have no sampled offspring.</li>
+    <li>Re-connect dummied-in siblings (known via their offspring) to their 
+        parents to restore proper pedigree structure when required.</li>
+   </ul>
+ 
+   <p>
+   Madeline currently uses the following rules to determine if an ID in a dataset is a FUSION ID:
+
+   <p>
+   <ul>
+    <li>The ID must be exactly 8 characters long.
+    <li>The <i>first</i> character must be in the set {<b>0,1,C,T,9</b>}.  The numeral <b>9</b>
+        is included to support constructed IDs used when part of a larger pedigree
+        is split off for separate analytical treatment.
+    <li>The <i>fifth</i> character must be in the set {<b>-,+,A-Z</b>}.  The capital letters 
+        <b>A-Z</b> are allowed to support resampled IDs.
+    <li>The <i>sixth</i> character must be in the set {<b>0-9</b>}. <b>0</b> is allowed to support
+        FUSION 1 control "probands" who have a <b>0</b> instead of a <b>1</b> in this position.
+   </ul>
+
+   <P>
+   A data set can easily contain a mixture of FUSION IDs and non-FUSION IDs.  Only IDs meeting the above
+   criteria will be construed as FUSION IDs.
+  </td>
+ </tr>
+</table>
+</center>
+
+</body>
+</html>

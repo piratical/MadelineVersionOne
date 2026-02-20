@@ -1,0 +1,1593 @@
+
+<!-- START HTML_BEGIN -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+ <HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  <LINK REL="STYLESHEET" TYPE="TEXT/CSS" HREF="registration.css">
+ </HEAD>
+
+ <BODY>
+<!--  END  HTML_BEGIN -->
+
+<!-- START RETURN HOME ICON -->
+<TABLE border="0" cellspacing="0" cellpadding="10" bgcolor="#7bba7b">
+ <TR>
+  <TD ALIGN="CENTER" VALIGN="MIDDLE" ALIGN="CENTER">
+   <A href="http://eyegene.ophthy.med.umich.edu"><IMG src="./images/eyegene.gif" border="0"></A>
+  </TD>
+  <TD>
+   <FONT color="white">Return to <A href="http://eyegene.ophthy.med.umich.edu"><b>eyegene</b></A> homepage</font>
+  </TD>
+ <TR>
+</TABLE>
+<!-- END RETURN HOME ICON -->
+<P>
+<CENTER>
+ <H1>Madeline v. 0.936 Feature Set</H1>
+ 
+ <h1>
+  THIS STATIC DOCUMENT IS OUT OF DATE. PLEASE SEE 
+  <a href="http://eyegene.ophthy.med.umich.edu/SoftwareRegistration/features.php">
+   http://eyegene.ophthy.med.umich.edu/SoftwareRegistration/features.php
+  </a>
+  FOR THE LATEST INFORMATION ON THE DEVELOPMENT STATUS OF THE PROGRAM
+ </h1>
+ 
+ <P><I><B><FONT COLOR="white">Last updated on</FONT> 2004-04-28 <FONT COLOR="white">.</FONT></B></I>
+</CENTER>
+<P>
+
+
+  <!-- START TABLE_BEGIN -->
+  <TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000">
+   <TR>
+    <TD VALIGN="MIDDLE" ALIGN="CENTER">
+      <!-- START NESTED TABLE -->
+      <TABLE BORDER="0" WIDTH="100%" CELLPADDING="3" CELLSPACING="3">
+  <!--  END  TABLE_BEGIN -->
+
+<TR bgcolor="#caffb0">
+ <TD>
+  
+   
+   <font size="+2"><b>This page</b></font> lists features and changes that are, or will be, supported in
+   the current development version of <b>Madeline (v. 0.935)</b>.
+   For features that are completed, or complete enough to be working, examples
+   are also provided. 
+   
+   <P>
+   <B><I>This information
+   is now maintained in a database, so it is updated frequently.</I></B>
+   
+   <P>
+   A <font color="green"><b><i>green</i></b></font> background in the upper-right corner of an entry indicates that 
+   <i>90% or more</i> of the code for that feature has been implemented.  In real terms, this
+   means that the feature works as intended.  If the percentage has not yet reached
+   100%, it implies that some additional cleanup or bells and whistles are still planned
+   which have not yet been implemented.
+   
+   <P>
+   A <b><i>yellow-green</i></b> background in the upper right corner
+   indicates that 80% or more of the code has been completed.  A <b><i>yellow</i></b> background
+   indicates that 70% or more of the code has been completed.  These features might not work
+   yet, or might have limited utility at present.  
+   <P>
+   
+   A <font color="red"><b><i>red</i></b></font> background indicates that less
+   than 70% of the code has been completed for that feature.  In real terms, this usually means
+   that I really haven't gotten around to coding much of anything to support that feature.  These
+   are features that are planned but not yet implemented.
+   
+   <P>
+   If you have previously used <b>Madeline v. 0.933</b>, or an earlier version
+   of <b>Madeline</b>, you will definitely want to read this page before
+   using the new version, since it provides a summary of important changes
+   to the program.  A static version of this page will be released with the program
+   when it is released.
+   <P>
+   If you are new to Madeline, you will want to carefully read the documentation
+   and tutorials that will accompany the new version of the program
+   when it is released (it is not yet available to the general internet public).
+   <P>
+   
+ </TD>
+</TR>
+
+
+  <!-- START TABLE_END   -->
+      </TABLE>
+      <!-- END NESTED TABLE -->
+     </TD>
+    </TR>
+   </TABLE>
+  <!--  END  TABLE_END  -->
+
+<P>
+
+
+  <!-- START TABLE_BEGIN -->
+  <TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000">
+   <TR>
+    <TD VALIGN="MIDDLE" ALIGN="CENTER">
+      <!-- START NESTED TABLE -->
+      <TABLE BORDER="0" WIDTH="100%" CELLPADDING="3" CELLSPACING="3">
+  <!--  END  TABLE_BEGIN -->
+
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>AllLogFiles</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2004-04-12</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><p>
+To change the names of Madeline's three log files in the past required three separate assignment statements:
+</p>
+
+<pre>
+M&gt;LogFile="newname.log"
+M&gt;DetailFile="newname.dtl"
+M&gt;ErrorFile="newname.err"
+</pre>
+
+<p>
+You can now change all three file names at once using a single
+base file name stored in the <b>AllLogFiles</b> variable.  See
+example below.
+</p>
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M&gt;// The old way:
+M&gt;?LogFile
+"madeline.log"
+M&gt;LogFile="MyLogFile.log"
+LogFile has been changed from "madeline.log" to "MyLogFile.log"
+M&gt;DetailFile="MyDetailLogFile.dtl"
+DetailFile has been changed from "madeline.dtl" to "MyDetailLogFile.dtl"
+M&gt;ErrorFile="AreYouKiddingMeIDontMakeMistakes"
+ErrorFile has been changed from "madeline.err" to "AreYouKiddingMeIDontMakeMistakes"
+M&gt;// The new way:
+M&gt;AllLogFiles="MySuperDuperAnalysis"
+All log files now have "MySuperDuperAnalysis" as the base name:
+        LogFile    = "MySuperDuperAnalysis.log"
+        DetailFile = "MySuperDuperAnalysis.dtl"
+        ErrorFile  = "MySuperDuperAnalysis.err"
+M>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Array Indices Are No Longer Zero-Offset</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-05-06</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>In previous versions of Madeline, array indices were zero-offset, i.e., <b>_offspring[0]</b> referred to the <i>first</i> child.  In Madeline 0.935, array indices start at one.
+<P>
+The elimination of zero-offset arrays is part of an ongoing effort to make Madeline easier to use. 
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M>//
+M>// This example queries the <i>relationships</i> sample data
+M>// set distributed with the new version of the program:
+M>//
+M><font color="green"><b>?_offspring[1].relationship</b></font>
+"OFFSPRING  1"
+M><font color="green"><b>?_offspring[2].relationship</b></font>
+"OFFSPRING  2"
+M><font color="green"><b>?_offspring[3].relationship</b></font>
+"OFFSPRING  3"
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Attributes, Constants, and Field Variables</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-03-20</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The use of mnemonic prefixes to distinguish constants from attributes has now been formalized: the hash character, "<B>#</B>", prefixes all symbolic constants, while the underscore character, "<B>_</B>", prefixes all attributes.  As before, Field variables are distinguished by the lack of a special prefix.
+<P>
+<I><B>Constants</B></I> are like variables but with fixed, unchangeable values.  All constants now begin with a hash sign, "<B>#</B>":
+<P>
+<PRE><B>
+ #PI
+ #E
+ #TRUE
+ #AFFECTED
+ #FALSE
+ #UNAFFECTED</B>
+</PRE>
+
+<P>
+Use of the hash sign makes it clear that <B>#AFFECTED</B> is not the same thing as, for example, a field variable in your data table called "<B>AFFECTED</B>". 
+
+<P>
+<B><I>Attributes</I></B> store calculated information about individuals, such as the number of offspring, or percentage of genotyped markers for the individual.  All attributes now begin with the underscore character, "<B>_</B>":
+
+<P>
+<PRE><B>
+ _NumberOfOffspring
+ _PercentGenotyped
+ _NumberOfMates
+ _IsAffected</B>
+</PRE>
+<P>
+In contrast with constants and attributes, Field variables do not have a prefix.
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M>// Go to record 124:
+M><font color="green"><b>go 124</b></font>
+M>// What is the STUDYID and affection status (AFFECTED) of this individual?
+M><font color="green"><b>? STUDYID + " : " + AFFECTED</b></font>
+  F0045-15 : A
+M>// Since the "A" by default means "affected", <b>_IsAffected</b> should be set to <B>#true</b>:
+M><font color="green"><b>? _IsAffected</b></font>
+  1
+M>// The constant <b>#affected</b> should be equivalent to <b>#true</b>:
+M><font color="green"><b>? _IsAffected==#affected</b></font>
+  1
+ 
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Bug Fix: Length of Genotype Fields</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-02-24</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline's native MBASE table format allows column identifiers (i.e., field names) to be up to 32 characters long.  This differs from the older and arguably obsolete DBASE and SAS formats which permitted only 10 and 8 character field names, respectively.
+
+<P>
+However, old code from the DBASE days was causing marker names to be truncated to 10 characters in the marker map containers, even if the marker names and corresponding genotype column headings were longer than 10 characters.  This resulted in
+failed marker name lookups and other aggravations.
+
+<P>
+This bug has been fixed -- 2003.02.24.ET
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i>-- No example available --</i>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Console Editors -- Bug Fix</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2004-04-15</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><p>
+Previously there was a bug when a user tried to use a console-based editor like <b>vi</b> as the editor to be called
+by the <code>edit</code> command.  This bug affected keyboard control when <b>vi</b> or another console-based program was running as a child process with Madeline still running as the parent process.
+</p>
+<p>
+This bug has now been fixed.  Users can now specify <b>vi</b> or
+any console-based editor just as easily as any X-windows-based
+editor.
+</p>
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i>An example is provided in the new documentation</i>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Conversion of p-values to LOD scores</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-01-29</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>A new convenience function has been added to calculate the negative base 10 logarithm, or LOD score, from a p-value:
+
+<P>
+<font color="green"><code>lod()</code></font>
+
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green">?lod(0.5)</font>
+0.30103
+M><font color="green">?lod(0.01)</font>
+2
+M><font color="green">?lod(0.001)</font>
+3
+M>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Count and Percentage of Markers Genotyped</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-03-20</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Two new attributes have been added, <b>_GenotypeCount</b> and <b>_PercentGenotyped</b>.  These attributes facilitate queries and subsetting based on the percentage of markers typed on individuals.  
+<P>
+The values of these attributes are dependant upon which genotype fields are toggled on for output. Suppose out of a set of 300 markers in your data you toggle on a subset of just 20 representing chromosome 11.  For some individual in your data set, only 15 of the 20 markers are typed.  In this case,
+<b>_GenotypeCount</b> will be 15 and <b>_PercentGenotyped</b> will be 75%.  If you toggle on additional markers, these attributes will change.
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M>// In a data set with 332 individuals in 27 pedigrees and over 400 markers,
+M>// how many individuals in how many pedigrees are typed for at least 
+M>// 80% of all markers? Report percentages for matching individuals:
+M><font color="green"><b>view data _PercentGenotyped for _PercentGenotyped>=80</b></font>
+
+F0001 G00158 83.1325
+F0001 G00164 80.9237
+F0001 G00165 82.1285
+F0001 G00166 81.1245
+F0001 G00169 81.5261
+F0001 G00170 81.9277
+     .
+     .
+     .
+
+41 individuals in 7 pedigrees matched as follows:
+
+Individuals ..............         41
+ + In database ...........         41
+ |  + Attached ...........         36
+ |  + Childless spouses ..          0
+ |  + Unattached .........          5
+ + Not in database .......          0
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>JulianDayNumber User Function</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-12-17</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>A complementary pair of functions allows round-trip conversion of Gregorian calendar dates to Julian day numbers and back again.
+
+The <b>DateToJulian()</b> function returns the Julian day number from a date.  The <b>JulianToDate()</b> returns a date in the Gregorian calendar from a Julian day number.  These functions were added in order to validate Madeline's Julian-day-based calendar code.  They are useful for historical and astronomical calculations.
+
+A function called <b>today()</b> has also been added for convenience.
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M>?DateToJulian({1582.10.04})
+     2299160
+M>?DateToJulian({1582.10.05})
+JulianDay(): October 5th to 14th were skipped in October of 1582
+when Pope Gregory XIII implemented the calendar reforms
+of the commission headed by the Jesuit mathematician and astronomer
+Christoph Clavius.
+DateToJulian({1582.10.05})
+                        ^^^
+1 SYNTAX ERROR M>?DateToJulian({1582.10.15})
+     2299161
+1 SYNTAX ERROR M>?today()
+{Thursday, December 18, 2003}
+1 SYNTAX ERROR M>?DateToJulian(today())
+     2452992
+1 SYNTAX ERROR M>
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Label, Color, and Gray Arrays</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2004-04-28</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><p>
+After issuing a TOGGLE ICON FLAG command, a set of associative arrays are created based on the name of the categorical variable
+that has been toggled on.  For example, if AFFECTED has been
+toggle on, we would have:
+</p>
+
+<ul>
+<li><b>Affected_Label[]</b> containing labels for display on the pedigree drawings</li>
+<li><b>Affected_Color[]</b> containing color triplets for display on
+colored pedigree drawings</li>
+<li><b>Affected_Gray[]</b> containing numeric shades of gray for display on black and white pedigree drawings.</li>
+</ul>
+
+<p>
+Elements in all of these arrays are easily changed,
+allowing the user to quickly customize the colors, shades of
+gray, and labels used for the display of categorical levels of
+variables on the icons in pedigree drawings.
+</p>
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i> -- Nice documentation with illustrative figures is provided
+in the new 0.935 documentation under the TOGGLE ICON FLAGS command -- </i>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Language And Locale Conventions</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-12-19</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><p>
+Madeline v. 0.935 supports the display of dates using local language conventions for more than a dozen major languages and numerous Unicode-based <a href="http://eyegene.ophthy.med.umich.edu/unicode/" target="_blank">UTF-8</a> locales.  Non-Unicode, non-UTF-8 locales are not supported.
+</p>
+
+<p>
+On start up, the program checks the <b>LANG</b> and <b>LC_CTYPE</b> environment variables.  If one or the other of these indicate a UTF-8 locale, then the program investigates whether the language being used is one supported by Madeline.  If the language is supported, Madeline automatically sets the
+language convention variable to that language setting.
+</p>
+
+<p>
+A number of major languages are supported: British and American
+English, Arabic, Chinese, Finnish, French, German, Greek, Italian, Japanese, Portugese, Russian, Spanish, and Thai.  Current support is limited to displaying dates in the local language.
+</p>
+
+<p>
+Madeline defaults to American English for *ALL* non-UTF-8 locales.
+</p>
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+edtrager@eyegene:~> LANG=zh_CN.UTF-8 madeline
+ ______________________________________________________________________________
+  __    __       _       ______     _______   _          _   __    _   _______
+ |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|
+ |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___
+ | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|
+ | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____
+ |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|
+ ______________________________________________________________________________
+ ______________________________________________________________________________
+
+                                 Version  0.935
+                           Written by Edward H. Trager
+                              <ehtrager@umich.edu>
+...
+| Language              | Chinese   | Language convention used for date, time |
+| MapDetails            | OFF       | LIST MAP summary display                |
+| SaveAlleleFrequencies | OFF       | Calculate new frequencies on next OPEN  |
+| Time                  |           | 2003年12月19日 (星期五)           |
+| Verbosity             | VERBOSE   | All messages are printed to the console |
++-----------------------+-----------+-----------------------------------------+
+M>?today()
+{2003年12月19日 (星期五)}
+M>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Reading and Saving Allele Frequencies</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2004-04-15</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><p>
+Previous versions of Madeline relied on a very awkward mechanism
+for using allele frequencies from a previous analysis, and there
+was no way to import allele frequencies from external analyses
+such as from a <b>Mendel</b> run.
+</p>
+
+<p>
+Madeline now has two new commands, <code>save</code> and <code>read</code> which allow one to save and read sets of allele frequencies, respectively.  The allele frequencies can be
+from a run of Madeline (which uses gene counting not taking
+family relations into account), or from an external source, such
+as <b>Mendel</b> (which has options to correct for familial relationships).
+</p>
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i>The new commands are now extensively documented in the new
+documentation</i>.
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Regular Expression Matching</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-05-24</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><B>RegExpMatch()</B> allows you to use POSIX 1003.2 regular 
+expressions to perform string pattern matching in queries.
+
+For those of you who happen to be unfamiliar with regular expressions, <a href="http://www.english.uga.edu/humcomp/perl/regex2a.html">here</a> is one tutorial that will give you an idea of the power of regular expressions.  Many books on computer programming also discuss regular expressions.
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M>//
+M>// Simple Regular Expression Matching Example
+M>// ------------------------------------------
+M>// See if a markername conforms to the "DnnSmmmm" annotation convention
+M>// (where nn is a chromosome number, and mmmm is the size).  Only the
+M>// last example matches the pattern:
+M>//
+M><font color="green"><b>?regexpmatch("^D[0-9]{1,2}S[0-9]{1,4}$","D10S12345")</b></font>
+     0
+M><font color="green"><b>?regexpmatch("^D[0-9]{1,2}S[0-9]{1,4}$","D10S123x")</b></font>
+     0
+M><font color="green"><b>?regexpmatch("^D[0-9]{1,2}S[0-9]{1,4}$","D10D123")</b></font>
+     0
+M><font color="green"><b>?regexpmatch("^D[0-9]{1,2}S[0-9]{1,4}$","D10S1234")</b></font>
+     1
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>SET DELIMITER Command</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-05-31</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The new <B>SET DELIMITER TO [TAB|SPACE|COMMA|"&lt;OTHER QUOTED CHARACTER&gt;"]</B> command allows you to specify a delimiter to use for tabular results, such as those generated by the <B>VIEW DATA</B> command. <B>TAB</B> is the default.  
+<P>
+The ability to set the column delimiter makes it easier to cut and paste tabular output into other programs, such as spreadsheet programs.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green"><b>set delimiter to comma</b></font>
++-----------------------+-----------+-----------------------------------------+
+| Variable or State Flag| Setting   | Description                             |
++-----------------------+-----------+-----------------------------------------+
+| OTHER SETTINGS        |           |                                         |
++-----------------------+-----------+-----------------------------------------+
+| Delimiter             | COMMA     | Delimiter for tables and other output.  |
+	.	.	.
+	.	.	.
+	.	.	.
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Square Command</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-04-28</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P><p style="color:red">2004.04.28.ET ADDENDUM: The SQUARE command is now obsolete. Very similar, but more robust, functionality has been incorporated into the RECTIFY command.  Also, it is
+no longer necessary for the HEADER lines to be shorted than the
+lines in the DATA block.  It is only necessary to have one or
+more spaces between the HEADER and DATA.
+</p>
+
+<p>
+The new <b><code><font color="green">square</font></code></b> command rectifies non-rectangular data blocks so that they are rectangular and can be <b><code><font color="green">recognize</font></code></b>d by Madeline.
+</p>
+
+<P>
+Recall that a Madeline data file consists of a HEADER at the top
+followed by a DATA block.  The HEADER lines must be shorter
+than the DATA lines, and the DATA lines must be all the same length.  Sometimes however the DATA lines may be of uneven length due to spaces or tabs at the ends of some lines.  The
+<b><code><font color="green">square</font></code></b> command repairs this situation by padding the ends of DATA lines
+until they are all the same length.
+</p>
+
+<P>
+For example, suppose the following file shown schematically, where "h"s represent
+header lines and "x"s represent data lines.  Note there is no
+blank line between the header and data blocks: this is legal
+in Madeline, although not recommended:
+
+<P>
+<pre>
+hhhhhhhhhh
+hhhhhhhh
+hhhhhhhhhhh
+hhhhhhhhh
+hhhhhhhhhhh
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</pre>
+
+<P>
+An attempt to <b><code><font color="green">recognize</font></code></b> this file will fail due to the uneven data line lengths.
+
+<P>
+After executing the <b><code><font color="green">square</font></code></b> command, Madeline will create a new file with a "<code><font color="green">.mod</font></code>" extension.  Using colored "x"s to represent padded spaces, this new file will look like this:
+
+<P>
+<pre>
+hhhhhhhhhh
+hhhhhhhh
+hhhhhhhhhhh
+hhhhhhhhh
+hhhhhhhhhhh
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<font color="blue">xxxxx</font>
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<font color="blue">xxxxxx</font>
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<font color="blue">xx</font>
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<font color="blue">xx</font>
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<font color="blue">x</font>
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<font color="blue">xxx</font>
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</pre>
+ 
+<P>Note that the new file now also includes a blank line between
+the HEADER and DATA blocks.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i>-- Documentation on the RECTIFY command provides complete
+coverage --</i>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Toggle Command</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-03-26</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 100%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The <b>TOGGLE</b> command now supports three new features:
+
+<ol>
+  <li> The <b>TOGGLE</b> command now supports the optional keywords 
+<b>ON</b> and <b>OFF</b> for use when setting <b>OUTPUT FLAGS</b>.
+
+  <li>  You can now also <b>TOGGLE</b> markers by chromosome using
+the syntax, "<b>TOGGLE ON|OFF OUTPUT FLAGS FOR CHROMOSOME <n> MARKERS</b>."
+A marker map must be <b>LOAD</b>ed in order for this to work.
+ <li> You can now also <b>TOGGLE</b> on or off just the Mendelian inconsistent markers in a data set.  For example, you might want to print pedigree drawings showing only the inconsistent markers in order to fix them.  Alternatively, you might want to toggle inconsistent markers off prior to preparing a data set.  The syntax is "<b>TOGGLE ON|OFF OUTPUT FLAGS FOR _IsMendelianInconsistent</b>".
+</ol>
+
+<P>The command, "<b>TOGGLE OUTPUT FLAGS</b>" 
+(without the <b>ON</b> or <b>OFF</b> keyword) turns "on" columns 
+that were "off" and "off" any columns that were already "on".  
+While that behaviour is satisfactory in many cases, there exist times when a 
+range of columns might contain some columns that are toggled "on" and others 
+that are "off" and you want to force the entire range to be either all "on" 
+or all "off".  The addition of the optional <b>ON</b> and <b>OFF</b> keywords 
+addresses this need.
+
+<P>For genescan studies with hundreds of markers, the ability toggle sets of
+marker fields on or off by chromosome, or based on Mendelian inconsistency issues, is a time-saving convenience.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><b><font color="green">list fields</font></b>
+  1.FAMID      Co__1   17.D1S249     Go__2   33.D10S217    Go_18
+  2.STUDYID    Co__2   18.D1S425     Go__3   34.D10S575    Go_19
+  3.SEX        Co__3   19.D1S466     Go__4   35.D10S587    Go_20
+  4.FATHER     Co__4   20.D1S1647    Go__5   36.D10S1230   Go_21
+  5.MOTHER     Co__5   21.D1S1660    Go__6   37.D10S1237   Go_22
+  6.MZTWIN     Co__6   22.D1S2640    Go__7   38.D10S1248   Go_23
+  7.DZTWIN     Co__7   23.D1S2757    Go__8   39.D10S1693   Go_24
+  8.AFFECTED   Co__8+  24.D1S2877    Go__9   40.D10S1741   Go_25
+  9.CAFFECTED  *       25.D1S3725    Go_10   41.D17S784    Go_26
+ 10.AGE        Po__1   26.D9S169     Go_11   42.D17S914    Go_27
+ 11.AFF_BROAD  Po__2   27.D9S171     Go_12   43.D17S928    Go_28
+ 12.CAFF_BROAD Po__3   28.D9S269     Go_13   44.D17S939    Go_29
+ 13.AFF_RESTR  Po__4   29.D9S285     Go_14   45.D17S949    Go_30
+ 14.CAFF_RESTR Po__5   30.D9S1118    Go_15   46.D17S1807   Go_31
+ 15.AGE_DX     Po__6   31.D9S1121    Go_16   47.D17S1847   Go_32
+ 16.D1S245     Go__1   32.D9S1874    Go_17
+M><b><font color="green">toggle off output flags for  6-15</font></b>
+
+NOTE: Core fields will be included in output if required by a
+specific "write" format regardless of toggle status.  The
+"draw" command, in contrast, will respect the toggle settings
+for core fields.
+
+M><b><font color="green">list fields</font></b>
+  1.FAMID      Co__1   17.D1S249     Go__2   33.D10S217    Go_18
+  2.STUDYID    Co__2   18.D1S425     Go__3   34.D10S575    Go_19
+  3.SEX        Co__3   19.D1S466     Go__4   35.D10S587    Go_20
+  4.FATHER     Co__4   20.D1S1647    Go__5   36.D10S1230   Go_21
+  5.MOTHER     Co__5   21.D1S1660    Go__6   37.D10S1237   Go_22
+  6.MZTWIN     C       22.D1S2640    Go__7   38.D10S1248   Go_23
+  7.DZTWIN     C       23.D1S2757    Go__8   39.D10S1693   Go_24
+  8.AFFECTED   C    +  24.D1S2877    Go__9   40.D10S1741   Go_25
+  9.CAFFECTED  *       25.D1S3725    Go_10   41.D17S784    Go_26
+ 10.AGE        P       26.D9S169     Go_11   42.D17S914    Go_27
+ 11.AFF_BROAD  P       27.D9S171     Go_12   43.D17S928    Go_28
+ 12.CAFF_BROAD P       28.D9S269     Go_13   44.D17S939    Go_29
+ 13.AFF_RESTR  P       29.D9S285     Go_14   45.D17S949    Go_30
+ 14.CAFF_RESTR P       30.D9S1118    Go_15   46.D17S1807   Go_31
+ 15.AGE_DX     P       31.D9S1121    Go_16   47.D17S1847   Go_32
+ 16.D1S245     Go__1   32.D9S1874    Go_17
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>User Access To Many More Attributes</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-04-29</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 98%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline 0.935 provides the user with many more individual attributes, such as:
+
+<P>
+<PRE><B>
+	_IsConsanguinous
+	_IsMonozygoticTwin
+	_IsAffected</b>
+	<i>etc.</i>
+</PRE>
+<P>
+These are convenient for constructing very specific queries about the data.
+
+<P>All such attributes now consistently begin with the underscore character, "<b>_</b>".  You can find out the names of all attributes using the <b>LOOKUP</b> command as follows:
+<P>
+<code><b>M><font color="green">lookup "_"</font></b></code>
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green"><b>view data AGE_DX for _IsMonozygoticTwin and _IsAffected</b></font>
+	.	.	.
+	.	.	.
+	.	.	.
+ 
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>LOD Plotting</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-10-16</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 97%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline 0.935 now provides functionality to produce professional, 
+publication-quality Postscript plots from multipoint analysis results.
+
+<P>
+A few, simple commands are all that are needed to quickly visualize the results 
+of analyses generated from programs like <B>Simwalk2</B> or <B>Merlin</B>. 
+Additional commands are available to annotate a plot with a minimum of hassle.
+
+<P>
+As of 2002.10.16, the <B>graph add vertical | horizontal line ...</b> annotation commands now work!
+
+<P>A separate document has been prepared describing how to use the <B>GRAPH</B>
+command and associated functionality:
+
+<P><a href="http://eyegene.ophthy.med.umich.edu/madeline/plotting/index.html">
+eyegene.ophthy.med.umich.edu/madeline/plotting/index.html</a>
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M> <font color="green"><b>graph load 'chr17.map.mfh'</b></font> 
+Marker maps based on chr17.map.mfh are now installed. 
+M> <font color="green"><b>GraphTitle="Chromosome 17 Multipoint Analysis"</b></font> 
+M> <font color="green"><b>graph add red bar "CANDIDATE-1" from 12.5 to 26.7 centiMorgans, 5.0 lodunits</b></font>  
+M> <font color="green"><b>graph plot 'chr17.multipoint.mfh'</b></font>  
+Graph printed to "madeline.graph.ps" 
+Calling external viewer using the command "gv madeline.graph.ps" ... 
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Conversion between Theta and Kosambi cM</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-01-29</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 95%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline now has functions for converting between recombination fractions (<i>theta</i>) and genetic distances expressed as Haldane or Kosambi centiMorgans.  The new functions are:
+
+<P>
+<code><font color="green">KosambiToTheta()</font></code>
+<br><code><font color="green">ThetaToKosambi()</font></code>
+
+<P>and:
+
+<P>
+<code><font color="green">HaldaneToTheta()</font></code>
+<br><code><font color="green">ThetaToHaldane()</font></code>
+
+<P>
+These functions are also used internally by Madeline for converting between different map file formats.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green">?KosambiToTheta(8.713)</font>
+0.0862586
+M><font color="green">?ThetaToKosambi(0.0862586)</font>
+8.713
+M>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Mendelian Inheritance Checking</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-05-09</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 95%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline v. 0.935 now performs nuclear family-based basic Mendelian inheritance checking.  By default, inheritance checking is performed automatically when a new data set is opened.  
+<P>
+This behaviour is controlled by a new setting, <b>AutoCheckInheritance</b>, which is <b>ON</b> by default.  When <b>AutoCheckInheritance</b> is set <b>OFF</b>, the <b>CHECK</b> command can be used to run a check on the data set.  When <b>AutoCheckInheritance</b> is set <b>ON</b>,
+Madeline's "<b>M></b>" prompt changes to alert you if any inconsistencies are present.
+<P>
+A new attribute, <b>_IsMendelianInconsistent</b>, allows you to rapidly query or draw the subset of inconsistent individuals and pedigrees.  When pedigrees are drawn, sets of inconsistent genotypes are flagged in red color or bold type, depending on the <b>COLOR</b> setting.
+
+<P>On 2002.11.26, two new attributes were added: <b>_MendelianInconsistencyCount</b> and <b>_PercentMendelianInconsistent</b>.  <b>_MendelianInconsistencyCount</b> returns the number of inconsistent markers for an individual. <b>_PercentMendelianInconsistent</b> returns the percent of inconsistent markers, using the set of all markers as the denominator in the calculation.  These new attributes make it easier to identify the most problematic individuals.
+
+<P>A new table, "<b>Summary of Mendelian Inheritance Inconsistencies by Marker</b>", has also been added to the default output.  The summary table shows the number of nuclear families for which a marker is inconsistent.  This allows you to quickly identify the most problematic markers.
+
+<center>
+ <table border="0">
+  <tr>
+   <td>
+    <img src="images/mendelian_example.png" width="600" height="465" border="0">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <b>Fig. 1. Example Pedigree Drawing.</b><i>Mendelian inconsistent genotypes are shown in <font color="red">red</font>.
+   </td>
+  </tr>
+ </table>
+</center>
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green"><b>open 'new.data.mfh'</b></font>
+  ...
+Checking simple Mendelian inheritance in nuclear families... :
+==============================================================
+Inheritance inconsistency:      PEDIGREE        MOTHER  FATHER  MARKER
+--------------------------      --------        ------  ------  ------
+<font color="red">INHERITANCE #0001:</font>      L0004   M05758  N00167  D1S425
+<font color="red">INHERITANCE #0002:</font>      L0035   N00403  N00402  D10S1237
+<font color="red">INHERITANCE #0003:</font>      L0038   M02583  N00201  D1S245
+<font color="red">INHERITANCE #0004:</font>      L0038   M02583  N00201  D1S425
+<font color="red">INHERITANCE #0005:</font>      L0038   M02583  N00201  D9S1118
+<font color="red">INHERITANCE #0006:</font>      L0038   M02583  N00201  D9S1874
+<font color="red">INHERITANCE #0007:</font>      L0038   M02583  N00201  D10S575
+<font color="red">INHERITANCE #0008:</font>      L0038   M02583  N00201  D10S1693
+<font color="red">INHERITANCE #0009:</font>      L0038   M02583  N00201  D10S1741
+<font color="red">INHERITANCE #0010:</font>      L0038   N00199  N00200  D9S1118
+ . . .
+ . . .
+ . . .
+
+28 INHERITANCE INCONSISTENCIES 4 WARNINGS M><font color="green"><b>draw pedigrees for _IsMendelianInconsistent</b></font>
+28 INHERITANCE INCONSISTENCIES 4 WARNINGS M>
+Drawing pedigree L0004, N00166's subtree (subtree 1 of 1) ...
+Printing virtual landscape drawing scaled to 0.89 on
+2 physical pages wide by 1 physical page tall.
+	.	.	.
+	.	.	.
+	.	.	.
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>New Associative Arrays, MAP command</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-05-31</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 95%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Where possible, associative arrays are now being used to replace the older fixed-type arrays in Madeline.  
+<P>
+Associative arrays associate <i>keys</i> with <i>values</i>.  For example, if we had a need to list the colors of fruits, we might have an "<b>apple</b>" key with an associated value of "<b>red</b>", "<b>banana</b>" with "<b>yellow</b>", and so on.  
+
+<P>
+The new <b>MAP</b> command allows you to "map" the associations between keys, which are usually table codes, and values.  If Madeline had a "FruitColor" array, you would create fruit-color associations like this:
+
+<P>
+<PRE>
+      M><font color="green"><b>map FruitColor "apple" to "red"</b></font>
+</PRE>
+
+<P>
+In reality, there is no "FruitColor" array, but Madeline does have arrays for mapping gender, disease affection status, and other codes commonly used in linkage analysis.  By default, Madeline's associative arrays contain associations for some common and conventional table codings, so in many cases you won't even need to use the <b>MAP</b> command.  
+<P>
+But, for the sake of demonstrating the command, let's say we've just received some data from French collaborators who have used "HOMME" and "FEMME" to code males versus females.  Since these codes are not part of the default set of associations, we will need to use the <b>MAP</b> command:
+
+<P>
+<PRE>
+ M><font color="green"><b>map GenderStatus "HOMME" as #male</b></font>
+ M><font color="green"><b>map GenderStatus "FEMME" as #female</b></font> 
+</PRE>
+
+<P>
+Note the use of the symbolic constants, <b>#male</b> and <b>#female</b>.
+
+<P>
+Another feature of associative arrays is that we can have
+both numeric and character keys in one array.  This simplifies things in Madeline: in cases where two arrays were previously required --one for character codes and another for numeric codes-- <i>a single array now suffices</i>.
+
+<P>
+The new arrays to date are: 
+
+<P>
+<PRE><B>
+ AFFECTIONSTATUS[]
+ GENDERSTATUS[]
+ DEATHSTATUS[]
+ PROBANDSTATUS[]
+ LIABILITYCLASS[]
+ GRAPHANNOTATIONS[]</B>
+</PRE>
+
+<P>
+The old arrays <B>CharacterAffectionStatus[]</B> and <b>NumericAffectionStatus[]</b> have been replaced
+by <b>AffectionStatus[]</b>.  The default values in <b>AffectionStatus[]</b> have been set to accomodate both the numeric <b>LINKAGE</b> file format codes, as well as common-sense letter codes: "<b>A</b>" (affected), "<b>I</b>" (indeterminate), and "<b>U</b>" (unaffected).
+
+<P>
+The old arrays <b>CharacterSexValue[]</b> and <b>NumericSexValue[]</b> have been replaced by <b>GenderStatus[]</b>.  The
+default values in <b>GenderStatus[]</b> are set to accomodate both LINKAGE gender codes, as well as common English abbreviations: "<b>M</b>" (male) and "<b>F</b>" (female).
+
+<P>
+The old arrays <b>CharacterDeathStatus[]</b> and <b>NumericDeathStatus[]</b> have been replaced by <b>DeathStatus[]</b>. Common sense numeric and character defaults are provided.
+
+<P>
+Common sense numeric and character defaults are provided for <b>ProbandStatus[]</b>.  The <b>LiabilityClass[]</b> array
+has no defaults: mappings must be specified by the user.  
+<P>
+The <b>GraphAnnotations[]</b> array is used to store graph annotations: these are normally created using the new <b>GRAPH ADD</b> command.  <b>GraphAnnotations[]</b> also has
+no default entries.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green"><b>list AffectionStatus</b></font>
+AFFECTIONSTATUS has 6 elements:
+AFFECTIONSTATUS[0]=#MISSING
+AFFECTIONSTATUS[1]=0   (#UNAFFECTED)
+AFFECTIONSTATUS[2]=1   (#AFFECTED  )
+AFFECTIONSTATUS["A"]=1 (#AFFECTED  )
+AFFECTIONSTATUS["I"]=#MISSING
+AFFECTIONSTATUS["U"]=0 (#UNAFFECTED)
+
+M><font color="green"><b>list GenderStatus</b></font>
+GENDERSTATUS has 4 elements:
+GENDERSTATUS[1]=0      (#MALE      )
+GENDERSTATUS[2]=1      (#FEMALE    )
+GENDERSTATUS["F"]=1    (#FEMALE    )
+GENDERSTATUS["M"]=0    (#MALE      )
+
+M><font color="green"><b>list DeathStatus</b></font>
+DEATHSTATUS has 4 elements:
+DEATHSTATUS[0]=0       (#ALIVE     )
+DEATHSTATUS[1]=1       (#DEAD      )
+DEATHSTATUS["N"]=0     (#ALIVE     )
+DEATHSTATUS["Y"]=1     (#DEAD      )
+
+M><font color="green"><b>list ProbandStatus</b></font>
+PROBANDSTATUS has 4 elements:
+PROBANDSTATUS[0]=0     (#FALSE     )
+PROBANDSTATUS[1]=1     (#TRUE      )
+PROBANDSTATUS["N"]=0   (#FALSE     )
+PROBANDSTATUS["Y"]=1   (#TRUE      )
+
+M><font color="green"><b>list LiabilityClass</b></font>
+LIABILITYCLASS has 0 elements:
+
+M><font color="green"><b>list GraphAnnotations</b></font>
+GRAPHANNOTATIONS has 0 elements:
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>VIEW DATA Command</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-05-31</B></FONT>
+ </TD>
+ <TD bgcolor="84ff54">
+  <B><I>Percent Complete:</I></B><B> 95%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>"<B>VIEW DATA ...</B>" allows you to specify a list of fields or attributes to view. 
+<P>
+In version 0.933, "<B>VIEW FOR ...</B>" produced a list of individuals matching a query, while "<B>VIEW RECORD FOR ...</B>" additionally displayed the values of fields which had been toggled <b>ON</b>.  However, in version 0.933 there was no way to specify fields or attributes on the fly.  "<b>VIEW DATA ...</b>" provides this functionality.  
+<P>
+There is no need to specify <b>FAMILYID</b> or <b>STUDYID</b> since these are automatically included in the tabular output.  Columns are delimited by the current <b>DELIMITER</b> setting 
+(<b>TAB</b> by default), making it easy to cut and paste the results into another program, such as a spreadsheet.
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green"><b>view data SEX, _IsAffected, _NumberOfOffspring, _PercentGenotyped for AGE_DX>45 AND AGE_DX<=55</b></font>
+
+L0004   M02453  M       1       0       90.625
+L0004   M05856  M       0       0       90.625
+L0038   M05083  F       1       1       90.625
+L0038   M05113  F       .       0       34.375
+L0038   M05976  F       .       0       81.25
+L0073   M06193  M       1       0       87.5
+L0074   M05011  F       1       0       96.875
+L0075   M05012  F       1       0       96.875
+L0075   M05619  M       .       0       96.875
+L0122   M05805  M       1       0       96.875
+L0151   M05099  F       1       0       84.375
+L0155   M05159  F       1       0       62.5
+L0191   M02654  M       1       0       93.75
+L0221   M01474  M       1       2       87.5
+L0267   M05231  F       1       0       87.5
+		.	.	.
+		.	.	.
+		.	.	.
+
+33 individuals in 24 pedigrees matched as follows:
+
+Individuals ..............         33
+ + In database ...........         33
+ |  + Attached ...........         33
+ |  + Childless spouses ..          0
+ |  + Unattached .........          0
+ + Not in database .......          0
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Conversion of Simwalk2 Result Files</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-02-11</B></FONT>
+ </TD>
+ <TD bgcolor="d8ff4c">
+  <B><I>Percent Complete:</I></B><B> 85%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline can now convert a Simwalk2 parametric result file directly into a Madeline flat file graph and map table which can be immediately used for plotting the results using Madeline's new graphing functions.
+
+<P>
+Support for Simwalk2 non-parametric result files is currently in development and should be available soon.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M&gt;<font color="green">convert Simwalk file "chr1.results"</font>
+...
+M&gt;<font color="green">graph load "chr1.results.graph.map.mfh"</font>
+...
+M&gt;<font color="green">graph open "chr1.results.graph.mfh"</font>
+...
+M&gt;<font color="green">graph plot
+...
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Conversion of Crimap map files</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-01-28</B></FONT>
+ </TD>
+ <TD bgcolor="d8ff4c">
+  <B><I>Percent Complete:</I></B><B> 80%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The <code><font color="green">convert</font></code> command now 
+supports conversion of Crimap genetic map files into Madeline's
+flat file database format.  In addition to files generated directly
+from Crimap, HTML files saved from online mapping servers such as
+Rutger's MAP-O-MAT server can also be converted as-is.
+
+<P>
+The current syntax is:
+
+<P>
+<code>M&gt;<font color="green">convert map file 'chr1.crimap' to 'chr1.map'</font></code>
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i>-- no example yet available --</i>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Conversion of Marshfield "Weber lab" format files</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-02-11</B></FONT>
+ </TD>
+ <TD bgcolor="ffff49">
+  <B><I>Percent Complete:</I></B><B> 70%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The Marshfield Clinic returns genescan data in a "Weber lab" format.  Madeline now has the ability to convert such data to
+a Madeline flat file table format via the <font color="green"><code>convert</code></font> command.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M&gt;<font color="green">convert weber file "chr1.out" to "chr1.data"
+...
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Conversion of Marshfield Clinic Map Files</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-02-11</B></FONT>
+ </TD>
+ <TD bgcolor="ffff49">
+  <B><I>Percent Complete:</I></B><B> 70%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The Marshfield Clinic web site features a "build your own map" page.  Madeline has the ability to convert the genetic maps returned by this web site into a Madeline flat file table format via the <font color="green"><code>convert</code></font> command.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+M><font color="green">convert Marshfield file "chr1_markers"
+...
+
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Improved Documentation</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-08-17</B></FONT>
+ </TD>
+ <TD bgcolor="ffff49">
+  <B><I>Percent Complete:</I></B><B> 70%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The documentation is being thoroughly checked, updated, and rewritten as changes to the program are being made.  A number of reference tables are being added.  The tutorial section will
+likely be completely rewritten, as much has changed and now the program is generally easier to use and provides the user with much more information about the data.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>-- No example yet available --</I>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Sample Data Sets and Scripts</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-08-17</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 40%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>The new version of Madeline will come with a set of sample data sets and test scripts that can be used with the documentation tutorials and to verify the functionality of the program. 
+
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>-- No example yet available --</I>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Unicode UTF-8 Support</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-08-17</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 40%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline v. 0.933 only supports the ASCII character set (even ISO-8859-1 is not really "supported"). Version 0.935 will <i><b>fully support UTF-8 data tables</b></i> for the display of scientific and international data in both the console interface and pedigree drawings.
+<P>
+Preview versions of 0.935 already provide some degree of support for the display of UTF-8 encoded data tables in the command-line interface when the program is run under a Unicode-competent terminal emulator such as <a href="http://mlterm.sourceforge.net/">mlterm</a> in a <b>UTF-8</b> locale ("<b>en_GB.utf8</b>" on Linux and "<b>en_US.UTF-8</b>" on Solaris are examples of UTF-8 locale settings).
+<P>
+Note that Madeline 0.935 will only support the ASCII subset of UTF-8 and UTF-8 (Unicode plane 0, BMP).  The various ISO-8859-* character sets will not be supported.  However, this should not be an issue as Linux and other UNIXes appear to be moving toward using UTF-8 exclusively.
+<P>
+We are currently working on a Postscript glyph generation library based on <a href="http://www.freetype.org/">FreeType2</a>  and <a href="http://www.pango.org/">Pango</a> to provide a <b><i>complete</i></b> solution for printing scientific symbols (such as will be available in the Unicode-based <a href="http://www.stixfonts.org/">STIX</a> font project) and modern non-Latin language scripts in Postscript.  This library will be used in Madeline's revised pedigree drawing engine.  The library will have a simple-to-use API useful to scientific programmers in general.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<P><i>Example 1: Query on birth places in Chinese:</i>
+<P><img src="images/place.png">
+<P><i>Example 2: Dates in different languages:</i>
+<P><img src="images/dates.png">
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Haplotype Displays on Pedigree Drawings</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2002-08-27</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 5%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Initially, the plan is to have Madeline read in haplotype information from the reports generated by Goncalo Abecasis' program, <b>MERLIN</b> (reading output from other haplotype programs may be added later). Madeline will then display the haplotypes with various color and black-and-white highlighting options on pedigree drawings. 
+<P>
+The goal is for Madeline's pedigree drawings to serve 
+as a tool which makes it easier and faster to review the haplotyping reports, initially from MERLIN, and eventually from other programs as well.
+
+<p>
+<b><i><u>Current Coding Status</u></i></B>
+
+<P>
+Most of the Postscript code required for color highlighting of the pedigree drawings has been completed.  None of the <b>C</b> code has been written yet.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>-- No example yet available --</I>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Excluding Individual Genotypes</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>0000-00-00</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 0%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline's <b>EXCLUDE</b> command can currently exclude individuals or entire pedigrees, but not individual markers or genotypes.
+<P>
+The most likely command syntax implementation will allow something like the following: 
+
+<P>
+<PRE>
+	M> <font color="green"><b>exclude marker D10S292 for studyid="M01239"</b></font>
+	M> <font color="green"><b>exclude marker D2S1237 for famid="L0047"</b></font>
+</PRE>
+
+<P>
+This will allow users to quickly test the result of removing inconsistent markers or genotypes from within Madeline before committing such changes on their backend database. 
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>-- No example yet available --</I>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Improved Pedigree Drawing</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>0000-00-00</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 0%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>A primary goal is that Madeline be able to produce pedigree drawings that are useful for visualizing data in the investigative lab setting.  Producing pedigree drawings that can be easily edited and annotated for publication has not been a goal: other programs are available that can do that.
+<P>
+For sib-based linkage studies with simple pedigree structures, Madeline's current pedigree drawing capabilities are sufficient: that's what the program was originally designed to handle.
+<P>
+However, many real data sets bear complicated pedigree structures containing multiple-founder trees and inbred loops. Madeline v. 0.933 does not do a good job at drawing such pedigrees.  
+<P>
+The plan is to completely redesign Madeline's core pedigree drawing engine from the ground up in order to address current drawing limitations in a fundamental way. This is a fairly large, complex task that will require a well-planned solution.
+As such, it may not be implemented in v. 0.935, but it will definitely be by v. 0.936 (i.e., v. 1.0).
+<P>
+Madeline's drawings of complicated pedigree structures will likely never be as representationally compact as a human-optimized manual drawing.  On the other hand, 
+Madeline is already much faster!  This is in complete harmony with our design goal of making Madeline a tool for quick and painless management and visualization of your data.
+
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>-- No example yet available --</I>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Saving Allele Frequencies</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>0000-00-00</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 0%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Madeline's current mechanism for saving allele frequencies 
+is awkward at best (it is a bit of a hack) and does not allow importing of allele frequencies from non-Madeline-generated sources. 
+<P>
+When completed, Madeline v. 0.935 will permit saving 
+allele frequencies to, and reading from, a simple allele frequency flat file format (locus file). Allele frequencies read from a file would be available when writing output formats that require this information. 
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>-- No example yet available --</I>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Support for Merlin</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-01-27</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 0%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Merlin is capable of using Linkage/Genehunter files, and also supports its own file format which is a little easier to read than the Linkage format.  Code will be added to support Merlin specifically.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<i>-- No example yet available --</i>
+  </PRE>
+ </TD>
+</TR>
+<TR bgcolor="#bbbbcc">
+ <TD>
+  <FONT size="+2" color="white"><B>Support for Simwalk2</B></FONT> &nbsp;&nbsp; <I><B>Ref. Date:</B></I> <FONT color="white"><B>2003-01-27</B></FONT>
+ </TD>
+ <TD bgcolor="ff7856">
+  <B><I>Percent Complete:</I></B><B> 0%</B>
+ </TD>
+</TR>
+<TR bgcolor="#ffffcc">
+ <TD colspan="2">
+ <B><U><I>Description</I></U></B>
+ <P>Simwalk2's file formats are basically variations on the MENDEL format.  One unique feature is that Simwalk's map file shows recombination fractions.  Code will be added to Madeline so that the program supports and automatically recognizes a recombination fraction column.
+ </TD>
+</TR>
+<TR bgcolor="white">
+ <TD colspan="2">
+ <B><U><I>Example</I></U></B>
+ <P><PRE>
+<I>No example available yet</I>
+  </PRE>
+ </TD>
+</TR>
+
+
+  <!-- START TABLE_END   -->
+      </TABLE>
+      <!-- END NESTED TABLE -->
+     </TD>
+    </TR>
+   </TABLE>
+  <!--  END  TABLE_END  -->
+
+<!-- START RETURN HOME ICON -->
+<TABLE border="0" cellspacing="0" cellpadding="10" bgcolor="#7bba7b">
+ <TR>
+  <TD ALIGN="CENTER" VALIGN="MIDDLE" ALIGN="CENTER">
+   <A href="http://eyegene.ophthy.med.umich.edu"><IMG src="./images/eyegene.gif" border="0"></A>
+  </TD>
+  <TD>
+   <FONT color="white">Return to <A href="http://eyegene.ophthy.med.umich.edu"><b>eyegene</b></A> homepage</font>
+  </TD>
+ <TR>
+</TABLE>
+<!-- END RETURN HOME ICON -->
+
+
+<!-- START HTML_END -->
+ </BODY>
+</HTML>
+<!--  END  HTML_END -->

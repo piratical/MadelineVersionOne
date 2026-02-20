@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# runlynx: Run the lynx browser in an xterm window
+#
+xterm -e lynx "$1" &

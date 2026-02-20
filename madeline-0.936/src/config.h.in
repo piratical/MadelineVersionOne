@@ -1,0 +1,311 @@
+/* ********************************************************************************* */
+/*  _______________________________________________________________________________  */
+/* |_______________________________________________________________________________| */
+/*   __    __       _       ______     _______   _          _   __    _   _______    */
+/*  |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|   */
+/*  |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___      */
+/*  | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|     */
+/*  | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____    */
+/*  |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|   */
+/*  _______________________________________________________________________________  */
+/* |_______________________________________________________________________________| */
+/*                                                                                   */
+/* "config.h" is part of the Madeline software distribution.                         */
+/* Written by Edward H. Trager.                                                      */
+/*                                                                                   */
+/* This file COPYRIGHT (C) 2004 THE REGENTS OF THE UNIVERSITY OF MICHIGAN,           */
+/* Ann Arbor, Michigan, USA.  ALL RIGHTS RESERVED.                                   */
+/*                                                                                   */
+/* This program is free software; you can redistribute it and/or                     */
+/* modify it under the terms of the GNU General Public                               */
+/* License as published by the Free Software Foundation; either                      */
+/* version 2 of the License, or (at your option) any later version.                  */
+/*                                                                                   */
+/* This program is distributed in the hope that it will be useful,                   */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of                    */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU                 */
+/* Library General Public License for more details.                                  */
+/*                                                                                   */
+/* You should have received a copy of the GNU Library General Public                 */
+/* License along with this software source code distribution; if not,                */
+/* write to the Free Software Foundation, Inc., 59 Temple Place -                    */
+/* Suite 330, Boston, MA 02111-1307, USA.                                            */
+/*                                                                                   */
+/* Last modified by Ed Trager, November 08, 2001.                                    */
+/*                                                                                   */
+/* ********************************************************************************* */
+
+/*                     */
+/* config.h            */
+/*                     */
+/* init: 2001.11.08.ET */
+/*                     */
+
+
+#ifndef CONFIG_INCLUDED
+
+/* The DEFAULT names of fields, files, etc. */
+/* are defined below.  These should be set  */
+/* to defaults appropriate to your site.    */
+/* Note that the user                       */
+/* can still assign different names when    */
+/* the program is used interactively.       */
+
+/* DEFAULT INITIALIZATION SCRIPT NAME */
+#define INITIALIZATION_SCRIPT_NAME "initial.script"
+
+/* DEFAULT FIELD NAMES */
+#define FAMILY_ID_FIELD        "FAMID"
+#define STUDY_ID_FIELD         "STUDYID"
+#define FATHER_FIELD           "FATHER"
+#define MOTHER_FIELD           "MOTHER"
+#define GENDER_FIELD           "SEX"
+#define MZ_TWIN_FIELD          "MZTWIN"
+#define DZ_TWIN_FIELD          "DZTWIN"
+#define AFFECTION_STATUS_FIELD "AFFECTED"
+#define PROBAND_FIELD          "PROBAND"
+#define CLASS_FIELD            "CLASS"
+#define LIABILITY_CLASS_FIELD  "LCLASS"
+#define DECEASED_STATUS_FIELD  "DECEASED"
+#define DATE_OF_BIRTH_FIELD    "DOB"
+#define DATE_OF_DEATH_FIELD    "DOD"
+
+#define MAP_CHROMOSOME_FIELD       "CHROMOSOME"
+#define MAP_POSITION_FIELD         "POSITION"
+#define MAP_MALE_POSITION_FIELD    "POSITION_M"
+#define MAP_FEMALE_POSITION_FIELD  "POSITION_F"
+#define MAP_POSITION_BP_FIELD      "POSITIONBP"
+#define GRAPH_SCORE_FIELD          "SCORE"
+#define MAP_ORDINAL_FIELD          "ORDINAL"
+#define MAP_MARKERNAME_FIELD       "MARKERNAME"
+#define ALLELE_1_FIELD             "ALLELE1"
+#define ALLELE_2_FIELD             "ALLELE2"
+
+#define ALLELE_FIELD               "ALLELE"
+#define FREQUENCY_FIELD            "FREQUENCY"
+
+/* DEFAULT LOG & OTHER FILE NAMES & FILE EXTENSIONS */
+
+/* Base name for all the log files: */
+#define ALL_LOGS_BASE_NAME       "madeline"
+
+/* Default names for specific log files: */
+#define DETAIL_LOG_NAME          "madeline.dtl"
+#define GENERAL_LOG_NAME         "madeline.log"
+#define ERROR_LOG_NAME           "madeline.err"
+#define COMMAND_LOG_NAME         "madeline.cmd"
+
+#define DATABASE_FILE_NAME       "input.dbf"
+#define OUTPUT_FILE_NAME         "output.ped"
+#define PARAM_OUTPUT_FILE_NAME   "output.par"
+#define MAP_DATABASE_FILE_NAME   "map.dbf"
+#define POSTSCRIPT_PEDIGREE_NAME "madeline.pedigree.ps"
+#define POSTSCRIPT_GRAPH_NAME    "madeline.graph.ps"
+#define GRAPH_FILE_EXTENSION     ".graph"
+#define MAP_FILE_EXTENSION       ".map"
+#define HEADER_FILE_EXTENSION    ".mfh"
+#define ALTERNATE_HEADER_EXTEN   ".mfh2"
+#define RUN_FILE_EXTENSION       ".run"
+#define DATA_FILE_EXTENSION      ".data"
+#define DECOMPOSED_FILE_EXTENSION ".decomposed"
+#define COMPOSED_FILE_EXTENSION   ".composed"
+#define MODIFIED_FILE_EXTENSION   ".mod"
+#define LOCUS_FILE_EXTENSION      ".loc"
+#define PEDIGREE_FILE_EXTENSION   ".ped"
+#define ALLELE_FREQ_FILE_NAME     "madeline.alf"
+
+/* DEFAULT GRAPH TITLE AND AXIS LABELS */
+#define GRAPH_TITLE              "Multipoint Analysis"
+#define GRAPH_X_AXIS_LABEL       "Map Position (cM)"
+#define GRAPH_Y_AXIS_LABEL       "LOD Score"
+
+/* DEFAULT HELPER APPLICATIONS AND COMMAND NAMES */
+/* **** THIS GROUP MAY NOW GET SUBSTITUTED  **** */
+/* **** BY THE ./configure SCRIPT           **** */
+#define PRINT_COMMAND        "lpr"
+#define EDIT_COMMAND         "emacs"
+#define POSTSCRIPT_VIEWER    "ghostview"
+#define WEB_VIEWER           "netscape"
+
+#define SHARE_PATH           "/usr/local/share/madeline/"
+
+/* DEFAULT URLS */
+#define WEB_ADDRESS            "eyegene.ophthy.med.umich.edu/madeline/"
+
+/* DEFAULT CHARACTER MISSING VALUES    */
+/* What values should we automatically */
+/* take to represent a missing entry?  */
+/*                                     */
+#define MADELINE_GENERIC_MISSING_VALUE "."
+#define CHARACTER_MISSING_VALUE_1 "."
+#define CHARACTER_MISSING_VALUE_2 "/"
+#define CHARACTER_MISSING_VALUE_3 "0/0"
+#define CHARACTER_MISSING_VALUE_4 "0/ 0"
+#define CHARACTER_MISSING_VALUE_5 "0/  0"
+
+/* DEFAULT NUMERIC MISSING VALUES */
+#define NUMERIC_MISSING_VALUE_1 -9999.0
+
+/* DEFAULT GENDER INDICATORS */
+#define DEFAULT_CODE_FOR_MALE   "M"
+#define DEFAULT_CODE_FOR_FEMALE "F"
+
+/* DEFAULT GENERIC ISO DATE FORMAT DELIMITER */
+#define DEFAULT_ISO_DATE_DELIMITER '.'
+
+/* DEFAULT AFFECTION STATUS CODES */
+#define NUM_STATUS_UNAFFECTED          0
+#define NUM_STATUS_AFFECTED            1
+#define NUM_STATUS_REPORTED_UNAFFECTED 2
+#define NUM_STATUS_REPORTED_AFFECTED   3
+#define NUM_STATUS_REPORTS_CONFLICTING 4
+
+#define CHR_STATUS_UNAFFECTED          "0"
+#define CHR_STATUS_AFFECTED            "1"
+#define CHR_STATUS_REPORTED_UNAFFECTED "2"
+#define CHR_STATUS_REPORTED_AFFECTED   "3"
+#define CHR_STATUS_REPORTS_CONFLICTING "%"
+
+/* CHARACTER DECEASED STATUS */
+#define CHR_NOT_DECEASED "N"
+#define CHR_IS_DECEASED  "Y"
+
+/* DEFAULT FONT SIZES IN POINTS */
+#define LABEL_FONT_SIZE 7
+#define LEGEND_FONT_SIZE 9
+
+/* DEFAULT PEDIGREE DRAWING PARAMETERS                                             */
+/* DO NOT CHANGE UNLESS YOU *REALLY* UNDERSTAND WHAT YOU ARE DOING !!!             */
+/* NOTE THAT SOME MEASURES, SUCH AS VerticalDrop1, ARE MODIFIED DYNAMICALLY.       */
+/* MEASUREMENTS ARE IN CENTIMETERS                                                 */
+/*                                                                                 */
+/* DRAWINGPARAMETERS:                                                              */
+/*                                                                                 */
+/*                                                                                 */
+/*           |<-- HorizontalInterval --->|                                         */
+/*           |                           |                                         */
+/*        +-----+                      _____                                       */
+/*        |     |                     /     \                                      */
+/*        |  x  |---------+----------|   x   |                                     */
+/*        |     |         |    ^      \     /                                      */
+/*        +-----+         |    |       -----                                       */
+/*                        | VerticalDrop1                                          */
+/*        xxxxxxx         |    |      xxxxxxx                                      */
+/*        xxxxxxx         |    |      xxxxxxx                                      */
+/*        xxxxxxx         |    |      xxxxxxx                                      */
+/*                        |    v                                                   */
+/* ----------+------------+--------------+---------------------------+             */
+/*           |       ^                   |                           |             */
+/*           | VerticalDrop2             |                           |             */
+/*         _____     |                +-----+                      _____           */
+/*        /     \    v                |     |                     /     \          */
+/*       |   x   |  ---               |  x  |                    |   x   |         */
+/*        \     /                     |     |                     \     /          */
+/*         -----                      +-----+                      -----           */
+/*           |           |                                                         */
+/*           |<---Half-->|      xxxxxxxxxxxxxxxxxxx                                */
+/*           | HZInterval|      xxxxxxxxxxxxxxxxxxx                                */
+/*           |           |      xxxxxxxxxxxxxxxxxxx                                */
+/*                              |                 |                                */
+/*                              |<-- CellWidth -->|                                */
+/*                                                                                 */
+/* UNITS ARE ALWAYS CENTIMETERS -- YOU CAN'T CHANGE THIS                           */
+/*                                                                                 */
+#define DP_ICON_DIAMETER 0.6 
+#define DP_ICON_RADIUS   0.3  /* MUST BE HALF OF THE DIAMETER     */
+#define DP_HZ_INTERVAL   1.5
+#define DP_CELL_SPACING  0.1  /* SPACING between cell widths:     */
+                              /* i.e., between successive text    */
+                              /* columns.  CellWidth itself is    */
+                              /* based on the horizontal interval */
+#define DP_TICK_LENGTH   0.15 
+#define DP_VT_DROP1     -3.0  /* MUST BE NEGATIVE                 */  
+#define DP_VT_DROP2     -0.75 /* MUST BE NEGATIVE                 */
+
+/* DEFAULT EVALUATION INTERVAL AND OFF END DISTANCE */
+#define EVALUATION_INTERVAL 0.5
+#define OFF_END_DISTANCE 10.0
+
+/*                                                               */
+/* MAXIMUM NUMBER OF KIDS AND SPOUSES                            */
+/*                                                               */
+/* NOTE BENE: The pedigree reconstruction code is NOT limited    */
+/* by the defines below because vectors of children and spouses  */
+/* are allocated and, as needed, re-allocated dynamically, so    */
+/* there are NO LIMITS on the number of offspring or mates       */
+/* modeled by the program.  The program thus uses memory in an   */
+/* efficient  manner.  However, some other functions in the      */
+/* program do have limitations where these #defines apply.       */
+/* These are:                                                    */
+/*                                                               */
+/* (1) Sorting functions such as the functions called by the     */
+/*     SORT command may use fixed-length vectors of pointers     */
+/*     whose lengths are defined by MAXKIDS.                     */
+/* (2) Aggregate-level function evaluation processing, such as   */
+/*     functions for calculating the mean or standard deviation  */
+/*     of a variable in a sibship also use fixed-length vectors  */
+/*     whose lengths are defined by MAXKIDS to keep running      */
+/*     sums and such.                                            */
+/* (3) A part of the Mendelian inheritance checking routine in   */
+/*     integrity.c uses a fixed-length vector of pointers to     */
+/*     individuals to sort homozygotes at the front of a         */
+/*     traversal list. Again, MAXKIDS defines the vector length. */
+/*                                                               */
+/* --> In cases where MAXKIDS is used, it limits the total       */
+/*     number of offspring borne by a single mother which can be */
+/*     processed. MAXKIDS=35 is certainly close to the           */
+/*     theoretical maximum number that a human mother could bear */
+/*     during 26 continuous years of pregnancy from adolescence  */
+/*     through menopause.  Ugghhh, poor woman!  In any case,     */
+/*     MAXKIDS has no effect on the number of children sired by  */
+/*     a man which can be processed.                             */
+/*                                                               */
+#define MAXKIDS 35
+#define MAXSPOUSES 10
+
+/*                                                   */
+/* COLORS: Defaults presented as decimal RGB triplet */
+/*         parameters for the Postscript             */
+/*         "setrgbcolor" command.                    */
+/*                                                   */
+#define COLOR_BLACK  "0 0 0"
+#define COLOR_BLUE   "0 0 1"
+#define COLOR_BROWN  "0.61 0.40 0.19"
+#define COLOR_CYAN   "0 1 1"
+#define COLOR_DKGRY  "0.3 0.3 0.3"
+#define COLOR_FRGRN  "0.0 0.68 0.0"
+#define COLOR_GRAY   "0.7 0.7 0.7"
+#define COLOR_GREEN  "0 1 0"
+#define COLOR_LTGRY  "0.9 0.9 0.9"
+#define COLOR_MAGEN  "1 0 1"
+#define COLOR_ORANG  "1.0 0.75 0.0"
+#define COLOR_PEACH  "1.0 0.8 0.6"
+#define COLOR_PURPL  "0.6 0.4 0.8"
+#define COLOR_RED    "1 0 0"
+#define COLOR_WHITE  "1 1 1"
+#define COLOR_YELLW  "1 1 0"
+ 
+/* START OF                        */
+/* AUTOCONF CONFIGURE TESTED       */
+/* DEFINES:                        */
+/*                                 */
+
+/* Define if you have <unistd.h>.  */
+#undef HAVE_UNISTD_H
+
+/* Define if you have the vprintf function.  */
+#undef HAVE_VPRINTF
+
+/* END OF                          */
+/* AUTOCONF CONFIGURE TESTED       */
+/* DEFINES:                        */
+/*                                 */
+
+#define CONFIG_INCLUDED
+ 
+#endif
+
+
+
+
+

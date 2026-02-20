@@ -1,0 +1,260 @@
+dnl Madeline configure.in file (c) 2001 by the Regents of the
+dnl University of Michigan.
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(src/madeline.c)
+AC_CONFIG_HEADER(src/config.h)
+AC_CONFIG_AUX_DIR(support)
+echo " _______________________________________________________________________________ "
+echo "|_______________________________________________________________________________|"
+echo "  __    __       _       ______     _______   _          _   __    _   _______   "
+echo " |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|  "
+echo " |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___     "
+echo " | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|    "
+echo " | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____   "
+echo " |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|  "
+echo " _______________________________________________________________________________ "
+echo "|_______________________________________________________________________________|"
+echo ""
+echo " AUTOCONF-generated script for Madeline"
+echo " from configure.in by Edward H. Trager"
+echo " (c) 2002 Regents of the University of Michigan, Ann Arbor, Michigan"
+echo ""
+
+dnl 0. Check what type of system we are on:
+echo "************************************************************************"
+echo "Checking system type ... "
+echo "************************************************************************"
+AC_CANONICAL_HOST
+echo "host_cpu=" $host_cpu " host_vendor=" $host_vendor " host_os=" $host_os
+
+dnl 1. Checks for programs.
+echo "************************************************************************"
+echo "Checking for compilers and other programs required for installation ... "
+echo "************************************************************************"
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+dnl    Check for gtar vs tar:
+AC_CHECK_PROGS(TAR, gtar tar)
+
+dnl 2. Checks for libraries.
+
+dnl Help the linker find libraries which may be installed in the local prefix:
+dnl NOTE: This is where our script will install the GNU readline libraries
+dnl if they aren't found the first time around, so on the second try through,
+dnl everything is beautiful ...
+
+if test $prefix = "NONE"
+then ADD_LD_FLAG="-L/usr/local/lib"
+else ADD_LD_FLAG="-L$prefix/lib"
+fi
+LIBS="$LIBS $ADD_LD_FLAG"
+
+dnl    Check which termcap lib (in aclocal.m4):
+echo "***********************************************************************"
+echo "Checking for libraries used by Madeline ..."
+echo ""
+echo "-> If you experience trouble compiling Madeline on your platform,"
+echo "   a missing or unlocated library is usually the problem."
+echo ""
+echo "-> On some systems, you may have to add to the linker's library search"
+echo "   path which, using bash, you can do like this:"
+echo ""
+echo "   export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:Your/Additional/Library/Path"
+echo ""
+echo "-> We set the following flag for the linker. If you install required"
+echo "   libraries in the same prefix you are using to install Madeline, then"
+echo "   you shouldn't have any problem!"
+echo ""
+echo "   \$LIBS=$LIBS."
+echo ""
+echo "***********************************************************************"
+
+BASH_CHECK_LIB_TERMCAP
+AC_SUBST(TERMCAP_LIB)
+if test "X$TERMCAP_LIB" = "X" ; then
+  echo "******************************************************"
+  echo "A termcap library was not found ..."
+  echo ""
+  echo "-> We provide a script which can \"automagically\" download"
+  echo "   and install the GNU ncurses (termcap) library for you."
+  echo ""
+  echo "-> We are going to run this now:"
+  echo ""
+  echo "******************************************************"
+  echo ""
+  PREFIX=$prefix ./get_ncurses.sh
+  exit 1;
+fi
+
+dnl Check for readline library:
+AC_CHECK_LIB(readline, readline, , HAVE_READLINE=no, 
+${TERMCAP_LIB})
+  
+if test "X$HAVE_READLINE" = "Xno" ; then
+  echo "******************************************************"
+  echo "The GNU Readline library was not found ..."
+  echo ""
+  echo "-> We provide a script which can \"automagically\" download"
+  echo "   and install this library for you."
+  echo ""
+  echo "-> We are going to run this now:"
+  echo ""
+  echo "******************************************************"
+  echo ""
+  PREFIX=$prefix ./get_readline.sh
+  exit 1;
+fi
+
+dnl Check for history library:
+dnl If readline was installed, this really should be there.
+dnl However, for some reason there are systems out there that only have
+dnl libreadline and not libhistory ... strange, but true!  So, here again
+dnl we better call our script if libhistory is not found
+dnl
+dnl AC_CHECK_LIB(history, add_history, ,[
+dnl  AC_MSG_ERROR(History library not found.  This should have been installed with GNU readline.)
+dnl  ])
+
+AC_CHECK_LIB(history, add_history, , HAVE_HISTORY=no)
+
+if test "X$HAVE_HISTORY" = "Xno" ; then
+  echo "******************************************************"
+  echo "The GNU Readline \"history\" library was not found ..."
+  echo ""
+  echo "-> We provide a script which can \"automagically\" download"
+  echo "   and install this library for you."
+  echo ""
+  echo "-> We are going to run this now:"
+  echo ""
+  echo "******************************************************"
+  echo ""
+  PREFIX=$prefix ./get_readline.sh
+  exit 1;
+fi
+
+dnl Check for math library:
+dnl If using C++, this should be there.
+AC_CHECK_LIB(m, cos)
+
+dnl 3. Checks for header files.
+AC_MSG_RESULT(***********************************************************************)
+AC_MSG_RESULT(Checking for required header files ...)
+AC_MSG_RESULT(***********************************************************************)
+AC_HEADER_STDC
+AC_CHECK_HEADERS(limits.h unistd.h)
+
+dnl 4. Checks for typedefs, structures, and compiler characteristics.
+AC_MSG_RESULT(***********************************************************************)
+AC_MSG_RESULT(Checking for typedefs, structures, and compiler characteristics ...)
+AC_MSG_RESULT(***********************************************************************)
+AC_C_CONST
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_STRUCT_TM
+
+dnl 5. Checks for library functions.
+AC_MSG_RESULT(***********************************************************************)
+AC_MSG_RESULT(Checking for required library functions ...)
+AC_MSG_RESULT(***********************************************************************)
+AC_FUNC_VPRINTF
+
+dnl 6. Check for helper applications: these get substituted in the src/config.h file:
+AC_MSG_RESULT(***********************************************************************)
+AC_MSG_RESULT(Checking for helper applications that Madeline uses:)
+AC_MSG_RESULT(-> print command)
+AC_MSG_RESULT(-> file editor)
+AC_MSG_RESULT(-> postscript viewer)
+AC_MSG_RESULT(-> web browser)
+AC_MSG_RESULT(***********************************************************************)
+
+dnl 7. Check which print command to use by default:
+AC_CHECK_PROGS(WHICH_PRINT_COMMAND, lpr lp) 
+AC_DEFINE_UNQUOTED(PRINT_COMMAND,"${WHICH_PRINT_COMMAND}")
+AC_SUBST(PRINT_COMMAND)
+
+dnl 8. Check which editor to use by default:
+AC_CHECK_PROGS(WHICH_EDITOR, qv edith kwrite xemacs xedit vi)
+AC_DEFINE_UNQUOTED(EDIT_COMMAND,"${WHICH_EDITOR}")
+AC_SUBST(EDIT_COMMAND)
+
+dnl 9. Check which postscript viewer to use by default:
+AC_CHECK_PROGS(WHICH_POSTSCRIPT_VIEWER, gv kghostview ghostview gsview gs) 
+AC_DEFINE_UNQUOTED(POSTSCRIPT_VIEWER,"${WHICH_POSTSCRIPT_VIEWER}")
+AC_SUBST(POSTSCRIPT_VIEWER)
+
+dnl 10. Check which web browser to use by default:
+AC_CHECK_PROGS(WHICH_BROWSER, mozilla konqueror opera safari w3m lynx)
+if test $WHICH_BROWSER = w3m ; then
+AC_MSG_RESULT(******************************************************)
+AC_MSG_RESULT(NOTE: Madeline will use the included run_w3m script)
+AC_MSG_RESULT(      for launching the w3m browser in an xterm window)
+AC_MSG_RESULT(******************************************************)
+AC_DEFINE_UNQUOTED(WEB_VIEWER,"run_w3m")
+elif test $WHICH_BROWSER = lynx ; then
+AC_MSG_RESULT(*******************************************************)
+AC_MSG_RESULT(NOTE: Madeline will use the included run_lynx script)
+AC_MSG_RESULT(      for launching the lynx browser in an xterm window)
+AC_MSG_RESULT(*******************************************************)
+AC_DEFINE_UNQUOTED(WEB_VIEWER,"run_lynx")
+else 
+AC_DEFINE_UNQUOTED(WEB_VIEWER,"${WHICH_BROWSER}")
+fi
+AC_SUBST(WEB_VIEWER)
+
+dnl    Substitute the share path used for finding initial.script and documentation:
+if test $prefix = "NONE"
+then DOC_PATH="/usr/local/share/madeline/"
+else DOC_PATH="$prefix/share/madeline/"
+fi
+AC_DEFINE_UNQUOTED(SHARE_PATH,"${DOC_PATH}")
+AC_SUBST(SHARE_PATH)
+
+MAKEFILES="Makefile src/Makefile"
+MAKE_TARGETS="src/config.h madeline"
+
+AC_SUBST(MAKE_TARGETS)
+
+dnl Add "-Wall" to the CXXFLAGS:
+dnl CXXFLAGS="-Wall $CXXFLAGS"
+
+AC_OUTPUT(${MAKEFILES})
+
+echo "*******************************************************************"
+echo "Configuration Complete!"
+echo "*******************************************************************"
+echo "==================== COMPILATION INFORMATION ======================"
+echo " - Will compile with $CXX $CXXFLAGS on a $host_cpu $host_os system."
+echo " - Linker Flags: LIBS = $LIBS"
+echo " - TERMCAP_LIB = $TERMCAP_LIB"
+echo "======================= EXTERNAL PROGRAMS ========================="
+if test -z $WHICH_PRINT_COMMAND
+then echo " - WARNING: Configure was unable to locate a program to use for printing"
+else echo " - Madeline will use \"$WHICH_PRINT_COMMAND\" for printing"
+fi
+echo      "   ==> Madeline v. 0.935 does not actually do anything with this at present!"
+if test -z $WHICH_EDITOR
+then echo " - WARNING: Configure was unable to locate a program to use for file viewing/editing"
+else echo " - Madeline will use \"$WHICH_EDITOR\" for file viewing/editing"
+fi
+echo      "   ==> EDIT \"src/config.h\" DIRECTLY IF YOU WANT TO CHANGE THIS!"
+if test -z $WHICH_POSTSCRIPT_VIEWER
+then echo " - WARNING: Configure was unable to locate a program to use for viewing postscript output"
+else echo " - Madeline will use \"$WHICH_POSTSCRIPT_VIEWER\" for viewing postscript output"
+fi
+echo      "   ==> EDIT \"src/config.h\" DIRECTLY IF YOU WANT TO CHANGE THIS!"
+if test -z $WHICH_BROWSER
+then echo " - WARNING: Configure was unable to locate a browser to use for viewing HTML documentation"
+else echo " - Madeline will use \"$WHICH_BROWSER\" for viewing HTML documentation"
+fi
+echo      "   ==> EDIT \"src/config.h\" DIRECTLY IF YOU WANT TO CHANGE THIS!"
+
+echo "========================= INSTALLATION ============================"
+echo " - Installation will be in \"$prefix\""
+echo "========================== NOTE BENE =============================="
+echo "You can now manually edit \"src/config.h\" if you want to customize"
+echo "Madeline more specifically for your site.  Otherwise, you can just"
+echo "type \"make\" to compile the program now.  After \"make\" completes"
+echo "successfully, type \"make install\" (as root, if necessary)."
+echo "==================================================================="
+

@@ -1,0 +1,152 @@
+<html><head>
+<link rel=stylesheet href = ../mapomat/htdocs/mapomat/general.css>
+<style>
+TD {font-family: arial, helvetica, sans-serif;
+font-size: 85%; text-align: center;vertical-align: center;}
+PRE {font-family: courier, monospace;text-align: left;}
+</style>
+</head>
+<body bgcolor = #FFFFFF marginwidth = 25>
+
+<center>
+<table width = 85% height = 100%>
+<tr><td valign = center align = center><!--
+
+Option chosen: fixed
+
+Current values for parameters:
+
+par_file = /tmp/mapomat90321.par
+dat_file = chr1.dat
+gen_file = chr1.gen
+ord_file = chr1.ord
+nb_our_alloc = 3000000    [# bytes reserved for our_alloc]
+SEX_EQ = 1   [0 = sex specific analysis, 1 = sex equal]
+TOL = 0.010000
+PUK_NUM_ORDERS_TOL = 6
+PK_NUM_ORDERS_TOL = 8
+PUK_LIKE_TOL = 3.000
+PK_LIKE_TOL = 3.000
+use_ord_file = 0
+write_ord_file = 0
+use_haps = 1
+
+
+
+Sex_averaged map (recomb. frac., Kosambi cM):
+
+315   D1S2640                       0.0                    
+                  0.040    4.056
+167   D1S466                        4.1                    
+                  0.036    3.607
+874   D1S3725                       7.7                    
+                  0.021    2.114
+261   D1S2877                       9.8                    
+                  0.074    7.472
+592   D1S1660                      17.3                    
+                  0.032    3.158
+569   D1S1647                      20.4                    
+                  0.129   13.216
+134   D1S245                       33.6                    
+                  0.033    3.288
+107   D1S425                       36.9                    
+
+* denotes recomb. frac. held fixed in this analysis
+
+
+log10_like = -88.185
+
+
+Option chosen: flips2
+
+Current values for parameters:
+
+par_file = /tmp/mapomat90321.par
+dat_file = chr1.dat
+gen_file = chr1.gen
+ord_file = chr1.ord
+nb_our_alloc = 3000000    [# bytes reserved for our_alloc]
+SEX_EQ = 1   [0 = sex specific analysis, 1 = sex equal]
+TOL = 0.010000
+PUK_NUM_ORDERS_TOL = 6
+PK_NUM_ORDERS_TOL = 8
+PUK_LIKE_TOL = 3.000
+PK_LIKE_TOL = 3.000
+use_ord_file = 0
+write_ord_file = 0
+use_haps = 1
+
+
+
+315   D1S2640             
+167   D1S466              
+874   D1S3725             
+261   D1S2877             
+592   D1S1660             
+569   D1S1647             
+134   D1S245              
+107   D1S425              
+
+
+
+number of loci to flip = 2
+
+
+Original order, & its log10_likelihood,  followed by
+flipped orders, with their relative log10_likelihoods 
+(= log10_like[orig] - log10_like[curr])
+
+   315   167   874   261   592   569   134   107  -88.184705
+
+   167   315  -   -   -   -   -   -     5.382403
+  -    874   167  -   -   -   -   -     5.911979
+  -   -    261   874  -   -   -   -     2.678194
+  -   -   -    592   261  -   -   -    11.960827
+  -   -   -   -    569   592  -   -     3.835376
+  -   -   -   -   -    134   569  -    19.751073
+  -   -   -   -   -   -    107   134    2.784277
+
+
+-->
+Results of Fixed Analysis<br>
+Using kosambi map function<br>
+And sex-averaged distances<br>
+<table cellpadding = 5 cellspacing = 5 border = 1>
+<tr><td colspan = 4>Map Distance Information</td><td colspan=2>Local Support for Order</td><td colspan=2>Marker Info</td></tr>
+<tr><td>Marker<br>Names</td><td>Theta</td><td>Map Distance (cM)</td><td>Cumulative Distance</td><td><img src = ../mapomat/htdocs/mapomat/delta.gif>log10(L)</td><td>Odds</td><td>Families Geneotyped</td><td>Het.</td></tr>
+<tr><td>D1S2640</td><td>&nbsp;</td><td>&nbsp;</td><td>0.0</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.78</td></tr>
+<tr><td>&nbsp;</td><td>0.040</td><td>4.056</td><td>&nbsp;</td><td>5.382403</td><td>2.41E5</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S466</td><td>&nbsp;</td><td>&nbsp;</td><td>4.1</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.78</td></tr>
+<tr><td>&nbsp;</td><td>0.036</td><td>3.607</td><td>&nbsp;</td><td>5.911979</td><td>8.17E5</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S3725</td><td>&nbsp;</td><td>&nbsp;</td><td>7.7</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.73</td></tr>
+<tr><td>&nbsp;</td><td>0.021</td><td>2.114</td><td>&nbsp;</td><td>2.678194</td><td>4.77E2</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S2877</td><td>&nbsp;</td><td>&nbsp;</td><td>9.8</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.72</td></tr>
+<tr><td>&nbsp;</td><td>0.074</td><td>7.472</td><td>&nbsp;</td><td>11.960827</td><td>9.14E11</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S1660</td><td>&nbsp;</td><td>&nbsp;</td><td>17.3</td><td>&nbsp;</td><td>&nbsp;</td><td>18</td><td>0.83</td></tr>
+<tr><td>&nbsp;</td><td>0.032</td><td>3.158</td><td>&nbsp;</td><td>3.835376</td><td>6.84E3</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S1647</td><td>&nbsp;</td><td>&nbsp;</td><td>20.4</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.71</td></tr>
+<tr><td>&nbsp;</td><td>0.129</td><td>13.216</td><td>&nbsp;</td><td>19.751073</td><td>5.64E19</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S245</td><td>&nbsp;</td><td>&nbsp;</td><td>33.6</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.82</td></tr>
+<tr><td>&nbsp;</td><td>0.033</td><td>3.288</td><td>&nbsp;</td><td>2.784277</td><td>6.09E2</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S425</td><td>&nbsp;</td><td>&nbsp;</td><td>36.9</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.81</td></tr>
+</table>
+<p class=centered>
+FIXED Results Interpretation</p>
+
+<br>
+<p class=normal>
+A FIXED analysis both estimates distance between markers and gives
+local support for a given order by running a <a href = "../mapomat/flips_help.html">
+FLIPS</a> calculation with 2 markers per tuple.  Columns 2-4 (or 2-7 for
+sex-specific calculations) give theta (the recombination fraction) and
+the estimated map distance in centiMorgans using whichever mapping
+function you specified.  For each marker, the cumulative distance is also
+given. The last two columns give the LOD score and the odds (10
+raised to the lod score) of the given order versus the reverse 
+rder for each successive pair of markers.
+</p>
+
+</td></tr></table>
+</center>
+
+</body></html>

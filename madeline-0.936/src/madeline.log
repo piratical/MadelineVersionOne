@@ -1,0 +1,68 @@
+ ______________________________________________________________________________
+ ______________________________________________________________________________
+  __    __       _       ______     _______   _          _   __    _   _______ 
+ |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|
+ |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___   
+ | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|  
+ | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____ 
+ |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|
+ ______________________________________________________________________________
+ ______________________________________________________________________________
+
+                                 Version  0.936
+                           Written by Edward H. Trager
+                              <ehtrager@umich.edu>
+
+COPYRIGHT © 2004
+THE REGENTS OF THE UNIVERSITY OF MICHIGAN
+PORTIONS COPYRIGHT © 1995 EDWARD H. TRAGER
+ALL RIGHTS RESERVED
+
+Madeline comes with ABSOLUTELY NO WARRANTY.  This is free software and
+you are welcome to redistribute it under certain conditions.  For details,
+type "license"
+
+M-Batch> *** Running batch file "initial.script"... ***
+M-Batch> *** Finished batch file "initial.script"... ***
++-----------------------+-----------+-----------------------------------------+
+| Variable or State Flag| Setting   |Description                              |
++-----------------------+-----------+-----------------------------------------+
+| EXTERNAL PROGRAMS     |           |                                         |
++-----------------------+-----------+-----------------------------------------+
+| Editor                | qv        |Program used to edit files               |
+| PostscriptViewer      | gv        |Program used to view Postscript drawings |
+| PrintCommand          | lpr       |System program used to print files       |
+| WebBrowser            | mozilla   |Program used to view HTML documentation  |
++-----------------------+-----------+-----------------------------------------+
+| EVALUATION SETTINGS   |           |                                         |
++-----------------------+-----------+-----------------------------------------+
+| EvaluationInterval    |   0.50 cM |Value to write to control file.          |
+| OffEndDistance        |  10.00 cM |Value to write to control file           |
++-----------------------+-----------+-----------------------------------------+
+| DRAWING SETTINGS      |           |                                         |
++-----------------------+-----------+-----------------------------------------+
+| Color                 | ON        |Draw pedigrees in color                  |
+| ReverseShading        | OFF       |Black is first icon shade                |
+| DividedDrawings       | ON        |Paginate drawings by founding group      |
+| HighlightRows         | ON        |Alternately highlight data on drawings   |
+| LabelCreatedIndividual| ON        |Label virtuals created by Madeline       |
+| Orientation           | AUTOMATIC |Automatic based on drawing dimensions    |
+| PaperMargin           | 1.00 cm   |Margin (in cm) on all four sides         |
+| PaperSize             | USLETTER  |8.5 x 11.0 inches                        |
++-----------------------+-----------+-----------------------------------------+
+| OTHER SETTINGS        |           |                                         |
++-----------------------+-----------+-----------------------------------------+
+| AutoExclude           | ON        |Exclude pedigrees automatically          |
+| AutoCheckInheritance  | ON        |Check inheritance on OPEN                |
+| ConsoleHighlights     | ON        |Use bold/color highlights on console     |
+| Delimiter             | TAB       |Delimiter for tables and other output.   |
+| FusionSupport         | OFF       |FUSION customizations disabled           |
+| HaplotypeDisplay      | OFF       |Display genotypes delimited with "/"     |
+| Language              | American E|Language convention used for date, time  |
+| MapDetails            | OFF       |LIST MAP summary display                 |
+| SaveAlleleFrequencies | OFF       |Calculate new frequencies on next OPEN   |
+| Date                  |           |Thursday, September 16, 2004             |
+| Verbosity             | VERBOSE   |All messages are printed to the console  |
++-----------------------+-----------+-----------------------------------------+
+> quit
+Releasing resources ...

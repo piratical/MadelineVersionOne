@@ -1,0 +1,6 @@
+OUTPUT_FILE     = c12.out
+LOCUS_FILE      = c12.loc
+MAP_FILE        = c12.map
+PEDIGREE_FILE   = c12.ped
+ANALYSIS_OPTION = Allele_frequencies
+MODEL = 1

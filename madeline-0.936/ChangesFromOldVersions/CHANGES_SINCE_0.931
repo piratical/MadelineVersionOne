@@ -1,0 +1,56 @@
+CHANGES SINCE VERSION 0.931
+
+-- 2000.09.23 ET:
+
+1. Madeline now assigns single letters A-Z (excepting the letter E which
+   is the constant base of the natural logarithms) as scratch numeric
+   variables.  These are normally only useful 
+
+2. Madeline now supports the following additional assignment operators
+   for numeric values:
+   
+   += -= *= /=
+
+3. Madeline now also supports the following postfix increment 
+   and decrement assignment operators:
+   
+   ++ --
+
+   These can only be used as postfix operators.  Prefix operation is
+   not supported.
+   
+4. Madeline now supports "?" as an operator substitute for the "show"
+   or "what is" command.  Here are some examples of what you can do 
+   with these new features:
+   
+   M>? 12+3
+   15
+   M>? WebViewer
+   "netscape"
+   M>? PostscriptViewer
+   "ghostview"
+   M> ?EvaluationInterval
+      0.5
+   M> EvaluationInterval+=0.5
+   M> ?EvaluationInterval
+      1
+   M> ?OffEndDistance
+      10
+   M> OffEndDistance--
+   M> ?OffEndDistance
+      9
+
+   In previous versions, you would have had to type the command "show", 
+   e.g., "show OffEndDistance", so the question mark is a little time
+   saver.
+
+   Programmers will recognize the convenience of the expanded
+   set of assignment operators, including the increment and decrement
+   operators.  To increase the value of a numeric variable in previous
+   versions, you would have had to do something like this:
+
+   M> OffEndDistance=OffEndDistance+0.5
+   
+   ... which is clearly more laborious.
+
+

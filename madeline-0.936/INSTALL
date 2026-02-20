@@ -1,0 +1,253 @@
+INSTALL
+=======
+
+-- Last Updated: 2004.06.22 by Ed Trager
+
+
+Obtaining Madeline
+==================
+
+The latest version of Madeline is always available for download from:
+
+http://eyegene.ophthy.med.umich.edu
+
+
+Prerequisites
+=============
+
+ Required Libraries
+ ==================
+
+  Readline Library
+  ================
+
+ Madeline v. 0.935 requires the GNU readline library version 4.1.
+ Older versions of the readline library may also work, but have not been
+ tested.  We once had trouble compiling some newer version of
+ the library.  Version 4.1 always seems to work fine.
+
+ We now provide a script to retrieve and install GNU readline v. 4.1
+ for you in the event that your system does not yet have it installed.
+
+ If you have problems or don't care to use our script, download the readline
+ version 4.1 library from the GNU ftp site, ftp.gnu.org, in the /gnu/readline/
+ directory, or from the link on the eyegene.ophthy.med.umich.edu web site.
+
+  Curses or NCurses Library
+  =========================
+
+ The readline library itself requires curses or ncurses.  One or another form
+ of curses/ncurses is usually preinstalled on the various *nix OSes, and now
+ even under Cygwin (for running Madeline on Win32 platforms), so this is almost
+ never an issue.
+
+ In any case, we provide a script to retrieve and install GNU ncurses version
+ 5.2 in the event that your system does not have it.  We have previously seen
+ a need to use this script on OpenBSD platforms.
+
+  Unicode Support
+  ===============
+
+ Madeline now has some Unicode UTF-8 support built in.  Unfortunately, there
+ are still in existance some crippled platforms, like OpenBSD, that do not
+ provide modern wide character Unicode support.
+ We have now added additional code to make Madeline more immune to platform-
+ specific Unicode issues while still supporting Unicode as much as possible.
+
+
+ Compilers and Platforms
+ =======================
+
+  UNIX-based Platforms
+  ====================
+
+  Madeline now uses GNU Autoconf to insure portability to the widest
+  possible variety of systems.  Madeline has previously
+  successfully compiled using at least the following compiler, kernel, and
+  hardware combinations (this list is probably somewhat out of date by now):
+
+  * GNU gcc 3.x on:
+
+    * SuSE v. 9.1 Linux
+    * SuSE v. 9.0 Linux
+    * SuSE v. 8.1 Linux
+
+  * GNU gcc 2.95.3 on:
+
+    * RedHat v. 6.2 Linux (2.2 i386 kernel)
+    * SuSE v. 7.2 Linux (2.4 i386 kernel)
+    * SuSE v. 7.3 Linux (2.4 i386 kernel)
+    * OpenBSD v. 2.9 on i386
+    * FreeBSD v. 4.4 on i386
+    * Solaris 8 (SunOS 5.8) on i386
+    * SunOS 5.6 on Sparc Ultra-1
+    * Solaris 8 (SunOS 5.8) on Sparc UltraSPARC-IIi
+
+  * GNU gcc 2.95.2 on:
+
+    * Apple OS X
+
+  * Sun Forte Workshop C/C++ Compiler:
+
+    * SunOS 5.6 on Sparc Ultra-1 32-bit executable
+    * Solaris 8 (SunOS 5.8) on Sparc UltraSPARC-IIi 32-bit executable
+    * Solaris 8 (SunOS 5.8) on Sparc UltraSPARC-IIi 64-bit executable
+      (64 bit executable not thoroughly tested)
+
+  In light of this, we expect that the program can be built successfully on
+  almost any modern UNIX platform.
+
+  Note that AUTOCONF seems to want to choose GNU gcc in preference to any other
+  compiler on your system.  You can change the environment variables
+  related to the compiler, or just manually edit the src/Makefile after
+  letting configure do its thing.  For example, on Solaris 8, you could
+  do something like this if you wanted to use Sun's native Workshop (a.k.a. Forte)
+  compiler:
+
+     CC=/opt/SUNWspro/bin/CC -xtarget=ultra -xarch=v9
+
+  Madeline's Make file has only been tested with GNU make.
+
+
+  Notes Regarding Specific Platforms
+  ==================================
+
+   In general, Madeline is developed and first tested on Linux platforms.
+   After that, we make sure it works on other Unix platforms, such as Sun
+   and FreeBSD.  After that, we check that the program will compile and
+   run on Cygwin (win32) and OS X.  At present however we do not have
+   extensive resources for testing on Win32 and Mac OS X platforms.  Even
+   though the program should run on these platforms, it may not be as
+   well integrated with the platform as it is on Linux or other Unix
+   platforms.
+
+
+   Win32 Platforms
+   ===============
+
+   Direct support for Win32 platforms has been discontinued.  The code base
+   contains most of the support needed to compile Madeline as a Win32 console
+   application (in processm.c), except for the GNU readline library (Cygwin
+   provides readline, so this is not an issue on Cygwin).
+
+   One would have to provide a reasonable replacement for the GNU readline
+   library on Win32.  But, why bother?  On Intel hardware, GNU/Linux and the
+   various free BSDs are cheaper, faster, and better for the kind of scientific
+   computing that you are probably going to do with Madeline.  And if your hardware
+   isn't Intel, then you're not running Windows anyway.
+
+   That having been said, you CAN run Madeline on Windows under Cygwin -- see below.
+
+
+   Cygwin on Win32
+   ===============
+
+   Madeline has compiled (and run!) successfully with gcc on Cygwin (http://sources.redhat.com/cygwin/)
+   on Win32 platforms.  This is not really recommended, but it does work.  See the section
+   below entitled "Issues On Some Platforms".
+
+   Apple OS X
+   ==========
+
+   Madeline compiles successfully on OS X platforms.
+
+Installation Procedure
+========================
+
+ Obtaining TAR Packages
+ ======================
+
+ Madeline is distributed in tarred gzip and bzip2 packages available for
+ download from http://eyegene.ophthy.med.umich.edu.
+
+ Untarring the Packages
+ ======================
+
+ Be sure to first untar and install the GNU readline 4.1 library if it is not already
+ installed on your machine.  If you have any trouble compiling Madeline with the version
+ of readline installed on your machine, just download and install readline 4.1 in
+ an appropriate location like /usr/local and you shouldn't have any trouble.  Follow the
+ directions provided with GNU readline.
+
+ Should you forget to download GNU readline, Madeline now includes a script to do
+ it for you.
+
+ For a gzipped madeline package using GNU tar, type:
+
+      tar xzvf madeline-x.xxx.tar.gz
+
+ For a bzip2 madeline package using GNU tar, type:
+
+      tar xjvf madeline-x.xxx.tar.bz2
+
+ For a gzipped madeline package using a non-GNU tar, type:
+
+      gzip -cd madeline-x.xxx.tar.gz | tar xvf -
+
+
+ This will create a subdirectory called madeline-x.xxx where x.xxx is the version
+ number.  The subdirectory will contain all documentation, source files, and sample data.
+
+ Compiling and Installing the Package
+ ====================================
+
+ From the top level "madeline-x.xxx" subdirectory, just type the following
+ sequence of commands:
+
+     ./configure            <-- You must type the "./" before "configure"
+     make
+     su root                <-- You only need su to root if installing in
+                                /usr/local or a similar location requiring
+                                root permissions.
+     make install
+
+ By default, Madeline will be installed in /usr/local.  You can
+ change this by typing configure with "--prefix=" to specify an alternative
+ directory.
+
+ For example, if your home directory was "/home/cat" and you wanted to
+ install Madeline in your home "bin" subdirectory ("/home/cat/bin"), you would
+ type:
+
+     ./configure --prefix=/home/cat
+     make
+     make install
+
+ Type "./configure --help" to see what other options are available.
+
+ If you get an error message, first check to make sure that you have the required
+ readline libraries installed correctly.  The GNU readline library and Madeline
+ require that at least one of the following libraries is present on your system:
+
+    * termcap
+    * curses
+    * ncurses
+
+ So, if the configure script was unable to locate one of these libraries and the
+ src/Makefile doesn't contain a line that looks like this:
+
+      TERMCAP_LIB  = -ltermcap
+
+ or this:
+
+      TERMCAP_LIB  = -lcurses
+
+ or this:
+
+      TERMCAP_LIB  = -lncurses
+
+ ... then you might need to define the LD_LIBRARY_PATH variable or otherwise
+ inform your compiler where to find these libraries.
+
+ Configuration Options
+ =====================
+
+ Madeline's configure script looks for helper applications --such as web browsers
+ installed on your system-- and plugs the preferred results into the src/config.h
+ file.  If you like, you can examine the defaults that Madeline has placed in
+ src/config.h and modify anything not to your liking.  Be sure to do this *before*
+ you compile the program.  The defaults specified in src/config.h will become
+ compiled into the program.  Make sure you know what you are doing.  Madeline
+ also looks for a system-wide or local "initial.script" file where configuration
+ options may reside.  See the HTML documentation for more information.
+

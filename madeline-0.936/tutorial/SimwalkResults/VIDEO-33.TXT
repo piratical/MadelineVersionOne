@@ -1,0 +1,66 @@
+                                                                               
+                                                                               
+       SimWalk2 version 2.83                                                   
+                                                                               
+                                                                               
+       Type of data analysis:         Non-Parametric Statistics                
+                                                                               
+       Locus data INPUT file:         chr10.loc                                
+       Pedigree data INPUT file:      ped.dat                                  
+       Map data INPUT file:           ped.dat.map                              
+                                                                               
+                                                                               
+       Individual OUTPUT files:       STATS-33.mmm                             
+       Overall OUTPUT file:           STATS-33.ALL                             
+       Copy of all screen output:     VIDEO-33.TXT                             
+                                                                               
+       Here 'mmm' is from the order within the input pedigree file,            
+       e.g., '001' for the first pedigree, etc.                                
+                                                                               
+                                                                               
+  WARNING. In the following loci, minor adjustments had to be made             
+           to the allele frequencies to force them to sum to 1.0:              
+           D10S249   D10S1780  D10S578   D10S220   D10S539   D10S561           
+           D10S1652  D10S537   D10S583   D10S587                               
+                                                                               
+                                                                               
+  Working on pedigree initialization ...                                       
+   Pedigree #001 completed initialization;                                     
+  All pedigrees completed initialization.                                      
+                                                                               
+                                                                               
+  Working on pedigree analysis ...                                             
+                                                                               
+   Pedigree #001 ('F0099') working on simulated annealing ...                  
+      (Found an initial consistent state.)                                     
+          25% done ...                                                         
+          50% done ...                                                         
+          75% done ...                                                         
+   Pedigree #001 ('F0099') completed simulated annealing.                      
+   Pedigree #001 ('F0099') working on Markov chain Monte Carlo process ...     
+          25% done ...                                                         
+          50% done ...                                                         
+          75% done ...                                                         
+   Pedigree #001 ('F0099') completed Markov chain Monte Carlo process.         
+   Pedigree #001 ('F0099') working on p-value calculation ...                  
+   Pedigree #001 ('F0099') completed p-value calculation.                      
+   Pedigree #001 ('F0099') completed all analyses.                             
+                                                                               
+  All individual pedigrees completed analysis.                                 
+                                                                               
+  Now combining individual results into overall results...                     
+  Overall results completed.                                                   
+                                                                               
+  Please see the following output files.                                       
+                                                                               
+       Individual OUTPUT files:       STATS-33.mmm                             
+       Overall OUTPUT file:           STATS-33.ALL                             
+       Copy of all screen output:     VIDEO-33.TXT                             
+                                                                               
+       Here 'mmm' is from the order within the input pedigree file,            
+       e.g., '001' for the first pedigree, etc.                                
+                                                                               
+                                                                               
+  Program run completed!                                                       
+                                                                               
+                                                                               

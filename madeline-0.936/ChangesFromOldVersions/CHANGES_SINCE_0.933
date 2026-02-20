@@ -1,0 +1,149 @@
+CHANGES SINCE VERSION 0.933
+
+-- 2002.03.01 ET:
+
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+
+1. Numerous trivial bug fixes.
+
+2. Numerous improvements and corrections to the documentation.
+
+3. The TabDelimited output format is now documented.
+
+4. The CommaDelimited, SpaceDelimited, and TabDelimited generic output
+   formats now correctly handle date variables.  Dates are written
+   out in YYYY-MM-DD format.  Space-delimited files with dates in 
+   YYYY-MM-DD format can be read without ambiguity back into Madeline v.0.935.
+   Tab-delimited files produced by Madeline can be quickly imported
+   into popular databases such as MySQL (i.e. "LOAD DATA INFILE" command 
+   in MySQL).  
+   
+5. Output of the VIEW DISTINCT VALUES command now shows percentages and
+   totals for non-missing and missing values:
+   
+      M>view distinct values of 18,9,sex
+      
+      18. D12S1723 has 16 levels:
+      
+      Level  Value   Cases Percent
+      ------ -----   ----- -------
+          1. 203/209     1    0.3
+          2. 203/211     1    0.3
+          3. 205/207     1    0.3
+          4. 205/209    10    3.0
+          5. 205/211     3    0.9
+          6. 205/215     2    0.6
+          7. 205/217     1    0.3
+          8. 207/211     3    0.9
+          9. 209/209    26    7.9  -
+         10. 209/211     7    2.1
+         11. 209/215    12    3.6
+         12. 209/217     3    0.9
+         13. 211/211     6    1.8
+         14. 211/215     2    0.6
+         15. 211/217     1    0.3
+         16. 215/215     1    0.3
+      ------ -----   ----- -------
+          .. .......    80   24.2   non-missing values in database
+          .. .......   251   75.8       missing values in database
+      
+      9. CAFFECTED has 4 levels:
+      
+      Level  V Cases Percent
+      ------ - ----- -------
+          1. A   134   40.5  -+-+-+-+
+          2. D    40   12.1  -+
+          3. I    70   21.1  -+-+
+          4. U    87   26.3  -+-+-
+      ------ - ----- -------
+          .. .   331  100.0   non-missing values in database
+          .. .     0    0.0       missing values in database
+      
+      3. SEX has 2 levels:
+      
+      Level  V Cases Percent
+      ------ - ----- -------
+          1. F   170   51.4  -+-+-+-+-+
+          2. M   161   48.6  -+-+-+-+-
+      ------ - ----- -------
+          .. .   331  100.0   non-missing values in database
+          .. .     0    0.0       missing values in database
+      
+
+6. A bug related to aggregate function processing has been 
+   fixed.  I doubt if anybody beside me ever encountered 
+   this bug which was as follows:
+   
+   Suppose the case of a mother with 3 affected offspring
+   (coded using "A" in the AFFECTED column).  
+   Then, by the commutative property, both of the following
+   statements should have been true:
+   
+   OffspringCountTrue( affected="A" ) = 3
+   3 = OffspringCountTrue( affected="A" )
+   
+   ... but it turned out that the first one above would return
+   a garbled response due to a bug in the meshwork between
+   aggregate function processing and the expression parser.
+
+   This bug has now been squashed out!
+
+   
+7. More intelligible names have been given to a number individual
+   attributes and  aggregate functions, and new aggregate functions 
+   have been added as well.  See the tables toward the end of the
+   HTML documentation for a complete treatment:
+   
+   Individual Attributes     Aggregate Functions
+   ---------------------     -------------------
+   _NumberOfOffspring        _OffspringCountTrue( <log. expr.> )
+   _NumberInPedigree         _OffspringMean( <variable> )
+   _IsInDatabase             _OffspringMaximum( <variable> )
+   _WasIncluded              _OffspringMinimum( <variable> )
+   _MarkedForExclusion       ... etc. ...
+
+  
+8. Numeric constants now all begin with the pound character, "#".
+   Previously, a number of numeric constants were identified by
+   a leading underscore character, "_", such as in "_true" and 
+   "_affected", while some others, such as "missing" and "pi", did 
+   not even begin with an identifying underscore.  
+   
+   Since attributes of an individual, such as "_NumberOfOffspring" 
+   also began with an underscore character, numeric constants which
+   began with an underscore could easily be mistaken for attributes.
+   Take "_affected" for example -- was it a constant whose value was
+   always 1, or an attribute whose value varied with the individual?
+   
+   Things should be clear now, as all numeric constants now
+   begin with the pound character, "#":
+            
+            #AFFECTED   
+            #ALIVE              
+            #DEAD               
+            #E               
+            #FALSE              
+            #FEMALE             
+            #MALE             
+            #MISSING            
+            #P                
+            #TRUE          
+            #UNAFFECTED         
+
+   Note: This change could affect scripts that you previously wrote.
+
+
+9. Madeline now actively handles genotypes where only one allele
+   has been typed, i.e. "128/0" or "0/137".  See the HTML documentation
+   for details.
+
+
+10. Bug in the GO command that caused the program to exit() when a record
+    request was out of range has been fixed.
+    
+11. Madeline now has an Associative Array data container type to allow
+    much more flexible mapping of input values for Affection Status and
+    other key attributes.
+

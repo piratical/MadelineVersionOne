@@ -1,0 +1,13 @@
+The file utf8.data demonstrates how you can store
+Unicode data in a Madeline table.  The rules are
+exactly the same as for non-Unicode data.  Specifically,
+columns must aligned on byte boundaries.  Since UTF-8
+produces multiple bytes for extended Latin and non-Latin
+scripts, manual alignment on byte boundaries is difficult.
+However, preparation of such data files by extracting
+the data from a database system using a scripting language
+like PHP or Perl is trivially easy.  One need only calculate
+the string widths using a standard "strlen" function that
+returns the width of a string in bytes, and then pad out
+to fixed column widths.
+

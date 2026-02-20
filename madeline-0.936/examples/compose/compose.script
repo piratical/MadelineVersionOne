@@ -1,0 +1,24 @@
+//
+// Madeline 0.935 example script
+//
+// Convert a decomposed table to a composed format using
+// the "compose" command
+//
+// From the command line, type "madeline compose.script"
+// to run this script.
+
+//
+// Since the file is a flat file, we need to first "recognize" it:
+//
+recognize "decomposed.data"
+
+//
+// Now we can "compose" the data.  The "compose"
+// command also creates a complementary ".mfh" file:
+//
+compose "decomposed.data.mfh" to "genotypes.data"
+
+//
+// All done:
+//
+goodbye

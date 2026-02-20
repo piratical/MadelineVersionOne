@@ -1,0 +1,70 @@
+/* ********************************************************************************* */
+/*  _______________________________________________________________________________  */
+/* |_______________________________________________________________________________| */
+/*   __    __       _       ______     _______   _          _   __    _   _______    */
+/*  |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|   */
+/*  |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___      */
+/*  | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|     */
+/*  | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____    */
+/*  |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|   */
+/*  _______________________________________________________________________________  */
+/* |_______________________________________________________________________________| */
+/*                                                                                   */
+/* "fieldlevellabels.h" is part of the Madeline software distribution.               */
+/* Written by Edward H. Trager.                                                      */
+/*                                                                                   */
+/* COPYRIGHT (C) 2004 THE REGENTS OF THE UNIVERSITY OF MICHIGAN,                     */
+/* Ann Arbor, Michigan, USA.  ALL RIGHTS RESERVED.                                   */
+/*                                                                                   */
+/* This program is free software; you can redistribute it and/or                     */
+/* modify it under the terms of the GNU General Public                               */
+/* License as published by the Free Software Foundation; either                      */
+/* version 2 of the License, or (at your option) any later version.                  */
+/*                                                                                   */
+/* This program is distributed in the hope that it will be useful,                   */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of                    */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU                 */
+/* General Public License for more details.                                          */
+/*                                                                                   */
+/* You should have received a copy of the GNU General Public                         */
+/* License along with this software source code distribution; if not,                */
+/* write to the Free Software Foundation, Inc., 59 Temple Place -                    */
+/* Suite 330, Boston, MA 02111-1307, USA.                                            */
+/*                                                                                   */
+/* Last modified by Ed Trager, April, 2004.                                          */
+/*                                                                                   */
+/* ********************************************************************************* */
+
+/*                                                        */
+/* dbf.h already includes tree.h and associativearrays.h: */
+/*                                                        */
+#ifndef DBF_INCLUDED
+#include "dbf.h"
+#endif
+
+/* Used when choosing colors from a random pool: */
+#define MINIMUMHSVCOLORVALUE 0.95
+#define NUMBEROFFIXEDCOLORS  9
+/* Coefficients for calculating luminescence: */
+#define REDCOEFFICIENT 0.4125
+#define GRNCOEFFICIENT 0.3754
+#define BLUCOEFFICIENT 0.1121
+
+#include "tokentree.h"
+
+typedef struct sCOLORTRIPLET{
+	
+	double r;
+	double g;
+	double b;
+	
+}COLORTRIPLET,*PCOLORTRIPLET,**PPCOLORTRIPLET;
+
+/*                                                                */
+/* 19990414 ET ADDENDA: Create and manage arrays that bear labels */
+/* for each level of a field variable:                            */
+/*                                                                */
+void CreateFieldLevelsLabelsArray(TokenTree& ,PDBF db,int idx);
+void ManageFieldLevelsLabelsArrays(TokenTree& ,PDBF db);
+void SetLabelsFromFieldTree(PASSOCARRAY a,PNODE node);
+int SetLevelColorsAndGrayLevels(PASSOCARRAY c,PASSOCARRAY r, PNODE node,int totalLevels,int idx);

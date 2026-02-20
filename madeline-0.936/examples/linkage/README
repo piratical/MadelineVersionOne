@@ -1,0 +1,197 @@
+READING LINKAGE FILE FORMAT IN MADELINE
+=======================================
+
+- 2002.06.22.ET
+- Updated sometime in 2004 by ET
+
+This directory contains one file:
+
+    linkage.ped
+
+linkage.ped
+-----------
+
+The BOTTOM part of the linkage.ped file contains data in LINKAGE format.
+The TOP part of the linkage.ped file has been edited to contain labels
+for Madeline.  These labels are described below:
+
+The first 6 labels correspond to the what Madeline calls
+"CORE" fields which are used for pedigree reconstruction.  The labels
+used to identify each column are Madeline's default labels -- you can
+use other labels, but it's more work to do so.  After each label,
+you must tell Madeline the TYPE of the field using a single-letter
+identifier:
+
+    C = Character Field
+    N = Numeric Field
+    G = Genotype Field (i.e., "120/124" -- doesn't occur in LINKAGE files)
+    A = Allele Field
+
+Here, then, is how the core fields are identified.  Note that the 
+FamilyIDField (FAMID), IndividualIDField (STUDYID), FatherIDField (FATHER),
+and MotherIDField (MOTHER) *MUST* be treated as CHARACTER fields, even
+if the identifiers are all numbers:
+
+FAMID    C
+STUDYID  C
+FATHER   C
+MOTHER   C
+SEX      N
+AFFECTED N
+
+After the core fields, paired allele columns contain the genotype data.
+Madeline normally deals with "G" genotype columns, not "A" allele columns.
+To make Madeline recognize allele columns, you must REPEAT the MARKERNAME
+and identify the paired columns as allele columns using the letter "A":
+
+MARKER1  A
+MARKER1  A
+MARKER2  A
+MARKER2  A
+MARKER3  A
+MARKER3  A
+MARKER4  A
+MARKER4  A
+MARKER5  A
+MARKER5  A
+MARKER6  A
+MARKER6  A
+
+It's your responsibility to make sure your labels are all correct!  Make 
+sure you have an even number of allele columns.  Make sure the labels are all
+in CAPITALS.  Also make sure that the marker names are spelled identically
+with identical capitalization in your map database.
+
+Once everything looks OK, start Madeline and try to RECOGNIZE the data file:
+
+M>recognize "linkage.ped"
+
+The RECOGNIZE command will create a "Madeline file header" file called
+"linkage.ped.mfh".  This is the file you actually OPEN in Madeline. 
+
+Before you open the file, notice that the Linkage format uses zeros, "0",
+to represent missing identifiers.  For example, the missing parents of
+founding individuals are listed with zeros in the data file.
+
+Madeline, however, by default does not consider zeros to be missing values!
+You can see that with this command:
+
+M>list CharacterMissingValue
+CharacterMissingValue has 5 elements:
+CharacterMissingValue[ 1]="."
+CharacterMissingValue[ 2]="/"
+CharacterMissingValue[ 3]="0/0"
+CharacterMissingValue[ 4]="0/ 0"
+CharacterMissingValue[ 5]="0/  0"
+
+(You can just type "list cmv" for short).
+
+Zero is, of course, a quite legitimate value for the temperature outdoors, 
+a newborn's age, the score in a hockey game, and so on.  It's quite different
+from missing.  That's why it is not in the cmv array by default.
+
+However, we can add zero to the array quite easily:
+
+M>CharacterMissingValue[6]="0"
+
+And, having done that, we can now open the linkage file in Madeline:
+
+M>open 'linkage.ped.mfh'
+  6. AFFECTED has 3 levels.
+Calculating allele frequencies for   7. MARKER1...
+Calculating allele frequencies for   8. MARKER2...
+Calculating allele frequencies for   9. MARKER3...
+Calculating allele frequencies for  10. MARKER4...
+Calculating allele frequencies for  11. MARKER5...
+Calculating allele frequencies for  12. MARKER6...
+Pedigree table "linkage.ped.mfh" opened with        13 records
+Pedigrees reconstructed in 0.0000 seconds
+Checking simple Mendelian inheritance in nuclear families... :
+==============================================================
+Inheritance inconsistency:      PEDIGREE        MOTHER  FATHER  MARKER
+--------------------------      --------        ------  ------  ------
+==============================================================
+
+================================================
+Summary of Mendelian Inheritance Inconsistencies
+                   by Marker
+================================================
+ #      MARKERNAME                              NUCLEAR FAMILIES
+----    --------------------------------        ----------------
+------------------------------------------------
+Inconsistencies present among 0 of 6 markers.
+================================================
+
+  1.FAMID      Co__1    5.SEX        Co__5    9.MARKER3    Go__3
+  2.STUDYID    Co__2    6.AFFECTED   Co__6+  10.MARKER4    Go__4
+  3.FATHER     Co__3    7.MARKER1    Go__1   11.MARKER5    Go__5
+  4.MOTHER     Co__4    8.MARKER2    Go__2   12.MARKER6    Go__6
+-----------------------------  --------- --------- ---------
+Pedigrees and Individuals       Included  Excluded     Total
+-----------------------------  --------- --------- ---------
+Pedigrees ...................          1         0         1
+Individuals .................         13         0        13
+ + In database ..............         13         0        13
+ |  + Attached ..............         13         0        13
+ |  + Childless spouses .....          0         0         0
+ |  + Unattached ............          0         0         0
+ + Not in database ..........          0         0         0
+M>
+
+Unlike in previous versions of Madeline, the program now identifies the
+gender and affection status codes used in Linkage files without the user
+having to tell it explicitely.  You can prove this to yourself
+using the following command:
+
+M>view data sex, _IsFemale, affected, _IsAffected for #true
+
+F0021   K0001A  1       0       0       .
+F0021   K0001B  2       1       0       .
+F0021   K00158  1       0       1       0
+F0021   K00159  1       0       0       .
+F0021   K00163  1       0       0       .
+F0021   K00164  1       0       1       0
+F0021   K00165  1       0       2       1
+F0021   K00166  1       0       1       0
+F0021   K00169  2       1       0       .
+F0021   K00170  1       0       1       0
+F0021   K00171  2       1       1       0
+F0021   K00172  2       1       1       0
+F0021   K00177  1       0       2       1
+
+13 individuals in 1 pedigree matched as follows:
+
+Individuals ..............         13
+ + In database ...........         13
+ |  + Attached ...........         13
+ |  + Childless spouses ..          0
+ |  + Unattached .........          0
+ + Not in database .......          0
+M>
+
+Madeline's correct interpretation of the data is made
+possible by the GenderStatus and AffectionStatus arrays:
+
+M>list GenderStatus
+GenderStatus has 6 elements:
+GenderStatus[1]=0             <-- Linkage-specific
+GenderStatus[2]=1             <-- Linkage-specific
+GenderStatus["F"]=1
+GenderStatus["M"]=0
+GenderStatus["♀"]=1
+GenderStatus["♂"]=0
+
+M>list AffectionStatus
+AffectionStatus has 6 elements:
+AffectionStatus[0]=#MISSING
+AffectionStatus[1]=0          <-- Linkage-specific
+AffectionStatus[2]=1          <-- Linkage-specific
+AffectionStatus["A"]=1
+AffectionStatus["I"]=#MISSING
+AffectionStatus["U"]=0
+M>
+
+Please see the full HTML documentation for additional
+information.
+
+* End of Document *

@@ -1,0 +1,178 @@
+DEFINED_LIMITS.TXT
+
+This file lists a number of #defines in Madeline and their values as of 2000 02 25.
+
+NOTE BENE: Minor updates and corrections on 2004.07.16 by ET.
+           Nevertheless, some parts of this file may now be inaccurate.
+	   I haven't had time to check everything.  Normally you should not
+	   have to change any of the limits in Madeline anyway.
+
+Descriptions of each are provided.  Anyone who wants to monkey with the code
+should definitely read this file!  - ET 2000 02 25
+
+
+dbf.h:#define MAXFIELDS   255
+-----------------------------
+This applies to xbase (FoxPro, Visual FoxPro, dBase III/IV, etc.) database tables.
+An unsigned char is used to store the number of fields in the header, so there's
+no way to get around this limitation.  This is NOT a limit for SAS transport, or
+for Madeline's MBASE ASCII and UTF-8-based tables.
+
+
+dbf.h:/* #define MAXBUFSIZE 8388608 */
+dbf.h:#define MAXBUFSIZE 33554432
+--------------------------------------
+This is the maximum size of the read buffer that Madeline uses when reading in a table (for
+example, when you use the OPEN or LOAD commands).  Madeline uses dynamic buffer allocation,
+so if the table being read is smaller than this limit, the entire table will be loaded
+into memory using an exactly-sized buffer.  In practice, this is what happens almost
+all the time (and the program zooms along at a rapid clip!).
+
+If a table larger than MAXBUFSIZE is opened, then of course Madeline will load a block
+of records up to MAXBUFSIZE on demand whenever a record that is out of range is requested.
+
+On modern compute servers with lots of memory, it makes sense to have MAXBUFSIZE large.
+
+
+portable.h:#define MAXIMUMFIELDNAMELENGTH  33 // This INCLUDES the null terminator
+dbf.h:#define MAXMBASEFIELDNAMELENGTH MAXIMUMFIELDNAMELENGTH
+pedigree.h:#define MAXFIELDNAMEWIDTH  MAXIMUMFIELDNAMEWIDTH
+----------------------------------------------------------------------------------
+
+Even though Madeline's "MBASE" format allows long field names, in versions up to
+v. 0.93, you are best to not exceed the 11 (ie 10 plus NULL terminator) characters
+permitted for xbase/FoxPro due to some legacy issues in the code. The limit on field
+length for xbase/FoxPro is of course 11, while it is 9 for SAS transport (values
+INCLUDING the NULL terminator!).
+
+Another good reason for keeping field names short is that analysis software like
+MENDEL, CRIMAP, and GENEHUNTER may also have restrictions on field name widths.
+
+
+graphics.h:#define MAXLINESTYLES 5
+----------------------------------
+
+Number of line styles for the Postscript pedigree drawing engine.
+
+
+graphics.h:#define MAXSTRINGLENGTH  256 // maximum length of a string in a TEXTLABEL
+graphics.h:#define MAXLONGSTRING   2500 // maximum length of a long string
+------------------------------------------------------------------------------------
+
+These limits apply ONLY apply to the Postscript pedigree drawing engine code.
+
+
+graphics.h:#define MAXBORDERS   4
+---------------------------------
+
+Number of border attributes for CELLs in the Postscript pedigree drawing engine.
+
+
+madeline.h:#ifndef RAND_MAX
+madeline.h:#define RAND_MAX 0x7FFFU
+---------------------------------
+
+I can't remember for sure how this is used exactly.
+
+
+madeline.h:#define MAXKIDS 35
+madeline.h:#define MAXSPOUSES 10
+------------------------------
+
+These limits ONLY apply to the Postscript pedigree drawing engine code.  Madeline's
+pedigree engine uses dynamic allocation and reallocation, and so does not limit the
+number of spouses or children that an individual can have.  So, for example,
+Madeline can create a pedigree file for analysis containing pedigrees that exceed
+these limits, but on a pedigree drawing will only draw the first 35 offspring and
+10 spouses.
+
+You can change MAXKIDS to be any larger number.  MAXSPOUSES is harder to increase
+because the lines joining the spouses on a pedigree drawing will all run together
+and that will eventually lead to some degredation in legibility.
+
+
+parser.h:#define MAXPARAMETERS 10
+---------------------------------
+
+Limit for parameter count on user-accessible functions.  So far, I think only
+the SUBSTRING() function uses more than two parameters.
+
+
+parser.h:#define MAXIMUMMENDELFIELDWIDTH  8
+parser.h:#define HALFMAXMENDELFIELDWIDTH  4
+-------------------------------------------
+
+This is a MENDEL limit, not a Madeline one.  There is some reason why I
+defined HALFMAXMENDELFIELDWIDTH ...
+
+
+parser.h:#define FSPMAXRECLENGTH 132
+------------------------------------
+
+FSP is in the SAGE package.  Some god-awful FORTRAN code limits lines to
+not more than 132 characters: beyond that, records need to wrap to multiple
+lines.  Of course, Madeline does this if necessary.
+
+Last that I heard, the FUSION group had detected some unpleasant bugs in SAGE ...
+Legacy code for producing SAGE formats remains in Madeline, but I cannot
+recommend you use such programs for analysis.
+
+pedigree.h:#define MAXIDWIDTH         32
+----------------------------------------
+
+Hopefully you will have IDs that are narrower than this!  Applies to FamilyIDField,
+IndividualIDField, FatherIDField, MotherIDField.
+
+
+pedigree.h:#define MAXCLASSES        8
+--------------------------------------
+
+This only applies to the FUSION study where one can classify an individual by
+examining the 6th character of his/her STUDYID (IndividualIDField).
+
+
+portable.h:#define MAXIMUMGENOTYPESTRING   10
+---------------------------------------------
+
+A genotype string consists of a positive integer label for the first allele,
+a forward slash, and a positive integer label for the second allele, i.e.,
+"141/142".  This define says you can't exceed 4-digit integers for the allele
+labels, i.e., "1000/1002" which takes 9 digits, plus don't forget the NULL
+terminator.
+
+
+recognize.h:#define MAXTABEXPANSION 8
+-------------------------------------
+
+When replacing tabs with spaces in a file, the maximum number of spaces that
+will be used to replace a tab.
+
+
+parser.h:#define MINIMUMBUFFERSIZE        100
+portable.h:#define MINIMUMBUFFERSIZE      100
+---------------------------------------------
+
+This is used in a number of places when short strings are stored in char [] arrays.
+
+
+parser.h:#define MINIMUMDIFFERENCE 1.0E-15
+------------------------------------------
+
+Differences less than this amount are considered the moral equivalent of zero
+by the recursive descent parser.
+
+
+shared.h:#include <limits.h> // for INT_MIN etc. definitions
+shared.h:#include <float.h>  // for DBL_MIN definition
+shared.h:#define INT8MISSINGVALUE    SCHAR_MIN
+shared.h:#define INT16MISSINGVALUE   SHRT_MIN
+shared.h:#define INT32MISSINGVALUE   LONG_MIN
+shared.h:#define FLOATMISSINGVALUE   FLT_MIN
+shared.h:#define DOUBLEMISSINGVALUE  DBL_MIN
+shared.h:#define UINT32MISSINGVALUE  LONG_MAX
+---------------------------------------------
+
+Definitions for the missing value indicators.  The interpreter does all math using
+double precision, so the DOUBLEMISSINGVALUE is the most important of these.  There
+are cases where data are read from a table as INT32, so INT32MISSINGVALUE is also used.
+

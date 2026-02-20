@@ -1,0 +1,16 @@
+#!/bin/sh
+#send a string to be parsed by the browser:
+
+if [ -z "$1" ]
+	then
+	echo "Usage: openscript URL ..."
+	exit 65
+fi
+
+until [ -z "$1" ]
+do
+	osascript -l AppleScript -e "Tell application \"Safari\" to getURL \"$1\""
+	shift
+done &
+exit 0
+

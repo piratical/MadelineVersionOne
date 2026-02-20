@@ -1,0 +1,88 @@
+Differences between v. 0.931 and v. 0.930
+=========================================
+-- 20000517 ET:
+
+
+1. Madeline now uses the GNU readline library
+   to provide interactive editing of text
+   entered on the command line, and a command
+   history buffer.  The GNU readline library
+   is essentially the same one used in the 
+   GNU bash shell, so other features such as
+   TAB-key filename completion are also
+   now conveniently provided within Madeline.
+   This means, for example, that you can now
+   type the first few letters of a filename
+   and then press TAB:
+   
+     M>edit '/etc/ho[TAB]
+
+   ... and the command line will nicely
+   completed for you:
+   
+     M>edit '/etc/hosts'
+   
+   Note: Use GNU readline v. 4.1 or earlier.  I don't
+   know what the GNU folk are doing with the more recent
+   versions, but they don't appear to work well when trying
+   to compile Madeline.  
+
+2. Madeline now distinguishes AmericanEnglish and
+   BritishEnglish in the SET LANGUAGE ... command.
+   This setting affects the interpretation and 
+   display of dates:
+
+   M>set language to AmericanEnglish
+   M>show {01/12/2000}
+     {Wednesday, January 12, 2000}
+   M>set language to BritishEnglish
+   M>show {01/12/2000}
+     {Friday, December 1, 2000}
+   M>
+
+
+3. Madeline now handles dates in ASCII flat files
+   better and more intelligently.  Dates in an 
+   ASCII flat file can now be read in any of these
+   formats:
+   
+      YYYYMMDD
+      MMdDDdYYYY
+      DDdMMdYYYY
+
+   ... where "YYYY" indicates digits for the year,
+   "MM" digits for the month, "DD" digits for the
+   day of the month, and "d" indicates any one of
+   the following five delimiters:
+   
+     "/", "-", ".", " ", or ","
+     
+   (i.e., "20000112", "01/12/2000", and "01-12-2000"
+   are all acceptable forms)
+
+   The SET LANGUAGE command determines how Madeline
+   interprets a delimited date string, i.e., whether
+   a date is read as MMdDDdYYYY or DDdMMdYYYY.
+
+
+4. Madeline now provides a new LOOKUP command which
+   allows the user to quickly determine the correct
+   spelling of a command or keyword by entering just
+   the first few letters:
+      
+     M>lookup 'g'
+     GENDERFIELD is an internal variable. Its current value is: "SEX".
+     GENEHUNTER is a keyword.
+     GENEHUNTERNPL is a keyword.
+     GENEHUNTERQTL is a keyword.
+     GENERIC is a keyword.
+     GENOTYPE is a keyword.
+     GO is a command.
+     GOODBYE is a command.
+     M>
+
+   LOOKUP replaces the awkward contrivance of "SET HELP TO TEXT|HTML"
+   used in previous versions. "SET HELP TO ..." is now obsolete.  You
+   now use LOOKUP when you need the spelling of a command or keyword
+   and use HELP when you want to pull up the HTML documentation in a
+   web browser.

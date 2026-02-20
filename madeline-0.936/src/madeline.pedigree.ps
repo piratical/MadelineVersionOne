@@ -1,0 +1,1437 @@
+%!PS-Adobe-3.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Madeline v.  0.936 Postscript Procedures
+%
+% COPYRIGHT (C) 2004 BY THE REGENTS OF THE UNIVERSITY OF MICHIGAN,
+% Ann Arbor, Michigan, USA.  ALL RIGHTS RESERVED.
+% Distributed under the GNU Public License.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%Creator: Edward H. Trager
+%%Title: Madeline Postscript Pedigree Procedures
+%%Version: 1.1
+%%EndComments
+%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% *** START OF PROLOG ***
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%
+%%%%%%%%%%%%%%%
+%
+% Unit metrics:
+%
+%%%%%%%%%%%%%%%
+/inch {72 mul}      bind def
+/cm {inch 2.54 div} bind def
+/mm {cm 10 div}     bind def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Standardized icon size definitions:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/IconRadius 0.30 cm def
+/IconDiameter IconRadius 2 mul      def
+/IconDiagonal IconRadius 2 sqrt mul def
+/CircumscribingRadius   IconRadius 1.3 mul def
+/CircumscribingDiameter CircumscribingRadius 2 mul def
+/TickLength 0.15 cm def
+/VDrop1 -16.68 cm def
+/VDrop2 -0.75 cm def
+/VDrop2MinusIR VDrop2 IconRadius add def
+/XUnit 1.50 cm def
+/CellWidth XUnit 0.1 sub def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Useful symbolic constants:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/FEMALE         1      def
+/MALE           0      def
+/MISSING       -1      def
+/UNKNOWNGENDER MISSING def
+/VIRTUAL        0      def
+/REAL           1      def
+/PI      3.1415927     def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Symbolic constants for pregnancies
+% not carried to term:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/NONTERM        8        def
+/NONTERMMALE    8        def
+/NONTERMFEMALE  9        def
+/NONTERMUNKNOWNGENDER 10 def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Border line styles/weights:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/NOLINE      0      def
+/THINLINE    1      def
+/MEDIUMLINE  0.5 mm def
+/THICKLINE   1.0 mm def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Shading Flags:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/SHADE         true   def
+/DONTSHADE     false  def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Text colors:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/LIGHT 0.5 def
+/VERYLIGHT 0.8 def
+/Red { 1.0 0.0 0.0 setrgbcolor}  bind def
+/LightRed {1.0 LIGHT LIGHT setrgbcolor} bind def
+/VeryLightRed {1.0 VERYLIGHT VERYLIGHT setrgbcolor} bind def
+/Green {0.0 1.0 0.0 setrgbcolor} bind def
+/LightGreen {LIGHT 1.0 LIGHT setrgbcolor} bind def
+/VeryLightGreen {VERYLIGHT 1.0 VERYLIGHT setrgbcolor} bind def
+/Blue { 0.0 0.0 1.0 setrgbcolor} bind def
+/LightBlue { VERYLIGHT VERYLIGHT 1.0 setrgbcolor} bind def
+/VeryLightBlue { 0.93 0.93 1.0 setrgbcolor} bind def
+/DarkRed { 0.7 0.0 0.0 setrgbcolor} bind def
+/DarkestRed { 0.5 0.0 0.0 setrgbcolor} bind def
+/Maroon { 0.8 0.0 0.4 setrgbcolor} bind def
+/Orange { 1.0 0.6 0.2 setrgbcolor} bind def
+/LightOrange { 1.0 0.8 0.6 setrgbcolor} bind def
+/VeryLightOrange { 1.0 0.9 0.8 setrgbcolor} bind def
+/Yellow { 0.85 0.8 0.0 setrgbcolor} bind def
+/Gray1 { 0.95 setgray } bind def
+/Gray2 { 0.90 setgray } bind def
+/Gray3 { 0.85 setgray } bind def
+/Gray4 { 0.80 setgray } bind def
+/Gray5 { 0.75 setgray } bind def
+/Gray6 { 0.70 setgray } bind def
+
+/RED            (7) 0 get def
+/GREEN          (8) 0 get def
+/BLUE           (9) 0 get def
+/ORANGE         (0) 0 get def
+
+/LIGHTRED        (r) 0 get def
+/VERYLIGHTRED    (R) 0 get def
+/LIGHTGREEN      (g) 0 get def
+/VERYLIGHTGREEN  (G) 0 get def
+/LIGHTBLUE       (b) 0 get def
+/VERYLIGHTBLUE   (B) 0 get def
+/LIGHTORANGE     (o) 0 get def
+/VERYLIGHTORANGE (O) 0 get def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Define dash lengths for wrapping icons:
+%
+% female icon: wrap with exactly 12 dashes,
+% male icon  : wrap with exactly 16 dashes (4 per side):
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/FemaleDashLength IconRadius 2 mul PI mul 24 div def
+/MaleDashLength   IconDiameter 8 div def 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Boolean toggle for color shading/printing:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/INCOLOR true def
+/REVERSE_SHADING false def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Boolean toggle for showing crossover tags:
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/CROSSOVERTAGS false def
+/TAGSIZE 2.0 mm def
+
+
+%%%%%%%%%%%%%%%%%
+%
+% Font Variables:
+%
+%%%%%%%%%%%%%%%%%
+/IconFontSize 7 def
+/CellFontSize  7 def
+/LegendFontSize 9 def
+/CellMargin 1.0 mm def
+/IconFont {/Helvetica-Bold findfont} def
+/CellFont {/Helvetica findfont} def
+/BoldFont {/Helvetica-Bold findfont} def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Page margins and widths: used by MultiplePagePrint:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/leftmargin   1.00 cm def
+/bottommargin 1.00 cm def
+/pagewidth    19.50 cm def
+/pageheight   26.00 cm def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% *** END OF PROLOG ***
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% *** START OF PROCEDURES ***
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Box: Prints a rectangular region in color
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/Box {
+ /ColorCode exch def
+ /dy exch def
+ /dx exch def
+ /LeftTopY exch def
+ /LeftTopX exch def
+ gsave
+ newpath
+ LeftTopX LeftTopY moveto
+ dx 0 rlineto
+ 0 dy neg rlineto
+ dx neg 0 rlineto
+ closepath
+ INCOLOR
+ {
+  ColorCode RED             eq {Red            }if
+  ColorCode LIGHTRED        eq {LightRed       }if
+  ColorCode VERYLIGHTRED    eq {VeryLightRed   }if
+  ColorCode GREEN           eq {Green          }if
+  ColorCode LIGHTGREEN      eq {LightGreen     }if
+  ColorCode VERYLIGHTGREEN  eq {VeryLightGreen }if
+  ColorCode BLUE            eq {Blue           }if
+  ColorCode LIGHTBLUE       eq {LightBlue      }if
+  ColorCode VERYLIGHTBLUE   eq {VeryLightBlue  }if
+  ColorCode ORANGE          eq {Orange         }if
+  ColorCode LIGHTORANGE     eq {LightOrange    }if
+  ColorCode VERYLIGHTORANGE eq {VeryLightOrange}if
+  
+ }
+ {
+  ColorCode RED             eq {Gray3}if
+  ColorCode LIGHTRED        eq {Gray2}if
+  ColorCode VERYLIGHTRED    eq {Gray1}if
+  ColorCode GREEN           eq {Gray6}if
+  ColorCode LIGHTGREEN      eq {Gray5}if
+  ColorCode VERYLIGHTGREEN  eq {Gray4}if
+  ColorCode BLUE            eq {Gray3}if
+  ColorCode LIGHTBLUE       eq {Gray2}if
+  ColorCode VERYLIGHTBLUE   eq {Gray1}if
+  ColorCode ORANGE          eq {Gray6}if
+  ColorCode LIGHTORANGE     eq {Gray5}if
+  ColorCode VERYLIGHTORANGE eq {Gray4}if
+ }ifelse
+ fill
+ grestore
+} bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% HaploHighlight: Processes color background highlighting
+% for haplotype displays
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/HaploHighlight
+{
+ /Color2 exch def
+ /Color1 exch def
+ /LineHeight exch def
+ /CellWidth exch def
+ /y exch def
+ /x exch def
+ /HalfWidth CellWidth 2 div def
+ x y HalfWidth LineHeight Color1 Box
+ x HalfWidth add y HalfWidth LineHeight Color2 Box
+} bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TrianglePoint: Prints a little triangular point
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/TrianglePoint{
+ /rotation exch def
+ /size exch def
+ /y exch def
+ /x exch def
+ gsave
+ /HalfSize size 2 div def
+ /ThreeFourthsSize size 3 mul 4 div def
+ x y translate
+ rotation rotate
+ newpath
+ 0 HalfSize neg moveto
+ ThreeFourthsSize HalfSize rlineto
+ ThreeFourthsSize neg HalfSize rlineto
+ closepath
+ 0 setgray fill
+ grestore
+} bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% PointTag: Prints little numerical/letter tags
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/PointTag{
+ /label exch def
+ /rotation exch def
+ /size exch def
+ /y exch def
+ /x exch def
+ gsave
+ /HalfSize size 2 div def
+ /OneFourthSize HalfSize 2 div def
+ /ThreeEighthsSize size 3 mul 8 div def
+ /ThreeFourthsSize OneFourthSize 3 mul def
+ /FontSize size 0.9 mul def
+ x y translate
+ rotation rotate
+ 0 HalfSize sub 0 HalfSize add moveto
+ size 0 rlineto
+ 0 ThreeFourthsSize neg rlineto
+ HalfSize neg ThreeEighthsSize neg rlineto
+ HalfSize neg ThreeEighthsSize rlineto
+ closepath
+ clip
+ gsave
+ 1 setgray fill
+ grestore
+ size 0.06 mul setlinewidth
+ stroke
+ rotation neg rotate
+ CellFont [FontSize 0 0 FontSize 0 0] makefont setfont
+ label stringwidth pop 2 div neg FontSize 3 div neg moveto
+ label show
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MissingSymbol: Draws the missing symbol indicator.
+% This is currently a small dot
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/MissingSymbol
+{/yms exch def
+ /xms exch def
+  gsave
+  newpath
+  0 setgray
+  xms yms 0.25 mm 0 360 arc fill
+  grestore
+}bind def
+%%%%%%%%%%%
+%
+% Deceased:
+%
+%%%%%%%%%%%
+/Deceased
+{/yorg exch def
+ /xorg exch def
+ gsave
+ newpath
+ THINLINE setlinewidth
+ xorg CircumscribingRadius add yorg CircumscribingRadius add moveto
+ CircumscribingDiameter neg dup rlineto
+ stroke
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Bridge: Stroke the current path
+% with a line that appears to bridge
+% over other lines by virtue of having
+% a white border:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/Bridge
+{
+ gsave
+ gsave
+ /originalwidth currentlinewidth def
+ originalwidth 3 mul setlinewidth
+ 1 setgray
+ stroke
+ grestore
+ originalwidth setlinewidth
+ 0 setgray
+ stroke
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DoubleBridge: Stroke the current path
+% with a double line that appears to bridge
+% over other lines by virtue of being edged
+% in white:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/DoubleBridge
+{
+ gsave
+ gsave
+ gsave
+ /originalwidth currentlinewidth def
+ originalwidth 5 mul setlinewidth
+ 1 setgray
+ stroke
+ grestore
+ originalwidth 3 mul setlinewidth
+ 0 setgray
+ stroke
+ grestore
+ originalwidth setlinewidth
+ 1 setgray
+ stroke
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% ClipToPrintablePage: used by MultiplePagePrint
+% for clipping to the printable portion of a page
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/ClipToPrintablePage
+{
+ newpath
+ leftmargin bottommargin moveto
+ 0 pageheight rlineto
+ pagewidth 0 rlineto
+ 0 pageheight neg rlineto
+ closepath
+ clip
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MultiplePagePrint:
+% Prints a large image defined by BigPictureProc on
+% multiple pages arranged as n row-pages by m column-pages
+% Note that BigPictureProc should start with gsave and end
+% with a grestore in order for MultiplePagePrint to work
+% properly:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/MultiplePagePrint
+{/rows                exch def
+ /columns             exch def
+ /BigPictureProcedure exch def
+ gsave
+
+ leftmargin bottommargin translate
+
+ %
+ % Loop through page rows and columns:
+ %
+ 0 1 rows 1 sub
+ {/rowcount exch def
+  0 1 columns 1 sub
+  {/columncount exch def
+
+   gsave
+
+   %
+   % translate to window the printable region of this page:
+   %
+   pagewidth columncount mul neg
+   pageheight rowcount mul neg
+   translate
+
+   %
+   % do the big picture procedure:
+   %
+
+   %%page rows columns
+   BigPictureProcedure
+
+   %
+   % gsave-grestore bracket showpage in order to preserve
+   % the clipping region:
+   %
+   gsave showpage grestore
+
+   grestore
+
+  }for
+ }for
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% generic arrow procedure:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+/arrow
+{
+ /TailWidth  exch def
+ /TailLength exch def
+ /HeadWidth  exch def
+ /HeadLength exch def
+ /ArrowAngle exch def
+ /ytip       exch def
+ /xtip       exch def
+
+ /HalfHeadWidth HeadWidth 2 div def
+ /HalfTailWidth TailWidth 2 div def
+ /TailIndent    HalfTailWidth HeadLength mul HalfHeadWidth div def
+
+ /mtrx matrix def
+ /SavedMatrix mtrx currentmatrix def
+ xtip ytip translate
+ ArrowAngle rotate
+ 0 0 moveto
+ %
+ % top half outline of arrow from tip to tail indent:
+ %
+ HeadLength HalfHeadWidth rlineto
+ 0 HalfHeadWidth HalfTailWidth sub neg rlineto
+ TailLength 0 rlineto
+ TailIndent neg HalfTailWidth neg rlineto
+ %
+ % bottom half outline from tail indent back to tip:
+ %
+ TailIndent HalfTailWidth neg rlineto
+ TailLength neg 0 rlineto
+ 0 HalfHeadWidth HalfTailWidth sub neg rlineto
+ closepath
+ SavedMatrix setmatrix
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Proband Arrow: draws an arrow pointing to the proband
+% pass the __icon's__ x and y center coordinates (this
+% makes it really easy):
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/ProbandArrow
+{
+ /yiconorg exch def
+ /xiconorg exch def
+ /OffsetDistance IconRadius 1.15 mul def
+ gsave
+ newpath
+ xiconorg OffsetDistance sub yiconorg OffsetDistance sub 225 3.5 mm 4 mm 3.5 mm 1.3 mm arrow
+ fill
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% IconCell: Prints an icon cell.  A "cell" is a rectangular
+% region with one or more lines of text labels on it.  An
+% icon cell uses a fixed set of very specific and limited
+% formatting conventions:
+%
+% Special flags for printing of genotypes and haplotypes:
+% -------------------------------------------------------
+%
+% - All flags are embedded in the strings that are passed
+%   to the routine.
+% - Flags precede the printable portion of the strings and
+%   are demarcated by special characters:
+%
+% (141/142)    : Genotype without special printing specs.
+% (23`141/142) : Background colors 2 and 3 specified. Color
+%                "2" prints behind "141" and color "3"
+%                prints behind "142".
+% (20^141/142) : A point tag prints with the label "2"
+%                for the maternal crossover.
+% (01^23`9\\10): A point tag prints with the label "1"
+%                for the paternal crossover.  Background
+%                colors are also specified.
+% (R~121/124)  : The genotype prints in RED to indicate
+%                a Mendelian inheritance error.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/IconCell
+{
+ /ArrayOfStrings   exch def
+ /ShadeFlag        exch def
+ /BorderType       exch def
+ /CellWidth        exch def
+ /Celly            exch def
+ /Cellx            exch def
+
+ %
+ % get number of lines in cell:
+ %
+ /CellLines ArrayOfStrings length def
+ /LineHeight CellFontSize 1.1 mul def
+ /LineAdjust LineHeight 5 div def
+ /CellHeight CellLines LineHeight mul CellMargin 2 mul add CellFontSize 2 div add def
+ /HalfCellWidth CellWidth 2 div def
+
+ %
+ % Cellx and Celly specify the center point
+ % of the top horizontal boundary of the cell box.
+ % Define cell bounding box, clip to this:
+ %
+ gsave
+ Cellx HalfCellWidth sub Celly moveto
+ CellWidth 0 rlineto
+ 0 CellHeight neg rlineto
+ CellWidth neg 0 rlineto
+ closepath
+ clip
+
+ %
+ % shade if more than five lines of text, but only if flag set:
+ %
+ ShadeFlag
+ {
+  CellLines 5 gt
+  {
+   gsave
+   /currx Cellx HalfCellWidth sub def
+   /curry Celly CellMargin sub LineAdjust sub def
+   /dy    LineHeight 5 mul def
+   INCOLOR
+   {
+    VeryLightBlue
+   }
+   {
+    0.90 setgray
+   }ifelse
+   5 10 CellLines
+   {
+    /yadvance exch def
+    newpath
+    currx curry yadvance LineHeight mul neg add moveto
+    CellWidth 0 rlineto
+    /remaining CellLines yadvance sub def
+    remaining 5 lt
+    {
+     /dy LineHeight remaining mul def
+    }if
+    0 dy neg rlineto
+    CellWidth neg 0 rlineto
+    closepath
+    fill
+   }for
+   grestore
+  }if
+ }if
+
+ %
+ % move down CellFontSize plus CellMargin to start:
+ %
+ /Celly Celly CellFontSize CellMargin add sub def
+ Cellx Celly moveto
+
+ %
+ % set font:
+ %
+ CellFont CellFontSize scalefont setfont
+
+ %
+ % Print text lines from array:
+ %
+ ArrayOfStrings
+ {
+  /ThisText exch def
+
+  gsave
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Check for Labeled PointTags for haplotype displays:
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ThisText (^) search
+  {
+   /Pre exch def
+   /Match exch def
+   /ThisText exch def
+   % Get the two label codes (one or the other could be zero):
+   /PointTagLabel1 Pre 0 1 getinterval def
+   /PointTagLabel2 Pre 1 1 getinterval def
+  }
+  {
+   /PointTagLabel1 (0) def
+   /PointTagLabel2 (0) def
+  }ifelse
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Check for background color tags for haplotype displays:
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ThisText (`) search
+  {
+   % Define Has (Crossover) Tags:
+   /Pre exch def
+   /Match exch def
+   /ThisText exch def
+   % Get the two highlight color codes:
+   /Color1 Pre 0 get def
+   /Color2 Pre 1 get def
+    %INCOLOR
+    true
+    {
+     % Print the background colors:
+     Cellx HalfCellWidth sub Celly LineHeight add LineAdjust sub CellWidth LineHeight Color1 Color2 HaploHighlight
+    }if
+  }if
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Check whether the string is flagged for printing in
+  % a different color for Mendelian error notification:
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ThisText (~) search
+  {
+    %
+    % The Pre string contains the directives, if any, for
+    % coloring the text:
+    %
+    /Pre exch def
+    /Match exch def
+    /ThisText exch def
+    % Make font bold:
+    BoldFont CellFontSize scalefont setfont
+    % Search for directives in the Pre element:
+    INCOLOR
+    {
+     Pre (R) search {Red       }if
+     Pre (4) search {Red       }if
+     Pre (3) search {Maroon    }if
+     Pre (2) search {Orange    }if
+     Pre (O) search {Orange    }if
+     Pre (Y) search {Yellow    }if
+     Pre (B) search {Blue      }if
+     Pre (G) search {Green     }if
+    }if
+  }if
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Print crossover lines for haplotype display ?
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  CROSSOVERTAGS
+  {
+   gsave
+   newpath
+   0.15 mm setlinewidth
+   % Maternal Crossover: just be sure it's not a date
+   ThisText (/) search
+   {
+    pop search not
+    {
+     Cellx HalfCellWidth sub Celly LineHeight add LineAdjust sub moveto
+     HalfCellWidth 0.5 mm sub 0 rlineto
+     stroke
+     % Print the PointTag Label only if its not zero:
+     PointTagLabel1 (0) ne
+     {
+      Cellx HalfCellWidth sub TAGSIZE 2 div add Celly LineHeight add LineAdjust sub TAGSIZE 0 PointTagLabel1 PointTag
+     }
+     {
+      Cellx HalfCellWidth sub Celly LineHeight add LineAdjust sub 1 mm 0 TrianglePoint
+     }ifelse
+    }if
+   }if
+   % Paternal Crossover
+   ThisText (\\) search
+   {
+    Cellx 0.5 mm add Celly LineHeight add LineAdjust sub moveto
+    HalfCellWidth 0.5 mm sub 0 rlineto
+    stroke
+    PointTagLabel2 (0) ne
+    {
+     Cellx HalfCellWidth add TAGSIZE 2 div sub Celly LineHeight add LineAdjust sub TAGSIZE 0 PointTagLabel2 PointTag
+    }
+    {
+     Cellx HalfCellWidth add Celly LineHeight add LineAdjust sub 1 mm 180 TrianglePoint
+    }ifelse
+   }if
+   % Both Maternal and Paternal Crossovers
+   ThisText (+) search
+   {
+    Cellx HalfCellWidth sub Celly LineHeight add LineAdjust sub moveto
+    HalfCellWidth 0.5 mm sub 0 rlineto
+    Cellx 0.5 mm add Celly LineHeight add LineAdjust sub moveto
+    HalfCellWidth 0.5 mm sub 0 rlineto
+    stroke
+    PointTagLabel1 (0) ne
+    {
+     Cellx HalfCellWidth sub TAGSIZE 2 div add Celly LineHeight add LineAdjust sub TAGSIZE 0 PointTagLabel1 PointTag
+    }
+    {
+     Cellx HalfCellWidth sub Celly LineHeight add LineAdjust sub 1 mm 0 TrianglePoint
+    }ifelse
+    PointTagLabel2 (0) ne
+    {
+     Cellx HalfCellWidth add TAGSIZE 2 div sub Celly LineHeight add LineAdjust sub TAGSIZE 0 PointTagLabel2 PointTag
+    }
+    {
+     Cellx HalfCellWidth add Celly LineHeight add LineAdjust sub 1 mm 180 TrianglePoint
+    }ifelse
+   }if
+   grestore
+  }if
+
+
+  %
+  % calculate where to print string centered horizontally:
+  %
+  /StringWidth ThisText stringwidth pop def
+  %
+  % Squish the fontsize down if string is too wide to print:
+  %
+  /WidthRatio CellWidth CellMargin 2 mul sub StringWidth div def
+  WidthRatio 1.0 lt
+  {
+   %
+   % case where string does not fit:
+   % scale the width down to fit while maintaining the original height
+   %
+   CellFont [CellFontSize WidthRatio mul 0 0 CellFontSize 0 0] makefont setfont
+   Cellx ThisText stringwidth pop 2 div sub Celly moveto
+   ThisText show
+  }
+  {
+   % case where string fits:
+   Cellx StringWidth 2 div sub Celly moveto
+   ThisText show
+  }ifelse
+  grestore
+  %
+  % increment y for next round:
+  %
+  /Celly Celly LineHeight sub def
+ }forall
+
+ %
+ % Draw bounding border if not NOLINE:
+ %
+ BorderType NOLINE ne
+ {
+  gsave
+  BorderType setlinewidth
+  stroke
+  grestore
+ }if
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% FillRegion: Fills region with color (if INCOLOR)
+% or with a shade of gray (if not INCOLOR).  Pushes GrayLevel
+% onto the stack at the end of the procedure
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/FillRegion
+{
+ /BluC exch def
+ /GrnC exch def
+ /RedC exch def
+ /GrayLevel exch def
+ 
+ gsave
+ INCOLOR
+ {
+  %
+  % In color case:
+  %
+  RedC GrnC BluC setrgbcolor
+ }
+ {
+  REVERSE_SHADING
+  {
+   1.0 GrayLevel sub setgray
+  }
+  {
+   GrayLevel setgray
+  }ifelse % if REVERSE_SHADING
+ }ifelse % if INCOLOR
+ fill
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% ShowRegionText: changes ink color in black-and-white mode
+% before showing the text based on background GrayLevel.  In
+% color mode, text is just shown in black.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/ShowRegionText
+{
+ /ThisText  exch def
+ /GrayLevel exch def
+
+ %
+ % Text label is always printed in black ink if INCOLOR. However,
+ % for black-and-white, it depends on how dark the gray fill is:
+ % for dark fills, print text in white:
+ %
+ INCOLOR
+ {
+  ThisText show
+ }
+ {
+  gsave                            % gsave because of possible ink color change
+  REVERSE_SHADING { /GrayLevel 1.0 GrayLevel sub def } if % reverse
+  GrayLevel 0.5 lt {1 setgray} if  % set letter color to white if on dark ground
+  ThisText show
+  grestore                         % restored
+ }ifelse
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DrawPieSlice: Draws one slice of a "pie":
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/DrawPieSlice
+{
+ /DataArray exch def
+ /endangle exch def
+ /sttangle exch def
+ /radius exch def
+ /yorg exch def
+ /xorg exch def
+
+ gsave
+ newpath
+ % set to fairly thin lines:
+ 1 setlinewidth
+
+ % draw arc and clip to it:
+ xorg yorg moveto
+ xorg yorg radius sttangle endangle arc
+ closepath
+ clip
+
+ % set miter limit for acute angle line joins:
+ 1.415 setmiterlimit
+
+ % Pull data elements from array:
+ DataArray aload pop
+ /BluC exch def
+ /GrnC exch def
+ /RedC exch def
+ /GryC exch def
+ /ThisText    exch def
+
+ GryC RedC GrnC BluC FillRegion
+
+ % print text in middle of pie slice:
+ /HalfRadius IconRadius 2 div def
+ /MiddleAngle endangle sttangle add 2 div def
+ gsave                       % save unrotated coordinates and graphics
+ xorg yorg translate         % translate to pie center
+ MiddleAngle rotate          % rotate to middle of slice
+ HalfRadius 1.1 mul 0 translate  % translate along x-axis half the radius (plus a little more)
+ 0 0 transform               % push coord. of origin in device space onto stack
+ grestore                    % restore unrotated coord. system
+ itransform                  % inverse transform the two coord. on the stack
+ /tcy exch def /tcx exch def % transformed coordinates defined
+ tcx tcy moveto
+
+ %
+ % Special handling to indicate MISSING:
+ %
+ ThisText (.) eq ThisText () eq or
+ {%
+  % A centered small dot represents MISSING:
+  %
+  TotalLevels MISSING ne { tcx tcy MissingSymbol } if
+ }
+ {%
+  % center the text on the point: The positioning is more or less
+  % optimized for placing capital letters:
+  %
+  ThisText stringwidth pop 2 div neg IconFontSize 3 div neg rmoveto
+  %
+  % ShowRegionText adjusts ink color based on GrayLevel when in
+  % black-and-white mode:
+  %
+  GrayLevel ThisText ShowRegionText
+ }ifelse % end if ThisText (.) eq
+
+ 0.5 setlinewidth                 % use a very thin line
+ stroke                           % outline the closed arc
+
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% IncrementAngle procedure: used by /icon:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/IncrementAngle
+{/sttangle endangle def
+ /endangle sttangle incrangle add def
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% icon procedure.  This procedure produces the icon as either
+% a square for males, a circle for females, or rectangle for unknown
+% gender.  The icon may be divided into one or more "pie slices", with
+% each slice representing a categorical variable.  Each slice may be
+% colored (or shaded gray) to represent the level of the categorical
+% variable, and a short text label optionally printed in the middle
+% of the slice:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/icon
+{/ArrayOfArrays exch def
+ /gender        exch def
+ /icontype      exch def
+ /yorigin       exch def
+ /xorigin       exch def
+
+ % Into how many pie slices is the icon divided?
+ /slices ArrayOfArrays length def
+
+ % Define angles and increments:
+ /incrangle 360 slices div def
+ /sttangle 90 def
+ /endangle sttangle incrangle add def
+
+ %save graphic state:
+ gsave
+
+ %
+ % Set font for icon:
+ %
+ IconFont IconFontSize scalefont setfont
+
+ newpath
+
+ % If male, set radius to IconDiagonal, and clip to a square
+ % else if female, set radius to IconRadius (plus a little extra), clip to circle
+ % else if unknown, set radius to IconRadius, clip to a diamond
+
+ gender NONTERM ge
+ {%
+  % Pregnancy not carried to term cases:
+  %
+
+  %
+  % print non-term gender in small letters
+  % below symbol:
+  %
+  IconFont IconFontSize scalefont setfont
+  xorigin yorigin IconRadius sub moveto
+  gender NONTERMMALE eq
+  {% non-term male:
+   (male)
+  }
+  {
+   gender NONTERMFEMALE eq
+   {% non-term female:
+    (female)
+   }
+   {% non-term gender unknown:
+    (unknown)
+   }ifelse  % end if non-term female
+  }ifelse   % end if non-term male
+  dup stringwidth pop 2 div neg 0 rmoveto
+  show
+
+  /CircleRadius IconRadius def
+  % clip to small triangle:
+  xorigin IconRadius sub yorigin moveto
+  IconRadius dup rlineto
+  IconRadius dup neg rlineto
+  closepath
+  clip
+ }
+ {%
+  % Normal gender cases:
+  %
+  gender UNKNOWNGENDER eq
+  {
+   % unknown gender:
+   /CircleRadius IconRadius def
+   % clip to diamond:
+   xorigin IconRadius sub yorigin moveto
+   IconRadius dup rlineto
+   IconRadius dup neg rlineto
+   IconRadius neg dup rlineto
+   closepath
+   clip
+  }
+  {
+
+   % male or female:
+   gender MALE eq
+   {% male gender
+    /CircleRadius IconDiagonal def
+    % clip to a square:
+    xorigin IconRadius sub yorigin IconRadius sub moveto
+    0 IconDiameter rlineto
+    IconDiameter 0 rlineto
+    0 IconDiameter neg rlineto
+    closepath
+    clip
+   }
+   {% female gender
+    /CircleRadius IconRadius 0.5 mm add def
+    xorigin yorigin IconRadius 0 360 arc
+    %
+    % clipping is needed in case where only one slice
+    % where DrawPieSlice is not called:
+    %
+    clip
+   }ifelse              % end if gender male
+  }ifelse               % end if gender unknown
+ }ifelse                % end if non-term
+ %
+ % Process data in array of arrays - but only if
+ % array length is greater than 1.  If array length is 1,
+ % then there is only one categorical variable, so don't call
+ % /DrawPieSlice at all in that case:
+ %
+ slices 1 eq
+ {
+  %
+  % process case where there is only one slice:
+  %
+  ArrayOfArrays 0 get   % get the single array nested in ArrayOfArrays
+  aload pop             % put the elements of that array on the stack
+  /BluC exch def
+  /GrnC exch def
+  /RedC exch def
+  /GrayLevel exch def
+  /ThisText    exch def % text label for this level (can be null string)
+
+  GrayLevel RedC GrnC BluC FillRegion
+
+  %
+  % Special handling to indicate MISSING:
+  %
+  ThisText (.) eq ThisText () eq or
+  {%
+   % A centered small dot represents MISSING:
+   %
+   TotalLevels MISSING ne { xorigin yorigin MissingSymbol } if
+  }
+  {
+   % print the text label:
+   xorigin yorigin moveto
+   ThisText stringwidth pop 2 div neg IconFontSize 3 div neg rmoveto
+   %
+   % ShowRegionText adjusts ink color based on GrayLevel when in
+   % black-and-white mode:
+   %
+   GrayLevel ThisText ShowRegionText
+  }ifelse  % end if ThisText (.) eq
+ }
+ {
+  %
+  % process case where there are multiple slices:
+  %
+  ArrayOfArrays
+  {
+   /SliceArray exch def
+   xorigin yorigin CircleRadius sttangle endangle SliceArray DrawPieSlice
+   IncrementAngle
+  }forall
+ }ifelse
+ %
+ % if VIRTUAL, stroke clip path with a dashed line instead of a black line:
+ %
+ icontype VIRTUAL eq
+ {
+  gender FEMALE eq
+  {%
+   % case of FEMALE: wrap circle with exactly 12 dashes:
+   %
+   /DashLength FemaleDashLength def
+  }
+  {%
+   % case of MALE: 4 black dashes per side = 16 total
+   %
+   /DashLength MaleDashLength def
+  }ifelse
+  %
+  % The offset of a half DashLength makes the dashes
+  % wrap the corners of the squares and centers the
+  % the dashes over the cardinal directions on the circles:
+  %
+  [DashLength DashLength] DashLength 2 div setdash
+ } if
+ stroke
+
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DisplayLegendVariable
+%
+%%%%%%%%%%%%%%%%%%%%%%%%
+/DisplayLegendVariable{
+ /ArrayOfArrays exch def
+ /TotalLevels exch def
+ /TextHeading exch def
+ /cy exch def
+ /cx exch def
+
+ gsave
+ IconFont IconFontSize scalefont setfont
+ /curry cy 2 mm sub def
+ cx TextHeading stringwidth pop 2 div sub curry moveto
+ TextHeading show
+ /curry curry 0.7 mm sub def
+ /currx cx 1.5 cm sub def
+ newpath
+ currx curry moveto
+ 3.0 cm 0 rlineto
+ 0.5 setlinewidth
+ stroke
+ /curry curry 2.3 mm sub def
+ /currx currx 3 mm add def
+ ArrayOfArrays
+ {
+  /ThisArray exch def
+  currx curry TotalLevels ThisArray LegendLineItem
+  /curry curry 4 mm sub def
+ }forall
+ %
+ grestore
+}bind def
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% LegendLineItem: Prints the keys to each categorical level of an icon variable
+% for the drawing's icon display legend
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/LegendLineItem {
+ /ThisArray exch def
+ /TotalLevels exch def
+ /cy exch def
+ /cx exch def
+
+ ThisArray aload pop
+ /BluC exch def
+ /GrnC exch def
+ /RedC exch def
+ /GrayLevel exch def
+ /ValueLabel exch def
+ /IconLabel exch def
+ /CurrentLevel exch def
+ gsave
+ IconFont IconFontSize scalefont setfont
+ newpath
+ cx 3 mm sub cy 1.5 mm add moveto
+ 0 -3 mm rlineto
+ 6 mm 0 rlineto
+ 0 3 mm rlineto
+ closepath
+ GrayLevel RedC GrnC BluC FillRegion
+ 0.5 setlinewidth
+ stroke
+ cx IconLabel stringwidth pop 2 div sub cy IconFontSize 3 div sub moveto
+ GrayLevel IconLabel ShowRegionText
+ cx ValueLabel stringwidth pop 2 div sub 1.5 cm add cy IconFontSize 3 div sub moveto
+ ValueLabel show
+ grestore
+}bind def
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CircleHighlight: Prints a circular region in color
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/CircleHighlight {
+ /Ycenter exch def
+ /Xcenter exch def
+ gsave
+  newpath
+  Xcenter Ycenter IconRadius 2 mul 0 360 arc
+  gsave
+   LightBlue
+   fill
+  grestore
+  Blue
+  stroke
+ grestore
+} bind def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% *** END OF PROCEDURES ***
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%
+% Pedigree F0099
+%%Page: F0099 1
+%
+THINLINE setlinewidth
+2 setlinecap
+/Pedigree-F0099_FoundingGroup-00000 {
+0.00 cm 0.00 cm 5.00 cm MEDIUMLINE SHADE [(Pedigree F0099)(Page 1 of 1)(12:35 Wednesday, August 11, 2004)] IconCell
+-8.00 cm 0.00 cm 2.20 cm THINLINE SHADE [(FAMID)(STUDYID)(SEX)(FATHER)(MOTHER)(MZTWIN)(DZTWIN)(BROADAFF)(AGEDX)(D10S1652)(D10S1780)(D10S1790)(D10S189)(D10S190)(D10S191)(D10S192)(D10S197)(D10S208)(D10S212)(D10S213)(D10S217)(D10S220)(D10S249)(D10S537)(D10S539)(D10S547)(D10S548)(D10S561)(D10S567)(D10S578)(D10S581)(D10S583)(D10S587)(D10S591)(D10S597)(D20S100)(D20S104)(D20S107)(D20S115)(D20S117)(D20S118)(D20S119)(D20S171)(D20S173)(D20S178)(D20S186)(D20S189)(D20S193)(D20S195)(D20S196)(D20S199)(D20S482)(D20S604)(D20S66)(D20S842)(D20S852)(D20S875)(D20S889)(D20S910)(D20S912)(D20S95)(D20S98)] IconCell
+-5.00 cm 0.00 cm (BROADAFF) 3 [[1(A)(A) 0.00 0.70 0.70 1.00 ][2(I)(I) 0.50 1.00 0.75 0.30 ][3(U)(U) 1.00 1.00 1.00 1.00 ]] DisplayLegendVariable
+-0.75 cm -2.00 cm REAL FEMALE [[(I) 0.50 1.00 0.75 0.30]] icon
+-0.75 cm -2.60 cm 1.40 cm NOLINE SHADE [(F0099)(U0001B)(F)(.)(.)(.)(.)(I)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath -0.45 cm -2.00 cm moveto 0.90 cm 0 rlineto stroke
+0.75 cm -2.00 cm REAL MALE [[(I) 0.50 1.00 0.75 0.30]] icon
+0.75 cm -2.60 cm 1.40 cm NOLINE SHADE [(F0099)(U0001A)(M)(.)(.)(.)(.)(I)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 0.00 cm -2.00 cm moveto 0 VDrop1 rlineto stroke
+newpath -15.75 cm -18.68 cm moveto 1.50 cm 0 rlineto stroke
+newpath -15.75 cm -18.68 cm moveto 0 VDrop2MinusIR rlineto stroke
+-15.75 cm -19.43 cm REAL MALE [[(I) 0.50 1.00 0.75 0.30]] icon
+-15.75 cm -20.03 cm 1.40 cm NOLINE SHADE [(F0099)(S01058)(M)(U0001A)(U0001B)(.)(.)(I)(.)(295/297)(236/238)(193/197)(189/193)(205/209)(124/136)(260/260)(173/177)(191/191)(202/202)(191/195)(104/110)(111/111)(124/124)(153/161)(98/114)(242/242)(192/196)(290/290)(204/206)(176/176)(133/137)(205/215)(100/104)(333/335)(293/295)(227/229)(0/0)(208/220)(0/0)(172/178)(208/214)(117/123)(142/148)(177/177)(186/194)(139/141)(306/306)(150/152)(143/155)(0/0)(106/106)(157/157)(146/146)(132/136)(171/175)(162/168)(97/97)(103/113)(83/85)(296/298)(114/114)(264/266)] IconCell
+newpath -14.25 cm -18.68 cm moveto 15.00 cm 0 rlineto stroke
+newpath -14.25 cm -18.68 cm moveto 0 VDrop2MinusIR rlineto stroke
+-14.25 cm -19.43 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-14.25 cm -20.03 cm 1.40 cm NOLINE SHADE [(F0099)(S01143)(M)(U0001A)(U0001B)(.)(.)(U)(.)(295/297)(232/236)(193/197)(187/189)(205/207)(124/124)(254/260)(173/177)(181/191)(202/202)(189/191)(106/114)(111/111)(124/128)(153/161)(98/114)(242/250)(192/194)(290/292)(204/206)(174/180)(133/137)(215/219)(104/104)(319/335)(293/295)(227/229)(168/176)(214/218)(0/0)(180/180)(208/214)(117/117)(138/144)(177/179)(186/194)(137/139)(298/306)(150/152)(139/149)(0/0)(106/114)(157/165)(142/146)(128/138)(171/175)(168/170)(0/0)(103/109)(85/85)(298/298)(114/114)(266/266)] IconCell
+newpath 0.75 cm -18.68 cm moveto 0 VDrop2MinusIR rlineto stroke
+0.75 cm -19.43 cm REAL FEMALE [[(I) 0.50 1.00 0.75 0.30]] icon
+0.75 cm -20.03 cm 1.40 cm NOLINE SHADE [(F0099)(U0001D)(F)(U0001A)(U0001B)(.)(.)(I)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 1.05 cm -19.43 cm moveto 0.90 cm 0 rlineto stroke
+2.25 cm -19.43 cm REAL MALE [[(I) 0.50 1.00 0.75 0.30]] icon
+2.25 cm -20.03 cm 1.40 cm NOLINE SHADE [(F0099)(U0001C)(M)(.)(.)(.)(.)(I)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 1.50 cm -19.43 cm moveto 0 VDrop1 rlineto stroke
+newpath -12.75 cm -36.12 cm moveto 3.75 cm 0 rlineto stroke
+newpath -12.75 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+-12.75 cm -36.87 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-12.75 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S00925)(M)(U0001C)(U0001D)(.)(.)(A)(47)(293/297)(232/238)(191/201)(189/193)(197/207)(124/136)(252/254)(0/0)(185/191)(202/206)(187/189)(104/110)(109/111)(124/128)(0/0)(98/98)(250/252)(192/194)(0/0)(192/206)(166/176)(139/151)(217/219)(100/106)(333/335)(293/295)(223/229)(168/176)(208/218)(0/0)(180/180)(208/212)(117/121)(142/148)(177/179)(184/190)(131/137)(298/306)(148/150)(149/155)(0/0)(114/122)(153/165)(142/146)(128/130)(163/175)(162/168)(87/91)(109/111)(85/85)(298/298)(112/114)(266/270)] IconCell
+newpath -9.00 cm -36.12 cm moveto 6.75 cm 0 rlineto stroke
+newpath -9.00 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+-9.00 cm -36.87 cm REAL FEMALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-9.00 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S00926)(F)(U0001C)(U0001D)(.)(.)(A)(38)(R~293/297)(232/238)(191/201)(0/0)(197/205)(124/136)(252/260)(173/179)(185/191)(202/202)(187/187)(110/114)(109/111)(124/124)(0/0)(98/98)(250/252)(192/194)(0/0)(192/206)(166/176)(139/151)(213/215)(104/106)(333/335)(293/295)(227/227)(176/180)(214/218)(0/0)(180/180)(214/214)(117/121)(138/142)(177/179)(186/190)(131/137)(298/306)(148/150)(139/149)(0/0)(114/122)(153/165)(142/146)(128/136)(163/175)(168/170)(87/91)(109/111)(81/85)(296/298)(112/114)(266/266)] IconCell
+newpath -8.70 cm -36.87 cm moveto 0.90 cm 0 rlineto stroke
+-7.50 cm -36.87 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-7.50 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(U0001G)(M)(.)(.)(.)(.)(U)(.)(R~.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath -8.25 cm -36.87 cm moveto 0 VDrop1 rlineto stroke
+newpath -11.25 cm -53.55 cm moveto 1.50 cm 0 rlineto stroke
+newpath -11.25 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-11.25 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-11.25 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01054)(M)(U0001G)(S00926)(.)(.)(U)(.)(R~281/293)(232/238)(191/191)(189/193)(205/209)(136/136)(0/0)(171/179)(185/189)(202/202)(187/195)(104/114)(111/117)(124/128)(0/0)(98/106)(242/252)(190/192)(0/0)(192/206)(176/176)(147/151)(207/215)(0/0)(319/333)(293/293)(223/227)(180/186)(208/218)(240/240)(180/180)(214/214)(121/123)(142/150)(129/179)(186/190)(127/131)(298/306)(148/150)(139/149)(0/0)(110/114)(157/165)(138/142)(136/136)(173/175)(168/170)(91/95)(109/119)(81/83)(296/298)(108/114)(266/272)] IconCell
+newpath -9.75 cm -53.55 cm moveto 3.00 cm 0 rlineto stroke
+newpath -9.75 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-9.75 cm -54.30 cm REAL FEMALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-9.75 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01055)(F)(U0001G)(S00926)(.)(.)(A)(25)(R~293/299)(232/240)(191/191)(0/0)(205/205)(132/136)(0/0)(173/179)(185/191)(202/204)(187/193)(104/114)(109/111)(124/124)(151/163)(98/106)(242/252)(192/192)(0/0)(192/204)(166/174)(151/161)(205/215)(102/104)(333/335)(293/293)(223/227)(180/186)(208/218)(240/244)(160/180)(214/214)(117/123)(138/146)(177/179)(186/186)(127/131)(298/306)(148/148)(139/149)(0/0)(110/122)(153/157)(138/142)(136/136)(163/173)(168/170)(91/95)(111/119)(81/83)(296/298)(108/112)(266/272)] IconCell
+newpath -9.45 cm -54.30 cm moveto 0.90 cm 0 rlineto stroke
+-8.25 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-8.25 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(U0001K)(M)(.)(.)(.)(.)(U)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath -9.00 cm -54.30 cm moveto 0 VDrop1 rlineto stroke
+newpath -9.00 cm -70.99 cm moveto 0 VDrop2MinusIR rlineto stroke
+-9.00 cm -71.74 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-9.00 cm -72.34 cm 1.40 cm NOLINE SHADE [(F0099)(S01053)(M)(U0001K)(S01055)(.)(.)(A)(7)(293/295)(232/238)(191/195)(189/193)(205/207)(136/136)(256/260)(177/179)(185/187)(202/204)(187/193)(104/116)(109/115)(124/136)(157/163)(98/100)(244/252)(192/194)(0/0)(192/206)(166/176)(139/151)(215/215)(102/106)(331/333)(291/293)(225/227)(176/186)(208/214)(240/244)(160/160)(212/214)(109/123)(138/142)(177/177)(186/192)(127/131)(298/306)(134/148)(139/149)(265/287)(106/110)(153/157)(138/142)(132/136)(173/177)(168/170)(95/97)(115/119)(81/83)(294/298)(108/108)(266/276)] IconCell
+newpath -6.75 cm -53.55 cm moveto 1.50 cm 0 rlineto stroke
+newpath -6.75 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-6.75 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-6.75 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01056)(M)(U0001G)(S00926)(.)(.)(U)(.)(R~293/299)(238/240)(191/191)(193/195)(197/205)(132/136)(252/260)(173/179)(191/191)(202/202)(187/193)(104/114)(111/111)(124/124)(149/163)(98/106)(242/252)(192/192)(0/0)(192/204)(174/176)(151/161)(207/215)(102/106)(333/333)(293/295)(223/227)(176/186)(208/214)(240/240)(180/180)(214/214)(117/123)(142/150)(129/179)(186/186)(127/137)(298/298)(148/150)(149/155)(0/0)(110/114)(157/165)(138/146)(128/136)(173/175)(168/168)(87/95)(109/119)(83/85)(296/298)(108/114)(266/272)] IconCell
+newpath -5.25 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-5.25 cm -54.30 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-5.25 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01057)(M)(U0001G)(S00926)(.)(.)(A)(23)(R~281/299)(232/232)(191/201)(189/193)(205/205)(136/136)(260/262)(171/179)(185/189)(202/204)(187/195)(104/114)(109/117)(124/124)(149/151)(98/106)(242/252)(190/192)(0/0)(206/206)(166/176)(139/147)(205/213)(102/104)(319/335)(293/293)(223/227)(176/176)(218/220)(240/242)(160/180)(212/214)(117/121)(142/146)(179/179)(182/190)(119/137)(298/306)(148/154)(0/0)(0/0)(104/122)(153/161)(146/146)(128/130)(163/175)(168/180)(87/97)(101/111)(81/85)(292/298)(112/114)(266/266)] IconCell
+newpath -2.25 cm -36.12 cm moveto 5.25 cm 0 rlineto stroke
+newpath -2.25 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+-2.25 cm -36.87 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-2.25 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S00951)(M)(U0001C)(U0001D)(.)(.)(A)(45)(0/0)(232/232)(195/201)(189/189)(197/207)(124/136)(252/254)(173/179)(181/185)(202/206)(187/189)(104/110)(109/109)(124/128)(149/163)(98/100)(250/252)(192/194)(0/0)(204/206)(166/174)(139/151)(217/219)(100/106)(319/335)(293/295)(227/229)(168/180)(218/218)(0/0)(178/182)(214/214)(117/121)(142/148)(177/179)(190/190)(131/139)(306/306)(152/154)(149/149)(0/0)(104/106)(153/157)(142/146)(136/138)(171/179)(170/170)(81/91)(103/115)(81/85)(296/298)(108/114)(266/266)] IconCell
+newpath -1.95 cm -36.87 cm moveto 0.90 cm 0 rlineto stroke
+-0.75 cm -36.87 cm REAL FEMALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-0.75 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(U0001H)(F)(.)(.)(.)(.)(U)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath -1.50 cm -36.87 cm moveto 0 VDrop1 rlineto stroke
+newpath -3.75 cm -53.55 cm moveto 1.50 cm 0 rlineto stroke
+newpath -3.75 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-3.75 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-3.75 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01059)(M)(S00951)(U0001H)(.)(.)(U)(.)(289/293)(232/236)(195/201)(189/189)(205/207)(124/140)(254/254)(173/175)(181/189)(202/206)(189/197)(104/116)(109/111)(128/128)(159/163)(100/114)(242/252)(192/194)(280/280)(204/206)(174/174)(133/151)(207/219)(98/100)(319/335)(293/293)(223/227)(168/180)(218/220)(240/242)(178/182)(212/214)(117/121)(140/142)(177/179)(186/190)(125/131)(306/306)(152/154)(149/149)(0/0)(104/118)(153/161)(138/142)(136/136)(169/179)(168/170)(91/91)(95/115)(81/89)(296/302)(108/108)(266/270)] IconCell
+newpath -2.25 cm -53.55 cm moveto 1.50 cm 0 rlineto stroke
+newpath -2.25 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-2.25 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+-2.25 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01060)(M)(S00951)(U0001H)(.)(.)(U)(.)(293/293)(232/240)(191/195)(189/189)(205/207)(124/144)(254/254)(173/177)(181/187)(202/206)(183/189)(104/116)(109/121)(124/128)(157/163)(98/100)(250/252)(194/196)(280/280)(204/206)(174/188)(151/155)(219/219)(98/100)(319/335)(293/293)(223/229)(168/168)(216/218)(240/242)(152/182)(208/214)(117/117)(140/148)(177/177)(190/190)(139/139)(306/306)(152/154)(139/149)(0/0)(104/110)(153/161)(134/146)(138/138)(175/179)(170/170)(81/99)(101/115)(85/91)(298/302)(108/114)(266/266)] IconCell
+newpath -0.75 cm -53.55 cm moveto 1.50 cm 0 rlineto stroke
+newpath -0.75 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+-0.75 cm -54.30 cm REAL FEMALE [[(A) 0.00 0.70 0.70 1.00]] icon
+-0.75 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01061)(F)(S00951)(U0001H)(.)(.)(A)(21)(0/0)(232/236)(201/201)(189/189)(197/205)(136/144)(252/254)(175/179)(185/189)(202/202)(187/197)(110/116)(109/111)(124/128)(149/159)(98/114)(250/252)(192/192)(280/280)(206/206)(166/174)(133/139)(207/217)(100/106)(319/335)(291/295)(223/227)(168/180)(218/220)(240/242)(178/182)(208/214)(117/121)(140/142)(177/179)(186/190)(125/131)(306/306)(152/154)(149/149)(0/0)(104/118)(153/161)(138/142)(136/136)(169/179)(168/170)(91/99)(95/115)(81/89)(296/302)(108/108)(266/266)] IconCell
+newpath 0.75 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+0.75 cm -54.30 cm REAL FEMALE [[(U) 1.00 1.00 1.00 1.00]] icon
+0.75 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01144)(F)(S00951)(U0001H)(.)(.)(U)(.)(289/293)(232/236)(195/201)(189/189)(205/207)(124/140)(254/254)(173/175)(181/189)(202/204)(189/197)(106/110)(109/111)(128/128)(157/163)(100/114)(242/252)(192/194)(280/280)(204/206)(174/174)(0/0)(219/219)(100/106)(319/319)(293/293)(227/229)(168/168)(216/218)(240/242)(178/182)(212/214)(0/0)(140/148)(177/177)(186/190)(125/139)(306/306)(152/154)(139/149)(291/291)(104/118)(153/161)(138/146)(136/138)(169/179)(168/170)(81/91)(95/115)(85/89)(298/302)(108/108)(266/270)] IconCell
+newpath 3.00 cm -36.12 cm moveto 3.75 cm 0 rlineto stroke
+newpath 3.00 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+3.00 cm -36.87 cm REAL FEMALE [[(I) 0.50 1.00 0.75 0.30]] icon
+3.00 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S00976)(F)(U0001C)(U0001D)(.)(.)(I)(.)(285/293)(232/232)(191/201)(189/193)(205/211)(124/136)(244/260)(173/179)(181/185)(202/206)(187/189)(104/110)(109/109)(128/128)(159/163)(98/98)(250/252)(192/194)(284/284)(204/206)(166/174)(139/151)(213/215)(98/100)(333/335)(293/293)(223/229)(168/176)(208/218)(0/0)(178/180)(208/212)(117/121)(148/148)(129/177)(184/190)(137/139)(298/306)(148/152)(149/155)(0/0)(106/122)(153/157)(134/146)(130/138)(163/171)(162/170)(87/91)(103/111)(85/85)(298/298)(112/112)(266/270)] IconCell
+newpath 3.30 cm -36.87 cm moveto 0.90 cm 0 rlineto stroke
+4.50 cm -36.87 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+4.50 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(U0001E)(M)(.)(.)(.)(.)(U)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 3.75 cm -36.87 cm moveto 0 VDrop1 rlineto stroke
+newpath 2.25 cm -53.55 cm moveto 3.00 cm 0 rlineto stroke
+newpath 2.25 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+2.25 cm -54.30 cm REAL FEMALE [[(A) 0.00 0.70 0.70 1.00]] icon
+2.25 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01031)(F)(U0001E)(S00976)(.)(.)(A)(39)(281/285)(232/238)(193/201)(189/193)(205/211)(124/132)(244/260)(173/177)(181/185)(202/206)(189/197)(104/104)(109/109)(128/128)(157/159)(98/112)(242/250)(194/194)(284/284)(206/206)(166/176)(137/139)(199/215)(98/100)(319/333)(293/293)(225/229)(170/176)(212/218)(0/0)(172/180)(208/212)(117/117)(146/148)(177/177)(186/190)(131/137)(298/298)(150/152)(143/149)(0/0)(110/122)(153/161)(134/146)(130/130)(163/167)(162/164)(87/95)(103/111)(85/93)(294/298)(112/114)(262/270)] IconCell
+newpath 2.55 cm -54.30 cm moveto 0.90 cm 0 rlineto stroke
+3.75 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+3.75 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(U0001J)(M)(.)(.)(.)(.)(U)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 3.00 cm -54.30 cm moveto 0 VDrop1 rlineto stroke
+newpath 2.25 cm -70.99 cm moveto 1.50 cm 0 rlineto stroke
+newpath 2.25 cm -70.99 cm moveto 0 VDrop2MinusIR rlineto stroke
+2.25 cm -71.74 cm REAL FEMALE [[(A) 0.00 0.70 0.70 1.00]] icon
+2.25 cm -72.34 cm 1.40 cm NOLINE SHADE [(F0099)(S01032)(F)(U0001J)(S01031)(.)(.)(A)(7)(285/295)(232/242)(193/205)(189/193)(211/211)(124/124)(244/262)(173/177)(185/189)(198/206)(189/193)(104/116)(109/111)(128/128)(147/159)(112/114)(242/250)(190/194)(284/284)(206/206)(176/176)(139/145)(215/215)(98/100)(319/319)(293/293)(225/227)(170/170)(212/216)(240/240)(180/182)(212/214)(117/123)(140/146)(177/179)(186/200)(131/137)(298/304)(0/0)(143/143)(265/265)(118/122)(153/157)(146/146)(130/136)(163/171)(164/166)(95/97)(101/111)(79/93)(294/296)(112/116)(262/264)] IconCell
+newpath 3.75 cm -70.99 cm moveto 0 VDrop2MinusIR rlineto stroke
+3.75 cm -71.74 cm REAL FEMALE [[(A) 0.00 0.70 0.70 1.00]] icon
+3.75 cm -72.34 cm 1.40 cm NOLINE SHADE [(F0099)(S01033)(F)(U0001J)(S01031)(.)(.)(A)(12)(285/297)(232/238)(201/205)(0/0)(205/211)(132/134)(244/262)(173/175)(185/189)(198/202)(189/193)(104/116)(109/113)(126/128)(147/159)(98/98)(242/242)(190/194)(284/296)(206/206)(166/174)(139/141)(215/215)(0/0)(319/335)(293/293)(225/227)(0/0)(212/216)(238/242)(180/180)(212/214)(117/123)(140/146)(177/179)(186/200)(123/131)(298/298)(0/0)(0/0)(0/0)(108/122)(153/161)(146/146)(130/136)(163/171)(164/166)(95/97)(111/117)(79/93)(294/296)(112/112)(262/264)] IconCell
+newpath 5.25 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+5.25 cm -54.30 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+5.25 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01052)(M)(U0001E)(S00976)(.)(.)(U)(.)(285/291)(232/238)(191/201)(189/193)(205/211)(132/136)(244/260)(173/173)(181/187)(202/202)(187/189)(110/114)(109/123)(128/128)(159/163)(98/98)(242/252)(192/196)(284/284)(204/204)(174/174)(137/139)(213/215)(98/100)(319/333)(293/293)(223/225)(168/176)(208/220)(240/242)(172/178)(208/214)(121/127)(146/148)(177/179)(184/186)(125/139)(306/306)(150/152)(139/155)(0/0)(106/110)(157/157)(142/146)(130/138)(167/171)(162/170)(87/97)(101/103)(81/85)(298/304)(112/112)(266/266)] IconCell
+newpath 6.75 cm -36.12 cm moveto 3.00 cm 0 rlineto stroke
+newpath 6.75 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+6.75 cm -36.87 cm REAL FEMALE [[(I) 0.50 1.00 0.75 0.30]] icon
+6.75 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S00981)(F)(U0001C)(U0001D)(.)(.)(I)(.)(293/297)(232/238)(191/201)(189/193)(197/207)(124/136)(252/254)(173/179)(185/191)(202/206)(187/189)(104/110)(109/111)(124/128)(149/157)(98/98)(250/252)(192/194)(0/0)(192/206)(166/176)(139/151)(215/217)(100/106)(333/335)(293/295)(223/229)(0/0)(218/218)(240/244)(178/182)(208/214)(117/121)(148/148)(129/177)(184/190)(131/137)(298/306)(148/152)(149/149)(0/0)(106/122)(153/157)(142/146)(128/136)(163/171)(168/170)(87/91)(103/111)(81/85)(296/298)(112/114)(266/266)] IconCell
+newpath 7.05 cm -36.87 cm moveto 0.90 cm 0 rlineto stroke
+8.25 cm -36.87 cm REAL MALE [[(U) 1.00 1.00 1.00 1.00]] icon
+8.25 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(U0001I)(M)(.)(.)(.)(.)(U)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 7.50 cm -36.87 cm moveto 0 VDrop1 rlineto stroke
+newpath 7.50 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+7.50 cm -54.30 cm REAL FEMALE [[(U) 1.00 1.00 1.00 1.00]] icon
+7.50 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S00973)(F)(U0001I)(S00981)(.)(.)(U)(.)(293/295)(232/236)(191/199)(193/193)(197/207)(136/136)(254/258)(171/179)(183/185)(202/206)(187/187)(110/116)(109/113)(128/128)(157/157)(98/112)(242/252)(192/194)(274/284)(192/206)(166/176)(139/151)(201/215)(0/0)(319/333)(293/293)(219/223)(172/176)(216/218)(240/242)(176/178)(208/216)(117/123)(144/148)(129/177)(188/190)(135/137)(298/306)(148/152)(139/149)(285/291)(106/124)(157/157)(142/146)(128/130)(171/171)(152/168)(87/93)(103/103)(85/85)(298/302)(104/114)(264/266)] IconCell
+newpath 9.75 cm -36.12 cm moveto 1.50 cm 0 rlineto stroke
+newpath 9.75 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+9.75 cm -36.87 cm REAL MALE [[(I) 0.50 1.00 0.75 0.30]] icon
+9.75 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S00989)(M)(U0001C)(U0001D)(.)(.)(I)(.)(285/297)(232/232)(191/195)(187/189)(197/205)(124/134)(252/260)(173/175)(181/189)(202/202)(183/189)(110/114)(109/111)(128/128)(157/159)(100/106)(250/252)(194/194)(0/0)(204/206)(174/174)(139/141)(215/217)(104/106)(319/319)(0/0)(227/229)(176/180)(218/218)(0/0)(178/180)(208/214)(117/121)(142/148)(177/177)(190/190)(131/137)(298/306)(148/152)(149/149)(0/0)(106/122)(153/157)(142/146)(128/136)(163/171)(168/170)(87/91)(103/111)(81/85)(296/298)(112/112)(266/266)] IconCell
+newpath 11.25 cm -36.12 cm moveto 1.50 cm 0 rlineto stroke
+newpath 11.25 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+11.25 cm -36.87 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+11.25 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S01062)(M)(U0001C)(U0001D)(.)(.)(A)(42)(297/297)(232/232)(195/201)(0/0)(197/207)(136/140)(252/260)(173/179)(185/191)(202/206)(187/187)(104/110)(109/109)(124/124)(0/0)(98/100)(250/252)(190/192)(0/0)(204/206)(166/174)(139/141)(215/217)(100/106)(333/335)(293/295)(227/227)(176/180)(218/218)(0/0)(178/180)(208/214)(117/121)(0/0)(177/179)(190/190)(131/137)(298/306)(148/152)(149/149)(0/0)(106/122)(153/157)(142/146)(128/136)(163/171)(168/170)(87/91)(103/111)(81/85)(296/298)(112/112)(266/266)] IconCell
+newpath 12.75 cm -36.12 cm moveto 3.00 cm 0 rlineto stroke
+newpath 12.75 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+12.75 cm -36.87 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+12.75 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S01063)(M)(U0001C)(U0001D)(.)(.)(A)(53)(0/0)(232/238)(195/201)(187/189)(197/207)(136/140)(252/254)(173/179)(185/191)(202/202)(187/187)(104/110)(109/109)(128/128)(149/157)(98/100)(242/252)(190/192)(0/0)(204/206)(166/176)(139/141)(217/219)(100/106)(319/319)(293/295)(223/229)(168/180)(208/214)(0/0)(180/180)(214/214)(117/121)(0/0)(129/177)(184/190)(131/139)(306/306)(148/150)(139/155)(0/0)(114/122)(153/157)(142/146)(136/138)(163/175)(170/170)(81/91)(109/111)(81/85)(298/298)(112/112)(266/266)] IconCell
+newpath 13.05 cm -36.87 cm moveto 0.90 cm 0 rlineto stroke
+14.25 cm -36.87 cm REAL FEMALE [[(U) 1.00 1.00 1.00 1.00]] icon
+14.25 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(U0001F)(F)(.)(.)(.)(.)(U)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)] IconCell
+newpath 13.50 cm -36.87 cm moveto 0 VDrop1 rlineto stroke
+newpath 13.50 cm -53.55 cm moveto 0 VDrop2MinusIR rlineto stroke
+13.50 cm -54.30 cm REAL MALE [[(A) 0.00 0.70 0.70 1.00]] icon
+13.50 cm -54.90 cm 1.40 cm NOLINE SHADE [(F0099)(S01064)(M)(S01063)(U0001F)(.)(.)(A)(16)(297/299)(232/240)(201/201)(187/189)(197/211)(132/136)(252/254)(171/179)(185/191)(202/202)(187/193)(104/110)(107/109)(124/128)(149/151)(98/98)(244/252)(190/192)(284/296)(206/206)(166/180)(139/153)(203/217)(106/108)(319/335)(293/295)(223/231)(164/180)(208/216)(240/244)(160/180)(214/214)(121/123)(144/148)(129/129)(184/192)(131/137)(306/306)(142/148)(137/155)(0/0)(110/114)(153/157)(142/146)(136/136)(163/171)(162/170)(91/95)(95/111)(81/83)(292/298)(108/112)(262/266)] IconCell
+newpath 15.75 cm -36.12 cm moveto 0 VDrop2MinusIR rlineto stroke
+15.75 cm -36.87 cm REAL FEMALE [[(I) 0.50 1.00 0.75 0.30]] icon
+15.75 cm -37.47 cm 1.40 cm NOLINE SHADE [(F0099)(S01065)(F)(U0001C)(U0001D)(.)(.)(I)(.)(285/293)(232/232)(191/195)(187/189)(197/205)(124/134)(252/260)(173/175)(181/189)(202/206)(183/189)(104/110)(109/111)(128/128)(159/163)(100/106)(250/252)(194/194)(0/0)(204/206)(174/174)(139/151)(215/217)(104/106)(319/319)(293/295)(227/229)(168/176)(218/218)(240/240)(178/182)(208/212)(117/121)(142/148)(177/179)(190/190)(0/0)(298/298)(152/154)(149/149)(0/0)(104/106)(153/157)(134/146)(128/130)(171/179)(162/168)(87/91)(103/115)(85/85)(298/298)(108/114)(266/270)] IconCell
+}def
+/PrintDrawing {
+0 52.00 cm translate -90 rotate
+26.00 cm 78.00 cm translate
+0.86 0.86 scale
+Pedigree-F0099_FoundingGroup-00000
+} def
+{PrintDrawing} 4 2 MultiplePagePrint

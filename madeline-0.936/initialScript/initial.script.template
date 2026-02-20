@@ -1,0 +1,28 @@
+//
+// "initial.script.template" Template for Madeline v. 0.935 
+//
+// Now most defaults can be set in "config.h" and
+// be compiled directly into the program.
+//
+// Users may however still want or need to set some
+// things in this file.  Commented examples are
+// provided below.  Copy this file to "initial.script"
+// and edit as required.  "initial.script is global
+// when placed in the global "share/madeline" directory.
+// 
+// You can also create a local "initial.script" in your
+// local working directory.
+//
+
+//
+//PostscriptViewer="gv"
+//Editor="vi"
+//WebBrowser="mozilla"
+//IndividualIDField="STUDYID"
+//FamilyIDField="FAMID"
+//GenderStatus["MALE"]=#male
+//GenderStatus["FEMALE"]=#female
+//
+
+
+

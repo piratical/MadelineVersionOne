@@ -1,0 +1,134 @@
+<html><head>
+<link rel=stylesheet href = ../mapomat/htdocs/mapomat/general.css>
+<style>
+TD {font-family: arial, helvetica, sans-serif;
+font-size: 85%; text-align: center;vertical-align: center;}
+PRE {font-family: courier, monospace;text-align: left;}
+</style>
+</head>
+<body bgcolor = #FFFFFF marginwidth = 25>
+
+<center>
+<table width = 85% height = 100%>
+<tr><td valign = center align = center><!--
+
+Option chosen: fixed
+
+Current values for parameters:
+
+par_file = /tmp/mapomat85597.par
+dat_file = chr5.dat
+gen_file = chr5.gen
+ord_file = chr5.ord
+nb_our_alloc = 3000000    [# bytes reserved for our_alloc]
+SEX_EQ = 1   [0 = sex specific analysis, 1 = sex equal]
+TOL = 0.010000
+PUK_NUM_ORDERS_TOL = 6
+PK_NUM_ORDERS_TOL = 8
+PUK_LIKE_TOL = 3.000
+PK_LIKE_TOL = 3.000
+use_ord_file = 0
+write_ord_file = 0
+use_haps = 1
+
+
+
+Sex_averaged map (recomb. frac., Kosambi cM):
+
+559   D5S392                        0.0                    
+                  0.007    0.681
+289   D5S2488                       0.7                    
+                  0.010    1.048
+209   D5S1981                       1.7                    
+                  0.075    7.598
+576   D5S417                        9.3                    
+                  0.030    2.958
+136   D5S675                       12.3                    
+
+* denotes recomb. frac. held fixed in this analysis
+
+
+log10_like = -48.134
+
+
+Option chosen: flips2
+
+Current values for parameters:
+
+par_file = /tmp/mapomat85597.par
+dat_file = chr5.dat
+gen_file = chr5.gen
+ord_file = chr5.ord
+nb_our_alloc = 3000000    [# bytes reserved for our_alloc]
+SEX_EQ = 1   [0 = sex specific analysis, 1 = sex equal]
+TOL = 0.010000
+PUK_NUM_ORDERS_TOL = 6
+PK_NUM_ORDERS_TOL = 8
+PUK_LIKE_TOL = 3.000
+PK_LIKE_TOL = 3.000
+use_ord_file = 0
+write_ord_file = 0
+use_haps = 1
+
+
+
+559   D5S392              
+289   D5S2488             
+209   D5S1981             
+576   D5S417              
+136   D5S675              
+
+
+
+number of loci to flip = 2
+
+
+Original order, & its log10_likelihood,  followed by
+flipped orders, with their relative log10_likelihoods 
+(= log10_like[orig] - log10_like[curr])
+
+   559   289   209   576   136  -48.133928
+
+   289   559  -   -   -    -0.004415
+  -    209   289  -   -     0.005578
+  -   -    576   209  -    13.033028
+  -   -   -    136   576    2.364301
+
+
+-->
+Results of Fixed Analysis<br>
+Using kosambi map function<br>
+And sex-averaged distances<br>
+<table cellpadding = 5 cellspacing = 5 border = 1>
+<tr><td colspan = 4>Map Distance Information</td><td colspan=2>Local Support for Order</td><td colspan=2>Marker Info</td></tr>
+<tr><td>Marker<br>Names</td><td>Theta</td><td>Map Distance (cM)</td><td>Cumulative Distance</td><td><img src = ../mapomat/htdocs/mapomat/delta.gif>log10(L)</td><td>Odds</td><td>Families Geneotyped</td><td>Het.</td></tr>
+<tr><td>D5S392</td><td>&nbsp;</td><td>&nbsp;</td><td>0.0</td><td>&nbsp;</td><td>&nbsp;</td><td>28</td><td>0.91</td></tr>
+<tr><td>&nbsp;</td><td>0.007</td><td>0.681</td><td>&nbsp;</td><td>-0.004415</td><td>9.9E-1</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D5S2488</td><td>&nbsp;</td><td>&nbsp;</td><td>0.7</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.76</td></tr>
+<tr><td>&nbsp;</td><td>0.010</td><td>1.048</td><td>&nbsp;</td><td>0.005578</td><td>1.01E0</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D5S1981</td><td>&nbsp;</td><td>&nbsp;</td><td>1.7</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.73</td></tr>
+<tr><td>&nbsp;</td><td>0.075</td><td>7.598</td><td>&nbsp;</td><td>13.033028</td><td>1.08E13</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D5S417</td><td>&nbsp;</td><td>&nbsp;</td><td>9.3</td><td>&nbsp;</td><td>&nbsp;</td><td>40</td><td>0.72</td></tr>
+<tr><td>&nbsp;</td><td>0.030</td><td>2.958</td><td>&nbsp;</td><td>2.364301</td><td>2.31E2</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D5S675</td><td>&nbsp;</td><td>&nbsp;</td><td>12.3</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.62</td></tr>
+</table>
+<p class=centered>
+FIXED Results Interpretation</p>
+
+<br>
+<p class=normal>
+A FIXED analysis both estimates distance between markers and gives
+local support for a given order by running a <a href = "../mapomat/flips_help.html">
+FLIPS</a> calculation with 2 markers per tuple.  Columns 2-4 (or 2-7 for
+sex-specific calculations) give theta (the recombination fraction) and
+the estimated map distance in centiMorgans using whichever mapping
+function you specified.  For each marker, the cumulative distance is also
+given. The last two columns give the LOD score and the odds (10
+raised to the lod score) of the given order versus the reverse 
+rder for each successive pair of markers.
+</p>
+
+</td></tr></table>
+</center>
+
+</body></html>

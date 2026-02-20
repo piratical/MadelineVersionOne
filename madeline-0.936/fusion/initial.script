@@ -1,0 +1,40 @@
+//
+// initial.script for Madeline v. 0.935 in a FUSION environment 
+//
+
+//
+// Postscript viewer in SPH Solaris environment:
+// "gv" is a better alternative, if available:
+// PostscriptViewer="gv"
+//
+PostscriptViewer="ghostview"
+
+//
+// File editor: This is the Edith Professional editor:
+//
+Editor      ="ep"
+
+//
+// Madeline defaults are now MZTWIN and AFFECTED, respectively:
+// Here's what you need for FUSION:
+//
+MZTwinField="TWIN"
+AffectionStatusField="NAFFECTE"
+
+//
+// FUSION-study specific field definitions needed for
+// the LOAD command to work properly.  The defaults
+// (which won't work for FUSION) are:
+//
+// PositionField="POSITION"
+// OrdinalField ="ORDINAL"
+//
+PositionField="KOSAMBICM"
+OrdinalField ="POSITION"
+
+//
+// This is required for v. 0.935:
+//
+set FusionSupport ON
+
+

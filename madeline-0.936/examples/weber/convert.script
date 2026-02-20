@@ -1,0 +1,15 @@
+//
+// Madeline 0.935
+//
+// Example script for converting a Weber lab formatted
+// file directly to the Madeline flat file format
+//
+// To run this script, from the command line, type
+// "madeline convert.script"
+//
+convert weber file "weber_example.dos_file" to "formatted.data"
+
+//
+// All done:
+//
+goodbye

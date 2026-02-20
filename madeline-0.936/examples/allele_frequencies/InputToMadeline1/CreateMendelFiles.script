@@ -1,0 +1,53 @@
+//
+// Madeline 0.935 Example Script for creating files to run
+// Mendel (v. 4.1.1) to estimate allele frequencies taking
+// familial relationships into account.
+//
+// 2003.05.15.ET
+//
+
+//
+// If the data file has not been recognized, first recognize it:
+//
+// NOTE: 'chr12.data' contains one Mendelian inheritance error
+//       which both Madeline and Mendel will detect.
+//
+//       The corrected files has that error corrected:
+//
+recognize 'chr12.corrected.data'
+//
+// Open the pedigree file:
+//
+open 'chr12.corrected.data.mfh'
+//
+//  "list fields" will show that the following fields are present
+//  in the data file:
+//
+//  1.FAMID      Co__1    6.MZTWIN     Co__6   11.MARKER01   Go__1  
+//  2.STUDYID    Co__2    7.DZTWIN     Co__7   12.MARKER02   Go__2  
+//  3.SEX        Co__3    8.AFFECTED_B Po__1   13.MARKER03   Go__3  
+//  4.FATHER     Co__4    9.AFFECTED_R Po__2   14.MARKER04   Go__4  
+//  5.MOTHER     Co__5   10.AGE_DX     Po__3   15.MARKER05   Go__5  
+//
+// The following toggles off the phenotype fields, AFFECTED_BROAD, 
+// AFFECTED_RESTRICTED, and AGE_DX which are irrelevant for
+// the planned allele frequency estimation analysis:
+//
+toggle off output flags for 8-10
+//
+// Now we can write the pedigree file.  Since AUTOEXCLUDE is ON
+// by default, Madeline will automatically exclude seven individuals
+// who are missing genotypes for all five markers and who are 
+// not required to maintain pedigree structure:
+//
+write pedigree file to 'c12.ped' in mendel format
+//
+// We also write a locus file in Mendel format:
+//
+write locus file to 'c12.loc' in mendel format
+//
+// We are now done with Madeline.  We need now only create
+// a Control.in and Mendel map file (both provided for this
+// example) and we can run Mendel:
+//
+quit

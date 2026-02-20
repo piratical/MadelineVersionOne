@@ -1,0 +1,253 @@
+# ********************************************************************************* #
+#  _______________________________________________________________________________  #
+# |_______________________________________________________________________________| #
+#   __    __       _       ______     _______   _          _   __    _   _______    #
+#  |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|   #
+#  |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___      #
+#  | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|     #
+#  | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____    #
+#  |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|   #
+#  _______________________________________________________________________________  #
+# |_______________________________________________________________________________| #
+#                                                                                   #
+# This is the Makefile for the Madeline software distribution.                      #
+# Written by Edward H. Trager.                                                      #
+#                                                                                   #
+# COPYRIGHT (C) 2000,2002,2004 THE REGENTS OF THE UNIVERSITY OF MICHIGAN,           #
+# Ann Arbor, Michigan, USA.  ALL RIGHTS RESERVED.                                   #
+#                                                                                   #
+# This program is free software; you can redistribute it and/or                     #
+# modify it under the terms of the GNU General Public                               #
+# License as published by the Free Software Foundation; either                      #
+# version 2 of the License, or (at your option) any later version.                  #
+#                                                                                   #
+# This program is distributed in the hope that it will be useful,                   #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of                    #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU                 #
+# General Public License for more details.                                          #
+#                                                                                   #
+# You should have received a copy of the GNU General Public                         #
+# License along with this software source code distribution; if not,                #
+# write to the Free Software Foundation, Inc., 59 Temple Place -                    #
+# Suite 330, Boston, MA 02111-1307, USA.                                            #
+#                                                                                   #
+# This makefile last modified by Ed Trager, May, 2001.                              #
+#                                                                                   #
+# ********************************************************************************* #
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+
+# ------------------------------------------ #
+
+VERSION = 0.936
+CC = @CXX@  
+CFLAGS = @CXXFLAGS@ 
+INCLUDES = -I$(includedir) -I$(includedir)/readline
+LIBS     =@LIBS@ 
+TERMCAP_LIB=@TERMCAP_LIB@
+
+STRIP =strip
+TAR = @TAR@
+LN  = @LN_S@ 
+PREFIX=$(prefix)
+INSTALL_DIR =$(bindir) 
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+objects = allelefrequencies.o annotation.o assignment.o associativearrays.o \
+          associativemaps.o consanguinity.o \
+          complexity.o console.o convertdelimitedfiles.o countgenotypes.o \
+          dataevaluation.o date.o directorylisting.o fieldlevellabels.o \
+          genehunter_format.o generic_format.o \
+          graph.o graphics.o idtree.o integrity.o haldanekosambi.o \
+          languageconventions.o logs.o \
+          madeline.o map.o marker.o mendel_format.o ndbf.o  \
+          merlin_qtdt_format.o pedigree.o programcontrol.o \
+          postscript.o processm.o qsort.o recognize.o regexp.o\
+          showstatistics.o simwalk_format.o smartselect.o \
+          togglebychromosome.o token.o tokentree.o tools.o \
+          traversal.o tree.o twin.o utf8support.o utf8routines.o \
+          variablesandarrays.o vtree.o
+
+PROGRAM_NAME = madeline
+VERSION_NAME = $(PROGRAM_NAME)-$(VERSION)
+
+madeline: $(objects)
+	$(CC) -o $(VERSION_NAME) $(CFLAGS) $(INCLUDES) $(objects) $(LIBS) $(TERMCAP_LIB)
+	##############################################################
+	#                                                            #
+	# All done compiling Madeline!  Type 'make install' (as root #
+	# if necessary) to install.                                  #
+	#                                                            #
+	# A common technique on Linux is to use 'su -c' to           #
+	# run 'make install' as the root user, i.e.:                 #
+	#                                                            #
+	#  > su -c 'make install'                                    #
+	#                                                            #
+	# A common technique on Mac OSX is to use 'sudo' to run      #
+	# 'make install' as the root user, i.e.:                     #
+	#                                                            #
+	#  > sudo make install                                       #
+	#                                                            #
+	##############################################################
+
+allelefrequencies.o: allelefrequencies.c allelefrequencies.h
+	$(CC) $(CFLAGS) -c allelefrequencies.c
+annotation.o: annotation.c annotation.h
+	$(CC) $(CFLAGS) -c annotation.c
+assignment.o: assignment.c assignment.h
+	$(CC) $(CFLAGS) -c assignment.c
+associativearrays.o: associativearrays.c associativearrays.h
+	$(CC) $(CFLAGS) -c associativearrays.c
+associativemaps.o: associativemaps.c associativemaps.h
+	$(CC) $(CFLAGS) -c associativemaps.c
+complexity.o: complexity.c complexity.h
+	$(CC) $(CFLAGS) -c complexity.c
+consanguinity.o: consanguinity.c consanguinity.h
+	$(CC) $(CFLAGS) -c  consanguinity.c
+console.o: console.c console.h
+	$(CC) $(CFLAGS) -c console.c
+convertdelimitedfiles.o: convertdelimitedfiles.c convertdelimitedfiles.h
+	$(CC) $(CFLAGS) -c convertdelimitedfiles.c
+countgenotypes.o: countgenotypes.c countgenotypes.h
+	$(CC) $(CFLAGS) -c  countgenotypes.c
+dataevaluation.o: dataevaluation.c dataevaluation.h
+	$(CC) $(CFLAGS) -c  dataevaluation.c
+date.o: date.c date.h month_and_day_names.utf8.c logs.h
+	$(CC) $(CFLAGS) -c  date.c
+directorylisting.o: directorylisting.cpp directorylisting.h logs.c logs.h
+	$(CC) $(CFLAGS) -c  directorylisting.cpp
+fieldlevellabels.o: fieldlevellabels.c fieldlevellabels.h tools.h
+	$(CC) $(CFLAGS) -c  fieldlevellabels.c
+genehunter_format.o: genehunter_format.c genehunter_format.h
+	$(CC) $(CFLAGS) -c  genehunter_format.c
+generic_format.o: generic_format.c generic_format.h
+	$(CC) $(CFLAGS) -c  generic_format.c
+graph.o: graph.c graph.h
+	$(CC) $(CFLAGS) -c graph.c
+graphics.o: graphics.c graphics.h tools.h version.h 
+	$(CC) $(CFLAGS) -c  graphics.c
+haldanekosambi.o: haldanekosambi.c haldanekosambi.h
+	$(CC) $(CFLAGS) -c  haldanekosambi.c
+idtree.o: idtree.c idtree.h
+	$(CC) $(CFLAGS) -c  idtree.c
+integrity.o: integrity.c integrity.h
+	$(CC) $(CFLAGS) -c  integrity.c
+languageconventions.o: languageconventions.c languageconventions.h date.h
+	$(CC) $(CFLAGS) -c  languageconventions.c
+logs.o: logs.c logs.h date.h version.h
+	$(CC) $(CFLAGS) -c  logs.c
+madeline.o: madeline.cpp madeline.h processm.h version.h config.h papersizes.h languageconventions.h fieldflags.h knowntokens.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c  madeline.cpp
+merlin_qtdt_format.o: merlin_qtdt_format.c merlin_qtdt_format.h
+	$(CC) $(CFLAGS) -c  merlin_qtdt_format.c
+map.o: map.c map.h logs.h
+	$(CC) $(CFLAGS) -c  map.c
+marker.o: marker.c marker.h
+	$(CC) $(CFLAGS) -c marker.c
+mendel_format.o: mendel_format.c mendel_format.h
+	$(CC) $(CFLAGS) -c  mendel_format.c
+ndbf.o: ndbf.c ndbf.h logs.h
+	$(CC) $(CFLAGS) -c  ndbf.c
+pedigree.o: pedigree.c pedigree.h logs.h variablesandarrays.h
+	$(CC) $(CFLAGS) -c  pedigree.c
+postscript.o: postscript.c postscript.h
+	$(CC) $(CFLAGS) -c  postscript.c
+processm.o: processm.c processm.h logs.h
+	$(CC) $(CFLAGS) -c  processm.c
+programcontrol.o: programcontrol.c programcontrol.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c programcontrol.c
+qsort.o: qsort.c qsort.h logs.h
+	$(CC) $(CFLAGS) -c  qsort.c
+recognize.o: recognize.c recognize.h
+	$(CC) $(CFLAGS) -c  recognize.c
+regexp.o: regexp.c regexp.h
+	$(CC) $(CFLAGS) -c  regexp.c
+showstatistics.o: showstatistics.c showstatistics.h
+	$(CC) $(CFLAGS) -c  showstatistics.c
+simwalk_format.o: simwalk_format.c simwalk_format.h
+	$(CC) $(CFLAGS) -c  simwalk_format.c
+smartselect.o: smartselect.c smartselect.h config.h
+	$(CC) $(CFLAGS) -c  smartselect.c
+togglebychromosome.o: togglebychromosome.c togglebychromosome.h
+	$(CC) $(CFLAGS) -c  togglebychromosome.c
+token.o: token.cpp token.h
+	$(CC) $(CFLAGS) -c  token.cpp
+tokentree.o: tokentree.cpp tokentree.h logs.h
+	$(CC) $(CFLAGS) -c  tokentree.cpp
+tools.o: tools.c tools.h
+	$(CC) $(CFLAGS) -c  tools.c
+traversal.o: traversal.c traversal.h
+	$(CC) $(CFLAGS) -c traversal.c
+tree.o: tree.c tree.h
+	$(CC) $(CFLAGS) -c  tree.c
+twin.o: twin.c twin.h logs.h
+	$(CC) $(CFLAGS) -c  twin.c
+utf8support.o: utf8support.c utf8support.h
+	$(CC) $(CFLAGS) -DMADELINE_UNICODE -c utf8support.c
+utf8routines.o: utf8routines.cpp utf8routines.h
+	$(CC) $(CFLAGS) -c utf8routines.cpp
+variablesandarrays.o: variablesandarrays.c variablesandarrays.h tools.h tokentypes.h
+	$(CC) $(CFLAGS) -c  variablesandarrays.c
+vtree.o: vtree.c vtree.h variablesandarrays.h tree.h
+	$(CC) $(CFLAGS) -c  vtree.c
+
+
+install:
+	PWD=`pwd`
+	if test ! -d $(INSTALL_DIR); then \
+	mkdir -p $(INSTALL_DIR); \
+	fi
+	cd $(INSTALL_DIR)
+	if test -L $(PROGRAM_NAME); then \
+	rm -f $(PROGRAM_NAME); \
+	fi
+	if test -x $(PROGRAM_NAME); then \
+	mv -f $(PROGRAM_NAME) $(PROGRAM_NAME).old; \
+	fi
+	cd $(PWD)
+	$(INSTALL) -s -m 755 $(VERSION_NAME) $(INSTALL_DIR)
+	(cd $(INSTALL_DIR) && ln -fs $(VERSION_NAME) $(PROGRAM_NAME))
+	##################################################
+	#
+	# Madeline has been installed in $(INSTALL_DIR)!
+	#
+	##################################################
+
+clean:
+	-rm -f $(objects)
+	-rm -f $(VERSION_NAME)
+	#########################
+	#                       #
+	# Object files removed! #
+	#                       #
+	#########################
+
+
+

@@ -1,0 +1,294 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Language" content="en-us"/>
+  <title>Notes On Compiling Madeline Version 0.936</title>
+  <link rel="stylesheet" title="Default Style" href="css/madeline-0.css" type="text/css" media="screen"/>
+  <script type="text/javascript" language="javascript" src="javascript/iewarning.js" ></script> 
+ </head>
+ <body onload="warnIEUsers(1);">
+  <div class="splash" id="title">
+
+   <a href="http://validator.w3.org/check?uri=referer">
+    <img src="images/valid-xhtml10.png" alt="Valid XHTML 1.0!" />
+   </a>
+
+   <p class="first">
+    Notes on Installing Madeline Version 0.936
+   </p>
+  </div>
+  
+ <h1 style="margin-top:95px;">General Notes</h1>
+ 
+ <div class="note">
+  <p>
+   Madeline is currently only distributed as a source-code package.
+   You therefore have to compile it with a modern <b>C++</b> compiler
+   before you can install it.
+  </p>
+
+  <p>
+   For the impatient, just type these commands:
+  </p>
+  
+  <pre>
+ ~> tar xzvf madeline-0.936.tar.gz
+ ~> cd madeline-0.935
+ ~> ./configure
+ ~> make
+ ~> su -c "make install"  
+  </pre>
+  
+  <p>
+   If everything goes smoothly, this will install Madeline in <code>/usr/local/bin</code>.  
+   Documentation will be located in <code>/usr/local/share/madeline</code>.  Note that
+   super-user (admin) rights are required for "<code>make install</code>" into <code>/usr/local</code>
+   -- hence the "<code>su</code>" command shown (for Linux).  A "<code>sudo</code>" command
+   can be used in place of "<code>su</code>" on many platforms (MacOSX, OpenBSD, etc.).
+  </p>
+  
+  <p>
+   If at all possible, be sure to use the GNU version of "<code>tar</code>".  GNU "<code>make</code>"
+    may also be required on some platforms.
+  </p>
+  
+  <p>
+   If you don't have admin rights on the machine, then you can install madeline in a local
+   subdirectory of your home directory.
+   To install Madeline and associated components into a local subdirectory called "<code>statgen</code>",
+   just do this:
+  </p>
+ 
+  <pre>
+ ~> ./configure --prefix=$HOME/statgen
+ ~> make
+ ~> make install  
+  </pre>
+  
+  <p>
+   Madeline will be installed in <code>$HOME/statgen/bin</code> with documentation 
+   in <code>$HOME/statgen/share/madeline</code>.
+  </p>
+ </div>
+ 
+ <div class="note">
+  <p>
+   Even though <b>Madeline</b> was historically written in <b>C</b>, 
+   we have been compiling the code using only <b>C++</b> compilers 
+   because <b>C++</b> compilers enforce the tighter type checking rules of the
+   <b>C++</b> language and this generally results in fewer bugs.
+   Explicit features of the <b>C++</b> language have also been used in some of the 
+   more recent code.  You will therefore need to use a modern <b>C++</b> compiler to 
+   compile <b>Madeline</b>.  The <code>./configure</code> script will look for and use
+   the <b>GCC C++</b> compiler if it is present.  You can always manually edit the 
+   resulting <code>src/Makefile</code> if you want to use a different compiler.  
+  </p>
+ 
+  <p>
+   Development of <b>Madeline</b> is done on <b>Linux</b> machines using the
+   <b>GNU GCC</b> compiler.  If you are having trouble compiling <b>Madeline</b>,
+   you may want to try using the <b>GCC</b> compiler first.  When using <b>GCC</b>,
+   we recommend <b>version 3</b> or better.  However, you will note from the chart
+   in the main documentation that <b>Madeline</b> compiles successfully using the older
+   <b>2.95.x</b> series of <b>GCC</b> compilers.  On most platforms, the <b>GCC C++</b>
+   compiler is called using "<code>g++</code>".
+  </p>
+ </div>
+ 
+ <div class="note">  
+  <p>
+   The configuration script ("<code>./configure</code>") that you run after unpacking the 
+   distribution looks for the presence of several auxiliary programs and tries to pick
+   the best option based on what is available on your system.  The two most important 
+   auxiliary programs that are sought are (1) an <b>editor</b> for editing files and
+   (2) a <b>web browser</b> for viewing HTML documentation.  The names of programs that the
+   configure script picks are then substituted into the "<code>src/config.h</code>" file.  These
+   substitutions determine the default value of Madeline's <b>Editor</b> and <b>WebBrowser</b>
+   variables.  This configuration script works very well on Linux and similar systems.  However,
+   it may not work well on the <b>Macintosh</b>, <b>Cygwin (Windows)</b>, or some other platforms.
+   If it does not work well, just edit the "<code>config.h</code>" file directly after the 
+   "<code>./configure</code>" script has completed.
+  </p>
+ </div>
+ 
+ <div class="note">
+  <p>
+   Madeline requires the <b>GNU</b> <a href="http://ftp.gnu.org/pub/gnu/readline/">readline</a> library
+   which allows users to edit command lines as they are typed in.
+   The <b>GNU readline</b> library also comes with the <b>GNU history</b> library that Madeline also
+   uses.  The <b>readline</b> library
+   will be already installed on most Linux distributions, and some other systems.
+  </p>
+  <p>
+   If Madeline's
+   <code>./configure</code> script cannot find an installed copy of these library, the script will 
+   ask you whether you want to download and install it.  Sometimes this works flawlessly without
+   much user intervention.  Often just a "<code>su</code>" or "<code>sudo</code>" is required for
+   the final "<code>make install</code>".
+  </p>
+  
+  <p>
+   Sometimes it happens that you have installed <b>readline</b> properly, but the <code>./configure</code>
+   script does not find it.  If you installed <b>readline</b> in a local <code>$HOME/statgen/</code>
+   directory for example, then (assuming a <b>bash</b> shell) try adding the local library path to the 
+   linker's search path as follows:
+  </p>
+  
+  <pre>
+~> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/statgen/lib
+~> cd madeline-0.936
+~> ./configure --prefix=$HOME/statgen/
+  </pre>  
+ </div>
+
+ <h1>Extended Latin and Non-Latin Script Support</h1>
+ 
+ <div class="note">
+  <p>
+   Madeline provides support for extended Latin and non-Latin scripts in file names, data files, and in 
+   the localized display of dates by using Unicode strings in the UTF-8 format.
+  </p>
+  
+  <p>
+   In order to display Unicode UTF-8 data properly, you will need to use a Unicode-competent terminal
+   emulator such as <a href="http://mlterm.sourceforge.net/">mlterm</a>.  You will also need a Unicode
+   console font such as <b>GNU Unifont</b> installed on your system.  Finally, your system must be
+   set to a UTF-8 locale.  See <a href="http://eyegene.ophthy.med.umich.edu/unicode/">A Quick Primer On Unicode and 
+   Software Internationalization Under Linux and UNIX</a> for details.
+  </p>
+  
+  <p>
+   Modern Linux distributions like <b>SuSE</b> and <b>Redhat</b> now default to
+   UTF-8 locales in most cases.  Distributions like <a href="http://www.suse.com">SuSE</a> 
+   provide both <b>mlterm</b> and <b>GNU Unifont</b> as part of their distribution.  
+   Other systems, especially non-Linux systems, do not.  In summary, if you need extended
+   Latin or non-Latin script support, install Madeline on a Linux system.
+  </p>
+ </div>
+
+ <h1>Sun Microsystems</h1>
+ 
+<div class="note">
+
+ <p>
+  Sun's version of <b>tar</b> often gives a check-sum error on perfectly
+  valid tar files.  Use GNU <b>tar</b> instead.
+ </p>
+
+ <p>
+ We have compiled 64-bit Madeline executables only using the <b>Sun
+ Workshop</b> compiler (<code>CC -fast -xtarget=ultra -xarch=v9 -xO4</code>)
+ on SPARC architectures.
+ It should be possible to use <b>gcc</b> (<code>g++ -m64 ...</code>) to obtain
+ 64-bit executables on SPARC, AMD, or other 64-bit architectures, but we 
+ have not tried it.  Note that you will also have to compile 64-bit versions
+ of the <b>GNU readline</b> library in order to link the executable.
+ </p>
+
+ <p>
+  For Unicode support, Sun Microsystems provides UTF-8 locales for Solaris, but 
+  these are not always installed by system administrators.
+ </p>
+  
+</div>
+
+ <h1>Apple Macintosh</h1>
+
+<div class="note">
+
+<p>
+ Only <b>OS X</b> is supported.
+</p>
+<p>
+ You will need to install the <b>Apple Developer Tools</b> on your OSX machine in order to compile Madeline.
+ These tools should be present on a CD that was supplied when you purchased OSX.  It should also be possible
+ to download these tools should you lack the CD.
+</p>
+<p>
+ Although Madeline does not require <b>XWindows</b>
+ to run, some auxillary programs that you might want to use with Madeline, such as the 
+ postscript/pdf viewer called <b>gv</b> do require the <b>X</b> windowing system to run.
+ You should therefore seriously think about installing Apple's <b>X11</b> or
+ <b>XDarwin</b> before you install Madeline.  After you have got <b>X11</b> or <b>XDarwin</b>
+ installed, you can install <a href="http://fink.sourceforge.net/">Fink</a>.  <b>Fink</b> is
+ a project to port a large number of Open Source (Linux) software over to the Apple OSX platform.
+ <b>Fink</b> is where you will go to obtain a port of the <b>gv</b> postscript/PDF viewer.
+ Of course it is true that you can run Madeline on OSX without <b>gv</b>, for example, but 
+ what OSX will want to do is to convert Madeline's <code>.ps</code> postscript output to 
+ PDF format.  This works -- but it is very slow compared to just opening the <code>.ps</code>
+ files directly in <b>gv</b> or a similar viewer without having to go through any conversion
+ process.  If you take the little bit of extra time required to install <b>XDarwin</b> and
+ <b>Fink</b>, you will probably enjoy using Madeline on OSX a bit more.
+</p>
+
+<p>
+ Before you can even compile Madeline, you will need to compile and install the <b>GNU
+ readline</b> library.  The GNU readline <code>./configure</code> script fails to detect
+ the host operating system.  To get around this problem, type the following when trying
+ to configure <b>readline</b>:
+</p>
+
+<p>
+ <code>./configure --host=darwin</code>
+</p>
+
+<p>
+ <b>Readline</b>'s <code>./configure</code> script may still complain about not recognizing
+ this type of host, but it won't matter -- the rest of the tests will be executed and the
+ make files will be created.  You can then <code>make</code> and <code>sudo make install</code>
+ to complete installation of <b>readline</b>.
+</p>
+
+<p>
+ The <code>./configure</code> script supplied with Madeline v. 0.936 is a lot smarter than
+ that supplied with previous version and
+ will automatically use OSX's "open" utility for opening files and URLs.  OSX's default text
+ editor will be used for editing files, while Safari will be the default for opening HTML pages.
+ If you have <b>Fink</b>'s version of <b>gv</b> installed and the <b>Fink</b> <code>/sw/bin</code>
+ directory is part of your <code>$PATH</code> variable, then Madeline's script will choose to use
+ <b>gv</b> as a first choice for viewing Postscript files.  The script will fall back to using
+ OSX's <code>open</code> utility if <b>gv</b> cannot be located.
+</p>
+
+<p>
+  Do not
+ use <b>Internet Explorer</b> for viewing Madeline documentation on a Mac:
+ it will crash while trying to load the document.
+</p>
+
+</div>
+
+
+<h1>Microsoft Windows</h1>
+
+<div class="note">
+<p>
+ Madeline compiles successfully using <a href="http://sources.redhat.com/cygwin" >Cygwin</a>
+ which provides a <a href="http://www.gnu.org" >GNU</a>-based UNIX-like environment on 
+ Microsoft Windows.  Madeline's <code>./configure</code> script may not know how
+ to find auxiliary programs on Windows. 
+ Madeline's Unicode features are not usable under <b>Cygwin</b>.
+ The Madeline documentation is not formatted correctly when displayed in <b>Internet
+ Explorer</b>: use <b>Mozilla</b> or <b>Opera</b> instead.  We don't recommend this 
+ configuration.  If you have a PC,  <b>Linux</b> is a much better platform for 
+ statistical genetics work.
+</p>
+</div>
+
+<h1>Other Platforms</h1>
+
+<div class="note">
+<p>
+ Madeline compiles and runs under <b>OpenBSD</b> and <b>FreeBSD</b> but we have not
+ tested these platforms extensively.  When I last checked, <b>OpenBSD</b> still lacked
+ modern locale support, so Madeline's Unicode features may be limited on this platform.
+</p>
+
+</div>
+ 
+ </body>
+</html>
+ 

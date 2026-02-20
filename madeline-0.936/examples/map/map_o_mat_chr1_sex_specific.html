@@ -1,0 +1,153 @@
+<html><head>
+<link rel=stylesheet href = ../mapomat/htdocs/mapomat/general.css>
+<style>
+TD {font-family: arial, helvetica, sans-serif;
+font-size: 85%; text-align: center;vertical-align: center;}
+PRE {font-family: courier, monospace;text-align: left;}
+</style>
+</head>
+<body bgcolor = #FFFFFF marginwidth = 25>
+
+<center>
+<table width = 85% height = 100%>
+<tr><td valign = center align = center><!--
+
+Option chosen: fixed
+
+Current values for parameters:
+
+par_file = /tmp/mapomat70663.par
+dat_file = chr1.dat
+gen_file = chr1.gen
+ord_file = chr1.ord
+nb_our_alloc = 3000000    [# bytes reserved for our_alloc]
+SEX_EQ = 0   [0 = sex specific analysis, 1 = sex equal]
+TOL = 0.010000
+PUK_NUM_ORDERS_TOL = 6
+PK_NUM_ORDERS_TOL = 8
+PUK_LIKE_TOL = 3.000
+PK_LIKE_TOL = 3.000
+use_ord_file = 0
+write_ord_file = 0
+use_haps = 1
+
+
+
+Sex-specific map (recomb. frac., Kosambi cM -- female, male ):
+
+315   D1S2640                       0.0                              0.0                    
+                  0.039    3.957                  0.037    3.688
+167   D1S466                        4.0                              3.7                    
+                  0.032    3.248                  0.045    4.514
+874   D1S3725                       7.2                              8.2                    
+                  0.035    3.474                  0.000    0.000
+261   D1S2877                      10.7                              8.2                    
+                  0.086    8.713                  0.068    6.810
+592   D1S1660                      19.4                             15.0                    
+                  0.063    6.338                  0.000    0.000
+569   D1S1647                      25.7                             15.0                    
+                  0.146   15.003                  0.111   11.308
+134   D1S245                       40.7                             26.3                    
+                  0.016    1.560                  0.051    5.127
+107   D1S425                       42.3                             31.4                    
+
+* denotes recomb. frac. held fixed in this analysis
+
+
+log10_like = -86.590
+
+
+Option chosen: flips2
+
+Current values for parameters:
+
+par_file = /tmp/mapomat70663.par
+dat_file = chr1.dat
+gen_file = chr1.gen
+ord_file = chr1.ord
+nb_our_alloc = 3000000    [# bytes reserved for our_alloc]
+SEX_EQ = 0   [0 = sex specific analysis, 1 = sex equal]
+TOL = 0.010000
+PUK_NUM_ORDERS_TOL = 6
+PK_NUM_ORDERS_TOL = 8
+PUK_LIKE_TOL = 3.000
+PK_LIKE_TOL = 3.000
+use_ord_file = 0
+write_ord_file = 0
+use_haps = 1
+
+
+
+315   D1S2640             
+167   D1S466              
+874   D1S3725             
+261   D1S2877             
+592   D1S1660             
+569   D1S1647             
+134   D1S245              
+107   D1S425              
+
+
+
+number of loci to flip = 2
+
+
+Original order, & its log10_likelihood,  followed by
+flipped orders, with their relative log10_likelihoods 
+(= log10_like[orig] - log10_like[curr])
+
+   315   167   874   261   592   569   134   107  -86.589616
+
+   167   315  -   -   -   -   -   -     5.334964
+  -    874   167  -   -   -   -   -     5.126542
+  -   -    261   874  -   -   -   -     2.674263
+  -   -   -    592   261  -   -   -     9.305069
+  -   -   -   -    569   592  -   -     3.365125
+  -   -   -   -   -    134   569  -    19.751583
+  -   -   -   -   -   -    107   134    2.441497
+
+
+-->
+Results of Fixed Analysis<br>
+Using kosambi map function<br>
+And sex-specific distances<br>
+<table cellpadding = 5 cellspacing = 5 border = 1>
+<tr><td colspan = 7>Map Distance Information</td><td colspan = 2>Local Support for Order</td><td colspan=2>Marker Info</td></tr>
+<tr><td rowspan = 2>Marker<br>Names</td><td colspan = 3>Female</td><td colspan = 3>Male</td><td rowspan = 2><img src = ../mapomat/htdocs/mapomat/delta.gif>log10(L)</td><td rowspan = 2>Odds</td><td rowspan=2>Families Genotyped</td><td rowspan=2>Het.</td></tr>
+<tr><td>Theta</td><td>Map Distance (cM)</td><td>Cumulative Distance</td><td>Theta</td><td>Map distance (cM)</td><td>Cumulative distance</td></tr>
+<tr><td>D1S2640</td><td>&nbsp;</td><td>&nbsp;</td><td>0.0</td><td>&nbsp;</td><td>&nbsp;</td><td>0.0</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.78</td></tr>
+<tr><td>&nbsp;</td><td>0.039</td><td>3.957</td><td>&nbsp;</td><td>0.037</td><td>3.688</td><td>&nbsp;</td><td>5.334964</td><td>2.16E5</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S466</td><td>&nbsp;</td><td>&nbsp;</td><td>4.0</td><td>&nbsp;</td><td>&nbsp;</td><td>3.7</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.78</td></tr>
+<tr><td>&nbsp;</td><td>0.032</td><td>3.248</td><td>&nbsp;</td><td>0.045</td><td>4.514</td><td>&nbsp;</td><td>5.126542</td><td>1.34E5</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S3725</td><td>&nbsp;</td><td>&nbsp;</td><td>7.2</td><td>&nbsp;</td><td>&nbsp;</td><td>8.2</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.73</td></tr>
+<tr><td>&nbsp;</td><td>0.035</td><td>3.474</td><td>&nbsp;</td><td>0.000</td><td>0.000</td><td>&nbsp;</td><td>2.674263</td><td>4.72E2</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S2877</td><td>&nbsp;</td><td>&nbsp;</td><td>10.7</td><td>&nbsp;</td><td>&nbsp;</td><td>8.2</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.72</td></tr>
+<tr><td>&nbsp;</td><td>0.086</td><td>8.713</td><td>&nbsp;</td><td>0.068</td><td>6.810</td><td>&nbsp;</td><td>9.305069</td><td>2.02E9</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S1660</td><td>&nbsp;</td><td>&nbsp;</td><td>19.4</td><td>&nbsp;</td><td>&nbsp;</td><td>15.0</td><td>&nbsp;</td><td>&nbsp;</td><td>18</td><td>0.83</td></tr>
+<tr><td>&nbsp;</td><td>0.063</td><td>6.338</td><td>&nbsp;</td><td>0.000</td><td>0.000</td><td>&nbsp;</td><td>3.365125</td><td>2.32E3</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S1647</td><td>&nbsp;</td><td>&nbsp;</td><td>25.7</td><td>&nbsp;</td><td>&nbsp;</td><td>15.0</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.71</td></tr>
+<tr><td>&nbsp;</td><td>0.146</td><td>15.003</td><td>&nbsp;</td><td>0.111</td><td>11.308</td><td>&nbsp;</td><td>19.751583</td><td>5.64E19</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S245</td><td>&nbsp;</td><td>&nbsp;</td><td>40.7</td><td>&nbsp;</td><td>&nbsp;</td><td>26.3</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.82</td></tr>
+<tr><td>&nbsp;</td><td>0.016</td><td>1.560</td><td>&nbsp;</td><td>0.051</td><td>5.127</td><td>&nbsp;</td><td>2.441497</td><td>2.76E2</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>D1S425</td><td>&nbsp;</td><td>&nbsp;</td><td>42.3</td><td>&nbsp;</td><td>&nbsp;</td><td>31.4</td><td>&nbsp;</td><td>&nbsp;</td><td>8</td><td>0.81</td></tr>
+</table>
+<p class=centered>
+FIXED Results Interpretation</p>
+
+<br>
+<p class=normal>
+A FIXED analysis both estimates distance between markers and gives
+local support for a given order by running a <a href = "../mapomat/flips_help.html">
+FLIPS</a> calculation with 2 markers per tuple.  Columns 2-4 (or 2-7 for
+sex-specific calculations) give theta (the recombination fraction) and
+the estimated map distance in centiMorgans using whichever mapping
+function you specified.  For each marker, the cumulative distance is also
+given. The last two columns give the LOD score and the odds (10
+raised to the lod score) of the given order versus the reverse 
+rder for each successive pair of markers.
+</p>
+
+</td></tr></table>
+</center>
+
+</body></html>

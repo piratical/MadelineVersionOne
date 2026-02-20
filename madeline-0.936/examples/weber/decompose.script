@@ -1,0 +1,16 @@
+//
+// Madeline 0.935
+//
+// Example script for decomposing a Weber lab formatted
+// file to a normalized format appropriate for storage
+// in a database:
+//
+// To run this script, from the command line, type
+// "madeline decompose.script"
+//
+decompose weber file "weber_example.dos_file" to "normalized.data"
+
+//
+// All done:
+//
+goodbye

@@ -1,0 +1,654 @@
+allelefrequencies.c:386:	if(!g->db) MadelineErrorReport("Read(): No pedigree table is open in which to write allele frequency information.");
+allelefrequencies.c:432:	LoadMarkerAlleleFrequencyInformation(g->db,PTable,gfnMapMarker.i,gfnAlleleField.i,gfnFrequencyField.i);
+allelefrequencies.c:473:	if(!g->db) MadelineErrorReport("Save(): No pedigree table is open from which to obtain allele frequencies.");
+allelefrequencies.c:511:	for(i=0;i<g->db->n.go;i++){
+allelefrequencies.c:525:		g->db->n.go,
+allelefrequencies.c:531:	RecognizeFile(TableName,g->lang,g->ivar,0);
+allelefrequencies.c:573:		g->delimiter,
+allelefrequencies.c:576:		g->delimiter,
+annotation.c:196:				++g->psid;
+annotation.c:197:				sprintf(buffer,"HORIZONTAL_LINE_%02i",g->psid);
+annotation.c:200:				++g->isid;
+annotation.c:201:				sprintf(buffer,"VERTICAL_LINE_%02i",g->isid);
+assignment.c:280:						g->streams.log    = ReassignFile(g->streams.log,gLogFile.e.s,s);
+assignment.c:286:						g->streams.detail = ReassignFile(g->streams.detail,gDetailFile.e.s,s);
+assignment.c:292:						g->streams.err    = ReassignFile(g->streams.err,gErrorFile.e.s,s);
+assignment.c:305:						g->streams.log=ReassignFile(g->streams.log,op.u.v->e.s,result.s);
+assignment.c:311:						g->streams.detail=ReassignFile(g->streams.detail,op.u.v->e.s,result.s);
+assignment.c:317:						g->streams.err=ReassignFile(g->streams.err,op.u.v->e.s,result.s);
+assignment.c:367:				if(op.u.v->t==FIELDNAMEVALUE && g->db){
+assignment.c:368:					op.u.v->i=g->db->FieldNumber(g->db,op.u.v->e.s);
+assignment.c:373:					SetKnownFieldFieldFlags(g->db);   
+console.c:57:	if (g->ConsoleHighlights) fprintf(fp,"%c[1m",ESCAPE_CHAR);
+console.c:66:	if(g->ConsoleHighlights) fprintf(fp,"%c[0m",ESCAPE_CHAR);
+console.c:75:	if (g->ConsoleHighlights) fprintf(fp,"%c[1;31m",ESCAPE_CHAR);
+console.c:84:	if (g->ConsoleHighlights) fprintf(fp,"%c[1;32m",ESCAPE_CHAR);
+dataevaluation.c:70:	if(!g->AutoExclude) return 1;
+dataevaluation.c:183:	switch(g->OutputFormat){
+dataevaluation.c:212:	if(!g->AutoExclude) return 1;
+dataevaluation.c:1143:	if(!g->AutoExclude) return 0;
+dataevaluation.c:1173:	if(!g->AutoExclude) return 0;
+dataevaluation.c:1189:	if(!g->AutoExclude) return 0;
+dataevaluation.c:1409:/* OffspringAndOneParentAffected(): returns true if its an offspring->parent affected pair: */
+dataevaluation.c:1419:/* OffspringAndBothParentsAffected(): returns true if its an offspring->parent/parent */
+graph.c:135:	g->graphdb=NewDatabase(s,READONLY,table_type);
+graph.c:136:	g->graphdb->OpenDatabase(g->graphdb);
+graph.c:137:	GoTo(g->graphdb,0);    /* set pointer to the top */
+graph.c:141:	gfnGraphPosition.i   =g->graphdb->FieldNumber(g->graphdb,gfnGraphPosition.e.s);
+graph.c:142:	gfnGraphScore.i      =g->graphdb->FieldNumber(g->graphdb,gfnGraphScore.e.s   );
+graph.c:154:	GraphCalculateMinimaMaxima(g->graphdb,gfnGraphPosition.i,gfnGraphScore.i,&cM_min,&cM_max,&vu_min,&vu_max);
+graph.c:191:	/* Here we just recycle the g->psid and g->isid in the CONTROL structure:            */
+graph.c:193:	g->psid=g->isid=0;
+graph.c:251:	if(!g->graphdb)
+graph.c:257:	g->streams.graph=fopen(gGraphDrawing.e.s,"wb");
+graph.c:258:	if(!g->streams.graph) MadelineErrorReport("GraphPlot(): Unable to open %s for drawing.",gGraphDrawing.e.s);
+graph.c:269:	GraphPostscriptProlog(g->streams.graph,gGraphXAxisMin.e.v,gGraphXAxisMax.e.v,gGraphYAxisMin.e.v,gGraphYAxisMax.e.v);
+graph.c:273:	GraphStart(g->streams.graph);
+graph.c:276:		g->streams.graph,
+graph.c:287:	GraphTitles(g->streams.graph,gGraphTitle.e.s,gGraphXAxisLabel.e.s,gGraphYAxisLabel.e.s);
+graph.c:291:	if(g->mp) GraphMarkerLabels(g->streams.graph,g->mp,1);
+graph.c:297:	GraphPlotData(g->streams.graph,g->graphdb,gfnGraphPosition.i,gfnGraphScore.i,gGraphXAxisMin.e.v,gGraphYAxisMin.e.v);
+graph.c:306:		GraphStartAnnotations(g->streams.graph, gGraphXAxisMin.e.v, gGraphYAxisMin.e.v);
+graph.c:311:		GraphEndAnnotations(g->streams.graph);
+graph.c:316:	GraphFinish(g->streams.graph);
+graph.c:321:	fclose(g->streams.graph);
+graph.c:456:	fprintf(g->streams.graph,"%s\n",pkvp->value.e.s);
+graphics.c:381:						if(g->Haplotype){
+graphics.c:411:					sprintf(hold,"%s",Language[g->lang]->PrintBriefDate(db->ReadDate(db,fn,cr)));
+graphics.c:922:		if(p->id[0]!='!' || g->LabelCreatedVirtuals){
+graphics.c:1122:	c->xex=g->d.HorizontalInterval-0.1;
+integrity.c:803:		g->db->m[GenotypeFieldIndex].nmin++;
+integrity.c:901:	if(!g->db)
+integrity.c:924:			g->delimiter,g->delimiter,g->delimiter,g->delimiter
+integrity.c:927:			g->delimiter,g->delimiter,g->delimiter,g->delimiter
+integrity.c:929:		TraverseBinaryPedigreeTree2(g,g->pd,CheckPedigreeInheritance);
+integrity.c:1022:	if(g->AutoCheckInheritance){
+integrity.c:1024:			g->delimiter,
+integrity.c:1025:			mom->pd->fid,g->delimiter,
+integrity.c:1026:			mom->id,g->delimiter,
+integrity.c:1027:			dad->id,g->delimiter,
+integrity.c:1028:			g->db->FieldName(g->db,GenotypeFieldIndex)
+integrity.c:1034:			g->delimiter,
+integrity.c:1035:			mom->pd->fid,g->delimiter,
+integrity.c:1036:			mom->id,g->delimiter,
+integrity.c:1037:			dad->id,g->delimiter,
+integrity.c:1038:			g->db->FieldName(g->db,GenotypeFieldIndex)
+integrity.c:1087:	if(g->mp){
+integrity.c:1088:		lprintf(" #  %1$cCHR.%1$cRANK%1$cMARKERNAME                      %1$cNUCLEAR FAMILIES\n",g->delimiter);
+integrity.c:1089:		lprintf("----%1$c----%1$c----%1$c--------------------------------%1$c----------------\n",g->delimiter);
+integrity.c:1091:		lprintf(" #  %1$cMARKERNAME                      %1$cNUCLEAR FAMILIES\n",g->delimiter);
+integrity.c:1092:		lprintf("----%1$c--------------------------------%1$c----------------\n",g->delimiter);
+integrity.c:1094:	for(i=j=0;i<g->db->n.g;i++){
+integrity.c:1097:		ii=g->db->fi->g[i];
+integrity.c:1099:		if(g->db->m[ii].nmin){
+integrity.c:1101:			if(g->mp){
+integrity.c:1103:				p=LookupMarkerMap(g->mp,(fn=g->db->FieldName(g->db,ii)));
+integrity.c:1106:				        g->delimiter,
+integrity.c:1108:				        g->delimiter,
+integrity.c:1110:				        g->delimiter,
+integrity.c:1112:				        g->delimiter,
+integrity.c:1113:				        g->db->m[ii].nmin
+integrity.c:1120:				        g->delimiter,
+integrity.c:1121:				        g->db->FieldName(g->db,ii),
+integrity.c:1122:				        g->delimiter,
+integrity.c:1123:				        g->db->m[ii].nmin
+integrity.c:1131:	lprintf("Inconsistencies present among %i of %i markers.\n",j,g->db->n.g);
+integrity.c:1142:	for(i=0;i<g->db->n.go;i++){
+integrity.c:1145:		ii=g->db->fi->g[i];
+integrity.c:1148:		g->db->m[ii].nmip=g->db->m[ii].nmin=0;
+integrity.c:1165:	for(i=j=0;i<g->db->fc;i++) if(p->integrity[i]) j++;
+logs.c:82:	g->HasSyntaxErrors++;
+logs.c:90:	if(g->streams.log)    vfprintf(g->streams.log   ,s,argptr);
+logs.c:91:	if(g->streams.detail) vfprintf(g->streams.detail,s,argptr);
+logs.c:92:	if(g->streams.err){
+logs.c:93:		fprintf(g->streams.err,"SYNTAX #%04i: ",g->HasSyntaxErrors);
+logs.c:94:		vfprintf(g->streams.err   ,s,argptr);
+logs.c:103:	if(g->streams.log)    fprintf(g->streams.log   ,"\n");
+logs.c:104:	if(g->streams.detail) fprintf(g->streams.detail,"\n");
+logs.c:105:	if(g->streams.err)    fprintf(g->streams.err   ,"\n");
+logs.c:138:	if(g->streams.log){
+logs.c:139:		fprintf(g->streams.log,"%s\n",stt);
+logs.c:140:		for(end=stt;end<e-1;end++) fputc(' ',g->streams.log);
+logs.c:141:		fprintf(g->streams.log,"^^^\n");
+logs.c:142:		fflush(g->streams.log);
+logs.c:144:	if(g->streams.detail){
+logs.c:145:		fprintf(g->streams.detail,"%s\n",stt);
+logs.c:146:		for(end=stt;end<e-1;end++) fputc(' ',g->streams.detail);
+logs.c:147:		fprintf(g->streams.detail,"^^^\n");
+logs.c:148:		fflush(g->streams.detail);
+logs.c:150:	if(g->streams.err){
+logs.c:151:		fprintf(g->streams.err,"%s\n",stt);
+logs.c:152:		for(end=stt;end<e-1;end++) fputc(' ',g->streams.err);
+logs.c:153:		fprintf(g->streams.err,"^^^\n");
+logs.c:154:		fflush(g->streams.err);
+logs.c:176:	if(g->Verbose){
+logs.c:179:	if(g->streams.detail){
+logs.c:180:		vfprintf(g->streams.detail,s,argptr);
+logs.c:181:		fflush(g->streams.detail);
+logs.c:200:	if(!g->Silent){
+logs.c:203:	if(g->streams.log){
+logs.c:204:		vfprintf(g->streams.log   ,s,argptr);
+logs.c:205:		fflush(g->streams.log);
+logs.c:207:	if(g->streams.detail){
+logs.c:208:		vfprintf(g->streams.detail,s,argptr);
+logs.c:209:		fflush(g->streams.detail);
+logs.c:250:		g->HasWarnings++;
+logs.c:251:		if(g->Verbose)        fprintf(stderr           ,"WARNING #%04i: ",g->HasWarnings);
+logs.c:252:		if(g->streams.log)    fprintf(g->streams.log   ,"WARNING #%04i: ",g->HasWarnings);
+logs.c:253:		if(g->streams.detail) fprintf(g->streams.detail,"WARNING #%04i: ",g->HasWarnings);
+logs.c:254:		if(g->streams.err)    fprintf(g->streams.err   ,"WARNING #%04i: ",g->HasWarnings);
+logs.c:257:		g->HasSevereWarnings++;
+logs.c:258:		if(g->Verbose)        fprintf(stderr           ,"SEVERE #%04i: ",g->HasSevereWarnings);
+logs.c:259:		if(g->streams.log)    fprintf(g->streams.log   ,"SEVERE #%04i: ",g->HasSevereWarnings);
+logs.c:260:		if(g->streams.detail) fprintf(g->streams.detail,"SEVERE #%04i: ",g->HasSevereWarnings);
+logs.c:261:		if(g->streams.err)    fprintf(g->streams.err   ,"SEVERE #%04i: ",g->HasSevereWarnings);
+logs.c:264:		g->HasInheritanceErrors++;
+logs.c:265:		if(g->Verbose)        fprintf(stderr           ,"INHERITANCE #%04i: ",g->HasInheritanceErrors);
+logs.c:266:		if(g->streams.log)    fprintf(g->streams.log   ,"INHERITANCE #%04i: ",g->HasInheritanceErrors);
+logs.c:267:		if(g->streams.detail) fprintf(g->streams.detail,"INHERITANCE #%04i: ",g->HasInheritanceErrors);
+logs.c:268:		if(g->streams.err)    fprintf(g->streams.err   ,"INHERITANCE #%04i: ",g->HasInheritanceErrors);
+logs.c:272:		g->HasErrors++;
+logs.c:273:		if(g->Verbose)        fprintf(stderr           ,"ERROR #%04i: ",g->HasErrors);
+logs.c:274:		if(g->streams.log)    fprintf(g->streams.log   ,"ERROR #%04i: ",g->HasErrors);
+logs.c:275:		if(g->streams.detail) fprintf(g->streams.detail,"ERROR #%04i: ",g->HasErrors);
+logs.c:276:		if(g->streams.err)    fprintf(g->streams.err   ,"ERROR #%04i: ",g->HasErrors);
+logs.c:285:	if(g->Verbose)        vfprintf(stderr           ,s,argptr);
+logs.c:286:	if(g->streams.log)    vfprintf(g->streams.log   ,s,argptr);
+logs.c:287:	if(g->streams.detail) vfprintf(g->streams.detail,s,argptr);
+logs.c:288:	if(g->streams.err)    vfprintf(g->streams.err   ,s,argptr);
+logs.c:294:	if(g->streams.log)    fflush(g->streams.log);
+logs.c:295:	if(g->streams.detail) fflush(g->streams.detail);
+logs.c:296:	if(g->streams.err)    fflush(g->streams.err);
+logs.c:306:		if(g->Verbose)        fprintf(stderr           ,DyingWords);
+logs.c:308:		if(g->streams.log)    fprintf(g->streams.log   ,DyingWords);
+logs.c:309:		if(g->streams.detail) fprintf(g->streams.detail,DyingWords);
+logs.c:310:		if(g->streams.err)    fprintf(g->streams.err   ,DyingWords);
+madeline.c:1436:	g->streams.log=fopen(gLogFile.e.s,"wt");
+madeline.c:1437:	if(!g->streams.log)
+madeline.c:1440:	g->streams.detail=fopen(gDetailFile.e.s,"wt");
+madeline.c:1441:	if(!g->streams.detail)
+madeline.c:1444:	g->streams.err=fopen(gErrorFile.e.s,"wt");
+madeline.c:1445:	if(!g->streams.err)
+madeline.c:1477:		if(g->MadelineSystem){
+madeline.c:1478:			strcpy(hold,g->MadelineSystem);
+madeline.c:1490:	if(g->Verbose) Hello();
+madeline.c:1812:			if(!g->db)
+madeline.c:1815:			pT->f=g->db->FieldNumber(g->db,pT->e); /* get and store field number of variable */
+madeline.c:1823:				switch( c=g->db->FieldType(g->db,pT->f) ){
+madeline.c:1882:		if(g->db->cr==NO_RECORD_EXISTS){
+madeline.c:1886:			result->v=GetNumericCoreFieldValue(g->db,pT->f,g->cpd,g->cp);
+madeline.c:1891:			result->v  =g->db->ReadDouble(g->db,pT->f,g->db->cr);
+madeline.c:1904:		if(g->db->cr==NO_RECORD_EXISTS){
+madeline.c:1908:			strcpy(result->s,GetCharacterCoreFieldValue(g->db,pT->f,g->cpd,g->cp));
+madeline.c:1913:			strcpy(result->s,g->db->ReadString(g->db,NULL,pT->f,g->db->cr));
+madeline.c:1921:		if(g->db->cr==NO_RECORD_EXISTS){
+madeline.c:1928:			/*result->v=GetDateCoreFieldValue(g->db,pT->f,g->cpd,g->cp); */
+madeline.c:1935:			result->v  =g->db->ReadDate(g->db,pT->f,g->db->cr);
+madeline.c:2010:/* current family (g->cpd) and current individual (g->cp).  These of course won't    */
+madeline.c:2019:	/* This function should only be called when g->cp and g->cpd have been  */
+madeline.c:2022:	if(!g->cp)
+madeline.c:2023:		MadelineErrorReport("EvaluateIndividualVariableReference(): internal error: g->cp not mapped!");
+madeline.c:2031:		result->v=(double) g->cp->nk;
+madeline.c:2039:		result->v=(double) g->cp->na;
+madeline.c:2047:		strcpy(result->s,g->cp->id);
+madeline.c:2055:		strcpy(result->s,g->cpd->fid);	
+madeline.c:2064:		result->v=(double) g->cpd->nff;
+madeline.c:2073:		result->v=(double) g->cpd->nfm;
+madeline.c:2082:		result->v=(double) g->cpd->n;
+madeline.c:2090:		result->v=(double) g->cp->csp;
+madeline.c:2102:		result->v=(double) g->cp->excluded;
+madeline.c:2110:		result->v=(double) g->cp->included;
+madeline.c:2120:		result->v=(double) g->cp->hasdata;
+madeline.c:2130:		result->v=(double) g->cp->unconnected;
+madeline.c:2139:		result->v=g->cp->db?1.0:0.0;
+madeline.c:2147:		result->v=g->cp->proband==MISSING?DOUBLEMISSINGVALUE:(double)g->cp->proband;
+madeline.c:2155:		result->v=(double) g->cp->genotypecount;
+madeline.c:2163:		result->v=(double) 100.0*g->cp->genotypecount/g->db->n.go;
+madeline.c:2171:		result->v=g->cp->db?g->cp->rci:DOUBLEMISSINGVALUE;
+madeline.c:2179:		result->v=g->cp->female==MISSING?DOUBLEMISSINGVALUE:(double)g->cp->female;
+madeline.c:2190:		result->v=(double)!(g->cp->m && g->cp->f);
+madeline.c:2201:		result->v=(double)g->cp->IsPrimaryFounder;
+madeline.c:2209:		result->v=(double)2.0*g->cpd->NumberOfNonFounders - g->cpd->NumberOfFounders;
+madeline.c:2217:		result->v=(double)g->cpd->NumberOfFounders;
+madeline.c:2225:		result->v=(double)g->cpd->NumberOfNonFounders;
+madeline.c:2233:		result->v=(double)g->cpd->NumberOfAffected;
+madeline.c:2242:		result->v=(double)NumberOfPairs(g->cpd->NumberOfAffected);
+madeline.c:2250:		result->v=g->cp->affected==MISSING?DOUBLEMISSINGVALUE:(double)g->cp->affected;
+madeline.c:2258:		result->v=g->cp->dead==MISSING?DOUBLEMISSINGVALUE:(double)g->cp->dead;
+madeline.c:2265:		result->v=g->cp->consanguinity?1.0:0.0;
+madeline.c:2273:		result->v=isupper(g->cp->twin)?1.0:0.0;
+madeline.c:2281:		result->v=islower(g->cp->twin)?1.0:0.0;
+madeline.c:2289:		result->v=(g->cp->integrity!=NULL);
+madeline.c:2297:		result->v=(double) CountIndividualMarkerInconsistencies(g,g->cp);
+madeline.c:2305:		result->v=(double) 100.0*CountIndividualMarkerInconsistencies(g,g->cp)/g->db->n.go;
+madeline.c:4098:				if(result.s[0]=='\0') dprintf(".%c",g->delimiter); 
+madeline.c:4099:				else dprintf("%s%c",result.s,g->delimiter);
+madeline.c:4104:				dprintf("%s%c",DelimitedGenericDateString((long int)result.v,'-'),g->delimiter);
+madeline.c:4109:				if(result.v==DOUBLEMISSINGVALUE) dprintf(".%c",g->delimiter);
+madeline.c:4110:				else dprintf("%g%c",result.v,g->delimiter);
+madeline.c:4205:		lprintf("{%s}\n",Language[g->lang]->PrintDate((long int)result.v));
+madeline.c:4338:		if(g->db){
+madeline.c:4342:			if(g->SaveMarkerInfo){
+madeline.c:4343:				g->m =g->db->m;
+madeline.c:4344:				g->ms=g->db->fc;
+madeline.c:4348:				/* Set g->db->m to NULL so that CloseDatabase()            */
+madeline.c:4352:				g->db->m=NULL;
+madeline.c:4359:			lprintf("Closing pedigree table \"%s\"...\n",g->db->nm);
+madeline.c:4360:			CloseDatabase(g->db);
+madeline.c:4361:			g->db=NULL;
+madeline.c:4366:			FreeBinaryPedigreeTree(g->pd);
+madeline.c:4367:			g->pd=NULL;
+madeline.c:4386:		/* open the database into g->db:                         */
+madeline.c:4396:		g->db=NewDatabase(result.s,READONLY,table_type);
+madeline.c:4397:		g->db->OpenDatabase(g->db);
+madeline.c:4404:		GoTo(g->db,0);    /* set pointer to the top */
+madeline.c:4409:		gfnFamID.i   =g->db->FieldNumber(g->db,gfnFamID.e.s   );
+madeline.c:4410:		gfnID.i      =g->db->FieldNumber(g->db,gfnID.e.s      );
+madeline.c:4411:		gfnFather.i  =g->db->FieldNumber(g->db,gfnFather.e.s  );
+madeline.c:4412:		gfnMother.i  =g->db->FieldNumber(g->db,gfnMother.e.s  );
+madeline.c:4413:		gfnSex.i     =g->db->FieldNumber(g->db,gfnSex.e.s     );
+madeline.c:4414:		gfnMZTwin.i  =g->db->FieldNumber(g->db,gfnMZTwin.e.s  );
+madeline.c:4415:		gfnDZTwin.i  =g->db->FieldNumber(g->db,gfnDZTwin.e.s  );
+madeline.c:4416:		gfnAffected.i=g->db->FieldNumber(g->db,gfnAffected.e.s);
+madeline.c:4417:		gfnProband.i =g->db->FieldNumber(g->db,gfnProband.e.s );
+madeline.c:4418:		gfnClass.i   =g->db->FieldNumber(g->db,gfnClass.e.s   );
+madeline.c:4419:		gfnLClass.i  =g->db->FieldNumber(g->db,gfnLClass.e.s  );
+madeline.c:4420:		gfnDead.i    =g->db->FieldNumber(g->db,gfnDead.e.s    );
+madeline.c:4421:		gfnDOB.i     =g->db->FieldNumber(g->db,gfnDOB.e.s     );
+madeline.c:4422:		gfnDOD.i     =g->db->FieldNumber(g->db,gfnDOD.e.s     );
+madeline.c:4427:		SetKnownFieldFieldFlags(g->db);
+madeline.c:4432:		if(g->AutoDetect) SetFieldFlags(g->db);
+madeline.c:4433:		CountFieldFlags(g->db);
+madeline.c:4447:			CalculateAlleleFrequencies(g->db);
+madeline.c:4450:		lprintf("Pedigree table \"%s\" opened with %s records\n",result.s,Itoa(h,g->db->rc,9));
+madeline.c:4456:		g->pd=ReadCoreInformation(g->pd,g->db);
+madeline.c:4467:		TraverseBinaryPedigreeTree(g->pd,ConstructPedigree);
+madeline.c:4472:		TraverseBinaryPedigreeTree(g->pd,SetFoundingGroups);
+madeline.c:4478:		TraverseBinaryPedigreeTree(g->pd,CalculatePedigreeWidth);
+madeline.c:4484:		TraverseBinaryPedigreeTree(g->pd,CalculatePedigreeVLevel);
+madeline.c:4489:		AutoSetFieldOrdering(g,g->db);
+madeline.c:4494:		SetGenotypeCountAttributes(g->pd);
+madeline.c:4510:		if(g->AutoCheckInheritance){
+madeline.c:4518:				g->delimiter,g->delimiter,g->delimiter,g->delimiter
+madeline.c:4521:				g->delimiter,g->delimiter,g->delimiter,g->delimiter
+madeline.c:4523:			TraverseBinaryPedigreeTree2(g,g->pd,CheckPedigreeInheritance);
+madeline.c:4533:		ShowFieldStatusColumnwise(g->db,3,DisplayFieldInformation);
+madeline.c:4683:	if(!g->db) MadelineErrorReport("Toggle(): You must open a pedigree table before you can use this command.");
+madeline.c:4691:		if(result.v<0 || result.v>=g->db->rc){
+madeline.c:4693:			g->db->rc-1
+madeline.c:4696:		GoTo(g->db,(int)result.v);
+madeline.c:4826:		if(!g->db) MadelineErrorReport("List(): No pedigree table is open");
+madeline.c:4827:		ShowFieldStatusColumnwise(g->db,3,DisplayFieldInformation);
+madeline.c:4908:			TraverseMarkerMapByPositionForChromosome(g->mp,(int)result.v,DisplayMarkerMapInformation);
+madeline.c:4911:			TraverseMarkerMapByPosition(g->mp,DisplayMarkerMapInformation);
+madeline.c:4951:	if(!g->db) MadelineErrorReport("Write(): no pedigree table is open");
+madeline.c:5008:	g->OutputFormat=pT->i;
+madeline.c:5050:	TraverseBinaryPedigreeTree2(g,g->pd,OutputPedigree);
+madeline.c:5345:	g->OutputFormat=pT->i;
+madeline.c:5384:	for(i=0;i<g->db->n.go;i++){
+madeline.c:5427:	if(g->db) CloseDatabase(g->db);
+madeline.c:5428:	if(g->pd) FreeBinaryPedigreeTree(g->pd);
+madeline.c:5429:	if(g->mp) FreeMap(g->mp);
+madeline.c:5471:	if(g->streams.log   ) fclose(g->streams.log   );
+madeline.c:5472:	if(g->streams.detail) fclose(g->streams.detail);
+madeline.c:5473:	if(g->streams.fp    ) fclose(g->streams.fp    );
+madeline.c:5474:	if(g->streams.fpar  ) fclose(g->streams.fpar  );
+madeline.c:5475:	if(g->streams.fpar2 ) fclose(g->streams.fpar2 );
+madeline.c:5476:	if(g->streams.prn   ) fclose(g->streams.prn   );
+madeline.c:5477:	if(g->streams.err   ) fclose(g->streams.err   );
+madeline.c:5886:			if(g->streams.log)      fprintf(g->streams.log   ,"> %s\n",rd); 
+madeline.c:5887:			if(g->streams.detail)   fprintf(g->streams.detail,"> %s\n",rd);
+madeline.c:5902:			if(rd && g->streams.log)      fprintf(g->streams.log   ,"> %s",rd); 
+madeline.c:5903:			if(rd && g->streams.detail)   fprintf(g->streams.detail,"> %s",rd);
+madeline.c:5913:			g->Verbose=1;
+madeline.c:5914:			g->Silent =0;
+madeline.c:5934:		if(fp!=stdin && !g->Silent) fprintf(stderr ,"%s",rd);
+madeline.c:5973:	if(g->streams.log)      fprintf(g->streams.log   ,stt,fn);
+madeline.c:5974:	if(g->streams.detail)   fprintf(g->streams.detail,stt,fn);
+madeline.c:5984:		if(!g->Silent) fprintf(stderr ,mid,b);
+madeline.c:5988:		if(g->streams.log)      fprintf(g->streams.log   ,mid,b);
+madeline.c:5989:		if(g->streams.detail)   fprintf(g->streams.detail,mid,b);
+madeline.c:6008:	if(g->streams.log)      fprintf(g->streams.log   ,end,fn);
+madeline.c:6009:	if(g->streams.detail)   fprintf(g->streams.detail,end,fn);
+madeline.c:6257:	PrintStatusTableLine("Color",g->d.InColor?"ON":"OFF",g->d.InColor?  "Draw pedigrees in color":"Draw pedigrees in black and white");
+madeline.c:6259:	PrintStatusTableLine("ReverseShading",g->d.ReverseShading?"ON":"OFF",g->d.ReverseShading?  "White is first icon shade":"Black is first icon shade");
+madeline.c:6262:	PrintStatusTableLine("DividedDrawings",g->d.DividedDrawings?"ON":"OFF",g->d.DividedDrawings?"Paginate drawings by founding group":"--NOT YET IMPLEMENTED--");
+madeline.c:6264:	PrintStatusTableLine("HighlightRows",g->HighlightRows?"ON":"OFF",g->HighlightRows?  "Alternately highlight data on drawings":"Do not highlight data on drawings");
+madeline.c:6266:	PrintStatusTableLine("LabelCreatedIndividuals",g->LabelCreatedVirtuals?"ON":"OFF",g->LabelCreatedVirtuals?  "Label virtuals created by Madeline":"Omit labels on created virtuals");
+madeline.c:6269:	switch(g->d.Orientation){
+madeline.c:6292:	sprintf(hold,"%.2f cm",g->d.PageMargin);
+madeline.c:6295:	switch(g->d.PaperSize){
+madeline.c:6327:	PrintStatusTableLine("AutoExclude",g->AutoExclude?"ON":"OFF",g->AutoExclude?"Exclude pedigrees automatically":"Include all pedigrees");
+madeline.c:6329:	PrintStatusTableLine("AutoCheckInheritance",g->AutoCheckInheritance?"ON":"OFF",g->AutoCheckInheritance?"Check inheritance on OPEN":"Check Inheritance using CHECK");
+madeline.c:6331:	PrintStatusTableLine("ConsoleHighlights",g->ConsoleHighlights?"ON":"OFF",g->ConsoleHighlights?"Use bold/color highlights on console":"Don't use bold/color highlights");
+madeline.c:6333:	switch(g->delimiter){
+madeline.c:6344:		sprintf(hold,"%c",g->delimiter);
+madeline.c:6350:	PrintStatusTableLine("FusionSupport",g->FusionSupport?"ON":"OFF",g->FusionSupport?"FUSION customizations enabled":"FUSION customizations disabled");
+madeline.c:6352:	PrintStatusTableLine("HaplotypeDisplay",g->Haplotype?"ON":"OFF",g->Haplotype?"Display genotypes delimited with \"|\"":"Display genotypes delimited with \"/\"");
+madeline.c:6353:	PrintStatusTableLine("Language",Language[g->lang]->EnglishName,"Language convention used for date, time");
+madeline.c:6355:	PrintStatusTableLine("MapDetails",g->MapDetails?"ON":"OFF",g->MapDetails?"LIST MAP detailed display":"LIST MAP summary display");
+madeline.c:6357:	PrintStatusTableLine("SaveAlleleFrequencies",g->SaveMarkerInfo?"ON":"OFF",g->SaveMarkerInfo?"Reuse allele frequencies on next OPEN":"Calculate new frequencies on next OPEN");
+madeline.c:6359:	PrintStatusTableLine("Date","",Language[g->lang]->CurrentTime());
+madeline.c:6361:	if(g->Verbose){
+madeline.c:6364:	}else if(g->Silent){
+madeline.c:6607:	if(!g->db) MadelineErrorReport("Toggle(): You must open a pedigree table before you can use this command.");
+madeline.c:6668:				if(!g->mp) MadelineErrorReport("Toggle(): a map file must be loaded in order to toggle marker fields by chromosome number.");
+madeline.c:6802:			if(g->db->ff[i]&KNOWNSET && !(flag==OUTPUTSET || flag==ICONSET)){
+madeline.c:6804:				g->db->FieldName(g->db,i));
+madeline.c:6807:				//fprintf(stdout,"%i. OFF:%i ON:%i CURRENT:%i\n",i,force_off,force_on,g->db->ff[i]&OUTPUTSET);
+madeline.c:6811:					if(g->db->ff[i]&OUTPUTSET) g->db->ff[i]^=flag;
+madeline.c:6815:					if(!(g->db->ff[i]&OUTPUTSET)) g->db->ff[i]^=flag;
+madeline.c:6818:					                            g->db->ff[i]^=flag;
+madeline.c:6825:			if(g->db->ff[i]&KNOWNSET){
+madeline.c:6829:			if(flag==COVARIATESET && g->db->ff[i]&COVARIATESET){
+madeline.c:6835:				if(g->db->ff[i] & GENOTYPESET ) g->db->ff[i]^=GENOTYPESET;
+madeline.c:6836:				if(!(g->db->ff[i] & PHENOTYPESET)) g->db->ff[i]^=PHENOTYPESET;
+madeline.c:6838:			}else if(flag==GENOTYPESET && g->db->ff[i]&GENOTYPESET){
+madeline.c:6842:				if(g->db->ff[i] & COVARIATESET) g->db->ff[i]^=COVARIATESET;
+madeline.c:6843:				if(g->db->ff[i] & PHENOTYPESET) g->db->ff[i]^=PHENOTYPESET;                              
+madeline.c:6847:				if(g->db->ff[i]&PHENOTYPESET){
+madeline.c:6851:					if(g->db->ff[i] & GENOTYPESET ) g->db->ff[i]^=GENOTYPESET;
+madeline.c:6852:					if(g->db->ff[i] & COVARIATESET) g->db->ff[i]^=COVARIATESET;
+madeline.c:6857:					if(g->db->ff[i] & COVARIATESET) g->db->ff[i]^=COVARIATESET;
+madeline.c:6874:		ManageFieldTrees(g->db);
+madeline.c:6875:		KnownTokens=ManageFieldLevelsLabelsArrays(KnownTokens,g->db);
+madeline.c:6897:	CountFieldFlags(g->db);
+madeline.c:6902:	AutoSetFieldOrdering(g,g->db);
+madeline.c:6907:	SetGenotypeCountAttributes(g->pd);
+madeline.c:6948:	/* if(g->HtmlHelp){ -- DEPRECATED 2000 05 09 ET: HELP is now */
+madeline.c:6963:	if(g->MadelineSystem){
+madeline.c:6970:		strcat(hold,g->MadelineSystem);
+madeline.c:7228:		}else if(g->FusionSupport && p->clas==PROBAND){
+madeline.c:7409:	if(!g->db)
+madeline.c:7417:		/* gDrawing->x=1.5+gDrawing->xex/2; */
+madeline.c:7423:		gDrawing->x=0.0;
+madeline.c:7424:		gDrawing->y=-2.0;
+madeline.c:7426:		switch(g->d.Orientation){
+madeline.c:7430:		/*	gDrawing->y=18.5; */
+madeline.c:7433:		/*	gDrawing->y=24.5; */
+madeline.c:7441:		gDrawing->Title=NewAssignedCell(CM,0.0,0.0,5.0,1.5,0.1,
+madeline.c:7448:		gDrawing->Legend=NewPedigreeLegendCell(NORMAL,(int)LegendFontSize.e.v);
+madeline.c:7452:		gDrawing->Individual=NewPedigreeDrawingCell(NORMAL,(int)LabelFontSize.e.v);
+madeline.c:7458:	gDrawing->page=0;
+madeline.c:7463:	g->streams.prn=fopen(gPedigreeDrawing.e.s,"wb");
+madeline.c:7464:	if(!g->streams.prn) MadelineErrorReport("Draw(): unable to open %s for drawing.",gPedigreeDrawing.e.s);
+madeline.c:7503:				fclose(g->streams.prn);			
+madeline.c:7504:				g->streams.prn=NULL;			
+madeline.c:7519:				fclose(g->streams.prn);			
+madeline.c:7520:				g->streams.prn=NULL;			
+madeline.c:7529:				fclose(g->streams.prn);			
+madeline.c:7530:				g->streams.prn=NULL;			
+madeline.c:7542:			fclose(g->streams.prn);			
+madeline.c:7543:			g->streams.prn=NULL;			
+madeline.c:7553:			pd=SeekPedigree(g->pd,stt);
+madeline.c:7563:				fclose(g->streams.prn);
+madeline.c:7564:				g->streams.prn=NULL;			
+madeline.c:7568:			if(!SeekPedigree(g->pd,stt)){
+madeline.c:7572:				fclose(g->streams.prn);
+madeline.c:7573:				g->streams.prn=NULL;
+madeline.c:7576:			if(!SeekPedigree(g->pd,end)){
+madeline.c:7580:				fclose(g->streams.prn);
+madeline.c:7581:				g->streams.prn=NULL;
+madeline.c:7584:			TraverseRangeInBinaryPedigreeTree(g->pd,stt,end,DrawPedigree);
+madeline.c:7592:	fclose(g->streams.prn);
+madeline.c:7593:	g->streams.prn=NULL;
+madeline.c:7648:			gDrawing->Title->t[1].t=hold;
+madeline.c:7705:	if(!g->streams.prn) MadelineErrorReport("DrawPedigree(): printer not open");
+madeline.c:7717:	gDrawing->Title->t[0].t=hold;
+madeline.c:7721:	gDrawing->Title->t[2].t=Language[g->lang]->CurrentDate();
+madeline.c:7728:	gDrawing->page++;
+madeline.c:7729:	SetPostScriptPageEnvironment(g,hold,pd->fid,gDrawing->page);
+madeline.c:7737:	/* OBSOLETE: sprintf(ProcName,"Pedigree%s_%05i",pd->fid,gDrawing->page); */
+madeline.c:7746:	fprintf(g->streams.prn,"/%s {\n",ProcName);
+madeline.c:7751:	PrintIconCell(g->streams.prn,gDrawing->Title,NULL);
+madeline.c:7755:	PrintIconCell(g->streams.prn,gDrawing->Legend,NULL);
+madeline.c:7760:		g->streams.prn,
+madeline.c:7761:		gDrawing->Legend->x+3.0,
+madeline.c:7762:		gDrawing->Legend->y,
+madeline.c:7763:		g->db
+madeline.c:7770:		xorg=gDrawing->x-founder->nw*g->d.HalfHZInterval+IndividualLeftSubtreeWidth(founder);
+madeline.c:7772:		xorg=gDrawing->x-g->d.HalfHZInterval;
+madeline.c:7779:	DrawFamily(g->streams.prn,founder,xorg,gDrawing->y,gDrawing->Individual,pd,i);
+madeline.c:7783:	fprintf(g->streams.prn,"}def\n");
+madeline.c:7824:		return g->d.HalfHZInterval;
+madeline.c:7853:		return ((double)sumleftnw - p->nw/2.0)*g->d.HorizontalInterval;
+madeline.c:7938:				xend=p->a[0]->x+g->d.HorizontalInterval;
+madeline.c:7955:				/* DoubleHorizontalLine(fp,xorg+g->d.IconRadius,yorg,g->d.HorizontalInterval-g->d.IconDiameter); */
+madeline.c:7958:				DoubleHorizontalLine(fp,xorg+g->d.IconRadius,yorg,g->d.HorizontalInterval-g->d.IconRadius);
+madeline.c:7968:				DrawOffspring(fp,dad,mom,xorg+g->d.HalfHZInterval,yorg,c,pd,ith);
+madeline.c:7974:			HorizontalLine(fp,xorg+g->d.IconRadius,yorg,g->d.HorizontalInterval-g->d.IconDiameter);
+madeline.c:7977:			DrawIndividual(fp,p->a[0],xorg+g->d.HorizontalInterval,yorg,c,g,pd,ith);
+madeline.c:7991:			DrawOffspring(fp,dad,mom,xorg+g->d.HalfHZInterval,yorg,c,pd,ith);
+madeline.c:8003:		if(g->sort) SortIndividualVector(a,p->na,g);
+madeline.c:8022:		sttx=xorg-IndividualLeftSubtreeWidth(p)+IndividualLeftSubtreeWidth(a[0]);
+madeline.c:8041:			DrawOffspring(fp,dad,mom,sttx+g->d.HalfHZInterval,yorg,c,pd,ith);
+madeline.c:8060:		sttx=xorg+g->d.HorizontalInterval+g->d.HalfHZInterval+IndividualLeftSubtreeWidth(a[naleft]);
+madeline.c:8079:			DrawOffspring(fp,dad,mom,sttx-g->d.HalfHZInterval,yorg,c,pd,ith);
+madeline.c:8107:	double yoffset=g->d.IconRadius+ytick;
+madeline.c:8113:		xstt=xorg-g->d.IconRadius;
+madeline.c:8135:			-g->d.HorizontalInterval+g->d.IconRadius
+madeline.c:8140:		xstt=xorg+g->d.IconRadius;
+madeline.c:8163:			g->d.HorizontalInterval-g->d.IconRadius
+madeline.c:8203:	stepincr=g->d.IconDiameter/MAXSPOUSES;
+madeline.c:8216:			ThisDistance=xend-xorg-g->d.IconDiameter;
+madeline.c:8217:			ThisOrigin  =xorg+g->d.IconRadius;
+madeline.c:8219:			ThisDistance=xend-xorg+g->d.IconDiameter;
+madeline.c:8220:			ThisOrigin  =xorg-g->d.IconRadius;
+madeline.c:8253:		xorg+=g->d.IconRadius;
+madeline.c:8254:		hdist=xend-xorg-g->d.HorizontalInterval-hhop;
+madeline.c:8256:		xorg-=g->d.IconRadius;
+madeline.c:8257:		hdist=xorg-xend-g->d.HorizontalInterval-hhop;
+madeline.c:8272:	fprintf(fp,"0 %.2f cm rlineto ",g->d.IconRadius);
+madeline.c:8284:	/* VerticalLine(fp,xend-lxu,vorg-grad,grad+vhop,CENTIMETERS); */
+madeline.c:8286:	fprintf(fp,"0 %.2f cm rlineto ",- g->d.IconRadius - vhop);
+madeline.c:8293:	ThisDistance=g->d.HorizontalInterval-g->d.IconRadius;		
+madeline.c:8341:	/* halflxu=g->d.HorizontalInterval/2.0;     // half unit horizontal distance between individual's centers */
+madeline.c:8343:	OffspringLineY= yorg+g->d.VerticalDrop1;  /* where horizontal line will be drawn */
+madeline.c:8394:	if(g->sort){
+madeline.c:8415:	yorg=OffspringLineY + g->d.VerticalDrop2;  /* where offspring symbol center will be */
+madeline.c:8432:	sttx=xorg-(sumnw)*g->d.HalfHZInterval+IndividualLeftSubtreeWidth(o);
+madeline.c:8495:		deltax=xorg-sttx;
+madeline.c:8544:	/* an expression on Token2: g->sort specifies either ascending */
+madeline.c:8658:	deltax=g->d.HalfHZInterval*(sumnw)-IndividualLeftSubtreeWidth(t->t[0]);
+madeline.c:8671:	HorizontalLine(fp,xanchor,liney,xorg-xanchor);
+madeline.c:8692:	deltay  =g->d.VerticalDrop2+g->d.IconRadius;
+madeline.c:8694:	yorg    =liney+g->d.VerticalDrop2;
+madeline.c:8827:	c->xex=g->d.CellWidth;
+madeline.c:8840:	c->n=g->db->n.o;
+madeline.c:8851:	c->yex=CMFontSize*g->db->n.o+0.2+CMFontSize/2.0;
+madeline.c:8854:	/* set g->d.VerticalDrop1 based on c->yex:                         */
+madeline.c:8861:	g->d.VerticalDrop1=-c->yex-g->d.IconRadius+g->d.VerticalDrop2;
+madeline.c:8875:	for(j=i=0;i<g->db->n.co;i++){
+madeline.c:8879:		ii=g->db->fi->c[i];
+madeline.c:8886:		switch(g->db->FieldType(g->db,ii)){
+madeline.c:8888:			c->t[j].d=NewDataSource(g->db,ii,TEXTDATA,NULL);
+madeline.c:8891:			c->t[j].d=NewDataSource(g->db,ii,DATEDATA,NULL);
+madeline.c:8894:			prec=g->db->FieldPrecision(g->db,ii);
+madeline.c:8896:			c->t[j].d=NewDataSource(g->db,ii,prec,NULL);                   
+madeline.c:8904:	for(i=0;i<g->db->n.po;i++){
+madeline.c:8908:		ii=g->db->fi->p[i];
+madeline.c:8915:		switch(g->db->FieldType(g->db,ii)){
+madeline.c:8917:			c->t[j].d=NewDataSource(g->db,ii,TEXTDATA,NULL);
+madeline.c:8920:			c->t[j].d=NewDataSource(g->db,ii,DATEDATA,NULL);
+madeline.c:8923:			prec=g->db->FieldPrecision(g->db,ii);
+madeline.c:8925:			c->t[j].d=NewDataSource(g->db,ii,prec,NULL);                   
+madeline.c:8933:	for(i=0;i<g->db->n.go;i++){
+madeline.c:8937:		ii=g->db->fi->g[i];
+madeline.c:8944:		c->t[j].d=NewDataSource(g->db,ii,GENOTYPEDATA,NULL);
+madeline.c:8980:	switch(g->d.Orientation){
+madeline.c:9003:	c->n=g->db->n.o;
+madeline.c:9010:	c->yex=z*g->db->n.o*LINESPACING*3.54/72.0;
+madeline.c:9020:	for(j=i=0;i<g->db->n.co;i++){          
+madeline.c:9024:		ii=g->db->fi->c[i];
+madeline.c:9028:		c->t[j].t=g->db->FieldName(g->db,ii);
+madeline.c:9036:	for(i=0;i<g->db->n.po;i++){          
+madeline.c:9040:		ii=g->db->fi->p[i];
+madeline.c:9044:		c->t[j].t=g->db->FieldName(g->db,ii);
+madeline.c:9052:	for(i=0;i<g->db->n.go;i++){          
+madeline.c:9056:		ii=g->db->fi->g[i];
+madeline.c:9060:		c->t[j].t=g->db->FieldName(g->db,ii);
+madeline.c:9459:	if((   g->OutputFormat==SIBP1
+madeline.c:9460:	    || g->OutputFormat==SIBP2
+madeline.c:9461:	    || g->OutputFormat==SIBP3) 
+madeline.c:10792:	g->Verbose=1;
+madeline.c:10793:	g->Silent =0;
+madeline.c:10804:	g->Verbose=0;
+madeline.c:10805:	g->Silent =0;
+madeline.c:10815:	g->Verbose=0;
+madeline.c:10816:	g->Silent =1;
+madeline.c:11176:		UserSetFieldOrdering(g,g->db);
+madeline.c:11190:		if(g->Verbose) Hello();
+madeline.c:11206:			g->d.Orientation=AUTOMATICORIENTATION;
+madeline.c:11209:			g->d.Orientation=LANDSCAPEORIENTATION;
+madeline.c:11212:			g->d.Orientation=PORTRAITORIENTATION;
+madeline.c:11215:			g->d.Orientation=MULTIPAGEORIENTATION;
+madeline.c:11234:		if(g->Verbose) Hello();
+madeline.c:11247:			g->d.PaperSize = USLETTERSIZE;
+madeline.c:11248:			g->d.PageWidth = 21.59;
+madeline.c:11249:			g->d.PageHeight= 27.94;
+madeline.c:11252:			g->d.PaperSize=USLEGALSIZE;
+madeline.c:11253:			g->d.PageWidth = 21.59;
+madeline.c:11254:			g->d.PageHeight= 35.56;
+madeline.c:11257:			g->d.PaperSize=A4SIZE;
+madeline.c:11258:			g->d.PageWidth = 21.0;
+madeline.c:11259:			g->d.PageHeight= 29.7;
+madeline.c:11262:			g->d.PaperSize=A4LONGSIZE;
+madeline.c:11263:			g->d.PageWidth = 21.0;
+madeline.c:11264:			g->d.PageHeight= 33.9;
+madeline.c:11267:			g->d.PaperSize=A4SUPERSIZE;
+madeline.c:11268:			g->d.PageWidth = 22.86;
+madeline.c:11269:			g->d.PageHeight= 38.10;
+madeline.c:11284:		if(g->Verbose) Hello();
+madeline.c:11302:		if(result.v>=1.0 && result.v<g->d.PageWidth/2.0)
+madeline.c:11303:			g->d.PageMargin=result.v;
+madeline.c:11316:		if(g->Verbose) Hello();
+madeline.c:11336:			g->HtmlHelp=TRUE;
+madeline.c:11339:			g->HtmlHelp=FALSE;
+madeline.c:11345:		if(g->Verbose) Hello();
+madeline.c:11365:			g->delimiter=' ';
+madeline.c:11368:			g->delimiter='\t';
+madeline.c:11371:			g->delimiter=',';
+madeline.c:11374:			g->delimiter=pT->e[0];
+madeline.c:11377:		if(g->Verbose) Hello();
+madeline.c:11391:		g->AutoDetect =(pT->i==ONK);
+madeline.c:11394:		g->AutoExclude=(pT->i==ONK);
+madeline.c:11397:		g->d.InColor=(pT->i==ONK);
+madeline.c:11400:		g->d.ReverseShading=(pT->i==ONK);
+madeline.c:11403:		g->SaveMarkerInfo=(pT->i==ONK);
+madeline.c:11407:		if(g->SaveMarkerInfo && !g->db){
+madeline.c:11408:			g->SaveMarkerInfo=0;
+madeline.c:11413:		g->d.DividedDrawings=(pT->i==ONK);
+madeline.c:11416:		g->Haplotype=(pT->i==ONK);
+madeline.c:11419:		g->FusionSupport=(pT->i==ONK);
+madeline.c:11422:		g->LabelCreatedVirtuals=(pT->i==ONK);
+madeline.c:11425:		g->HighlightRows=(pT->i==ONK);
+madeline.c:11428:		g->AutoCheckInheritance=(pT->i==ONK);
+madeline.c:11431:		g->ConsoleHighlights=(pT->i==ONK);
+madeline.c:11434:		g->MapDetails=(pT->i==ONK);
+madeline.c:12357:	/* open the map database into g->mdb:                    */
+madeline.c:12367:	c->mdb->OpenDatabase(g->mdb);
+madeline.c:12500:	if(g->MapDetails){
+madeline.c:12528:	if(g->MapDetails && p->ch!=last_chr){
+madeline.c:12541:	if(g->MapDetails && p->ps>0.0){
+madeline.c:12604:	if(g->MapDetails) lprintf(ExtraSpace);
+madeline.c:12614:	if(g->MapDetails) lprintf(ExtraSpace);
+madeline.c:13047:	if(!g->db)
+madeline.c:13081:	if(!g->db)
+madeline.c:13088:	g->cpd=g->pd;
+madeline.c:13089:	g->cp =g->pd->h;
+madeline.c:13098:	GoTo(g->db,0);
+madeline.c:13126:		TraverseBinaryPedigreeTree2(g,g->pd,SetExcludeFlagsRecursively);
+madeline.c:13130:		TraverseBinaryPedigreeTree2(g,g->pd,SetExcludeFlags);
+madeline.c:13346:	if(!g->db)
+madeline.c:13374:	if(!g->db)
+madeline.c:13380:	g->cpd=g->pd;
+madeline.c:13381:	g->cp =g->pd->h;
+madeline.c:13390:	GoTo(g->db,0);
+madeline.c:13417:		TraverseBinaryPedigreeTree2(g,g->pd,UnsetExcludeFlagsRecursively);
+madeline.c:13419:		TraverseBinaryPedigreeTree2(g,g->pd,UnsetExcludeFlags);
+madeline.c:13777:	RecognizeFile(OutputFileName,g->lang,g->ivar,0);
+madeline.c:13782:		RecognizeFile(SimwalkMapFileName,g->lang,g->ivar,0);
+madeline.c:13904:	n=RecognizeFile(result.s,g->lang,g->ivar,0);
+madeline.c:14471:	if(!g->AutoExclude) return 1;
+madeline.c:14654:	if(!g->db){
+madeline.c:14671:			ViewIndividualRecord(g->db);
+madeline.c:14693:		g->cpd=g->pd;
+madeline.c:14694:		g->cp =g->pd->h;
+madeline.c:14702:		GoTo(g->db,0);
+madeline.c:14745:	g->cpd=g->pd;
+madeline.c:14746:	g->cp =g->pd->h;
+madeline.c:14755:	GoTo(g->db,0);
+madeline.c:14795:		TraverseBinaryPedigreeTree2(g,g->pd,ViewIndividualsInDetail);
+madeline.c:14797:		TraverseBinaryPedigreeTree2(g,g->pd,ViewIndividualsData);
+madeline.c:14799:		TraverseBinaryPedigreeTree2(g,g->pd,ViewIndividuals);
+madeline.c:14944:		dprintf("%s%c%s%c",pd->fid,g->delimiter,p->id,g->delimiter);
+madeline.c:15161:	if(!g->db)
+madeline.c:15175:	TraverseBinaryPedigreeTree(g->pd,ClearPedigreeExclusions);
+madeline.c:16803:	if(!g->db)
+madeline.c:16811:		g->sort=FALSE;
+madeline.c:16823:	g->cpd=g->pd;
+madeline.c:16824:	g->cp =g->pd->h;
+madeline.c:16832:	GoTo(g->db,0);
+madeline.c:16851:		g->sort=SDESK; /* descending */
+madeline.c:16855:		g->sort=SASCK; /* ascending */
+madeline.c:16889:	/* g->cpd=pd;                                                */
+madeline.c:16891:	g->cp=a;
+madeline.c:16899:		g->db->cr=NO_RECORD_EXISTS;
+madeline.c:16915:	g->cp=b;
+madeline.c:16923:		g->db->cr=NO_RECORD_EXISTS;
+madeline.c:17861:	/*if(g->OutputFormat==LDE2K &&                                */
+madeline.c:17865:	if(g->OutputFormat==LDE2K && 
+madeline.c:17875:	if(g->OutputFormat==LDE3K && p->affected!=1) return 0;
+madeline.c:18307:		return g->d.HalfHZInterval;
+madeline.c:18319:		return p->nw*g->d.HalfHZInterval - g->d.HalfHZInterval;
+madeline.c:18331:		if(g->sort) SortIndividualVector(v,p->na,g);
+madeline.c:18346:		return sumleftnw*g->d.HorizontalInterval + g->d.HalfHZInterval;
+madeline.c:18369:		return g->d.HalfHZInterval;
+madeline.c:18379:		return p->nw*g->d.HalfHZInterval + g->d.HalfHZInterval;
+madeline.c:18394:		if(g->sort) SortIndividualVector(v,p->na,g);
+madeline.c:18404:		return sumrightnw*g->d.HorizontalInterval + g->d.HalfHZInterval;
+madeline.c:18431:	if(!g->db){
+ndbf.c:249:/* Endian(): determines if system is big-endian, little endian, or  */
+ndbf.c:619:	/* swap bytes on big-endian systems */
+ndbf.c:1982:		if(g->lang==AMERICAN_ENGLISH){ /* AMERICAN assumes MM/DD/YYYY */
+ndbf.c:2214:	/* big-endian format.  Therefore, swapping is required if run on a    */
+ndbf.c:2222:		/* system is little-endian, so need to swap those big-endian */
+ndbf.c:2247:	/* we also "cheat" big-time by stuffing a null terminator, '\0',     */
+pedigree.c:1390:	/* Dummying-in of parents:        */
+pedigree.c:1418:			/* do their jobs.  So dummying-in is really the best      */
+pedigree.c:1421:			if(g->FusionSupport && p->clas==SIBLING){
+pedigree.c:1443:			}else if(g->FusionSupport && p->clas==SIBLINGOFFSPRING){
+pedigree.c:1474:			}else if(g->FusionSupport && p->clas==PROBANDOFFSPRING){
+pedigree.c:1605:			/* do their jobs.  So dummying-in is really the best      */
+pedigree.c:1608:			if(g->FusionSupport && p->clas==SIBLING){
+pedigree.c:1630:			}else if(g->FusionSupport && p->clas==SIBLINGOFFSPRING){
+pedigree.c:1662:			}else if(g->FusionSupport && p->clas==PROBANDOFFSPRING){
+pedigree.c:2112:/* which is a single founding-group pedigree's vertical */
+programcontrol.c:154:		gScanning--;
+recognize.c:3902:				fprintf(pout,"%04i%c%05i%c",fam,g->delimiter,iid,g->delimiter);
+recognize.c:3907:				if(!mom) fprintf(pout,"    .%c",g->delimiter);
+recognize.c:3908:				else     fprintf(pout,"%05i%c",mom,g->delimiter);
+recognize.c:3909:				if(!dad) fprintf(pout,"    .%c",g->delimiter);
+recognize.c:3910:				else     fprintf(pout,"%05i%c",dad,g->delimiter);
+recognize.c:3912:				fprintf(pout,"%c   %c",(sex==2?'F':sex==1?'M':'.'),g->delimiter);
+recognize.c:3915:				fprintf(pout,"%-*.*s  %c",maxlength,maxlength,markername[j],g->delimiter);
+recognize.c:3941:				fprintf(pout,"%4i%c%4i%c%4.2f\n",a1,g->delimiter,a2,g->delimiter,confidence);
+togglebychromosome.c:66:	if(force_on) TraverseMarkerMapForChromosome(g->mp,chromosome,ToggleMarkerOn);
+togglebychromosome.c:67:	else         TraverseMarkerMapForChromosome(g->mp,chromosome,ToggleMarkerOff);
+togglebychromosome.c:75:	if(force_on) TraverseMarkerMapForChromosome(g->mp,chromosome,ToggleMendelianInconsistentMarkerOn);
+togglebychromosome.c:76:	else         TraverseMarkerMapForChromosome(g->mp,chromosome,ToggleMendelianInconsistentMarkerOff);
+togglebychromosome.c:88:	for(i=0;i<g->db->n.g;i++){
+togglebychromosome.c:91:		ii=g->db->fi->g[i];
+togglebychromosome.c:93:		if(g->db->m[ii].nmin){
+togglebychromosome.c:96:				if(!(g->db->ff[ii]&OUTPUTSET)) g->db->ff[ii]^=OUTPUTSET;
+togglebychromosome.c:99:				if(g->db->ff[i]&OUTPUTSET) g->db->ff[i]^=OUTPUTSET;
+togglebychromosome.c:114:	i=g->db->FieldNumber(g->db,p->nm);
+togglebychromosome.c:116:	if(!(g->db->ff[i]&OUTPUTSET)) g->db->ff[i]^=OUTPUTSET;
+togglebychromosome.c:129:	i=g->db->FieldNumber(g->db,p->nm);
+togglebychromosome.c:131:	if(g->db->ff[i]&OUTPUTSET) g->db->ff[i]^=OUTPUTSET;
+togglebychromosome.c:144:	i=g->db->FieldNumber(g->db,p->nm);
+togglebychromosome.c:147:	if(g->db->m[i].nmin && !(g->db->ff[i]&OUTPUTSET)) g->db->ff[i]^=OUTPUTSET;
+togglebychromosome.c:160:	i=g->db->FieldNumber(g->db,p->nm);
+togglebychromosome.c:163:	if(g->db->m[i].nmin && g->db->ff[i]&OUTPUTSET) g->db->ff[i]^=OUTPUTSET;
+tools.c:369:	if(!g->FusionSupport) return 0;
+variablesandarrays.c:255:		sprintf(s,"{%s}",Language[g->lang]->PrintDate((long)v->e.v));

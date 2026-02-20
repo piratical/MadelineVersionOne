@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# runvi: Run vi in an xterm window
+#
+xterm -e vi $1 &

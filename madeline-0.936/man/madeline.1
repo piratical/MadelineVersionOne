@@ -1,0 +1,89 @@
+.TH MADELINE 1 "14 December 2001"
+.SH NAME
+madeline \- Data management assistant for use in genetic linkage studies.
+.SH SYNOPSIS
+madeline [-h | --help | -v | --version] [<command_script>]
+.SH COPYRIGHT
+.if n \fBMadeline\fR is Copyright (C) 2000-2004 by the Regents of the University of Michigan.
+.if t \fBMadeline\fR is Copyright \(co 2000-2004 by the Regents of the University of Michigan.
+Some portions Copyright (C) 1995 by Edward H. Trager.  All Rights Reserved.
+.SH DESCRIPTION
+\fBMadeline\fR is a program designed for preparing, visualizing, and exploring human pedigree
+data used in genetic linkage studies.  In addition to converting pedigree and marker data into
+various formats required by linkage analysis software, Madeline checks for basic errors in
+data sets, provides useful functionality for querying data sets, and produces pedigree drawings
+using Postscript.
+.SH OPTIONS
+.TP 10
+.B \-h
+.TP
+.B \-\-help
+.TP
+.B \-v
+.TP
+.B \-\-version
+Prints Madeline's copyright notice and usage summary.
+For documentation on using the program interactively,
+refer to the HTML documents installed with the package.
+
+.SH FILES
+.TP 10
+/<installation-path>/bin/madeline-x.xxx \- version-specific executable
+.TP
+/<installation-path>/bin/madeline \- symbolic link to the version-specific madeline executable
+.TP
+/<installation-path>/share/madeline/initial.script \- default script specifying start-up parameters
+.TP
+/<installation-path>/share/madeline/documentation/ \- directory containing extensive HTML documentation.
+
+.SH EXAMPLES
+.P
+To start Madeline interactively, type:
+.TP
+.B madeline
+.P
+To have Madeline read commands from a file,\fB"my.script"\fR, type:
+.TP
+.B madeline my.script
+.P
+To open the HTML documentation in the default web browser, at the
+\fBM>\fR prompt, type:
+.TP
+M> \fBhelp "contents"\fR
+.P
+To see a list of all commands and variables beginning with the letter
+"\fBg\fR", type:
+.TP
+M> \fBlookup "g"\fR
+.P
+To recognize an ASCII or Unicode UTF-8 data file called \fBmy.data\fR, type:
+.TP
+M> \fBrecognize "my.data"\fR
+.P
+To open the recognized data file, \fBmy.data.mfh\fR, type:
+.TP
+M> \fBopen "my.data.mfh"\fR
+.P
+To export data in genehunter format to a file called \fBmy.gh\fR, type:
+.TP
+M> \fBwrite to "my.gh" in genehunter format\fR
+.P
+To produce postscript pedigree drawings of all families in the data set, type:
+.TP
+M> \fBdraw pedigrees for #true\fR
+.P
+To determine the distinct values and frequencies of two variables,
+\fBaffected\fR and \fBage\fR, in a data set, type:
+.TP
+M> \fBview distinct values of affected, age\fR
+.P
+For complete information, refer to the HTML documentation distributed with the
+package.
+.SH "SEE ALSO"
+readline(3)
+.SH AUTHOR
+Version 0.935, distributed  June 2004 by
+Edward H. Trager (ehtrager@umich.edu),
+Kellogg Eye Center, University of Michigan Medical Center, Ann Arbor, MI, USA.
+This software is copyright under the GNU Public License and comes with no warranty.
+.\" end of man page

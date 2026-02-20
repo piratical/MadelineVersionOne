@@ -1,0 +1,41 @@
+FAMID C
+STUDYID C
+SEX X
+PROBAND N
+FATHER C
+MOTHER C
+RELATIONSHIP C
+DZTWIN C  MZTWIN C
+DOB D     DOD D
+AFFECTED C
+DECEASED N
+AGE_DX N
+MARKER1 G
+MARKER2 G
+MARKER3 G
+
+F-01 I-01  M  0   .     .     PATERNAL GRANDFATHER  .  .  1855.12.11  1942.06.03  REPORT_AFF  .  .      .        .        .     
+F-01 I-02  F  0   .     .     PATERNAL GRANDMOTHER  .  .  1856.04.03  1955.05.04  .           .  .      .        .        .     
+F-01 I-03  M  0   .     .     MATERNAL GRANDFATHER  .  .  1845.07.07  1885.10.10  .           .  .      .        .        .     
+F-01 I-04  F  0   .     .     MATERNAL GRANDMOTHER  .  .  1850.04.01  1901.11.23  .           .  .      .        .        .     
+F-01 I-05  F  0   I-01  I-02  PATERNAL AUNT         .  .  1875.05.05  1899.01.03  REPORT_AFF  .  .      .        .        .     
+F-01 I-06  M  0   I-01  I-02  FATHER                .  .  1889.01.17  1987.06.04  REPORT_UNA  .  .      .        .        .     
+F-01 I-07  F  0   I-03  I-04  MOTHER                .  .  1898.03.15  1995.03.01  REPORT_UNA  .  .      .        .        .     
+F-01 I-08  M  0   I-03  I-04  MATERNAL UNCLE        .  .  1901.02.12  1992.08.17  REPORT_UNA  .  .      .        .        .     
+F-01 I-09  M  0   I-06  I-07  BROTHER               .  .  1923.07.30  .           REPORT_UNA  0  .   101/101  123/127   98/104  
+F-01 I-10  M  0   .     .     MATE 1 SPOUSE         .  .  1924.02.19  .           UNAFFECTED  0  .   105/107  127/131  104/108  
+F-01 I-11  F  1   I-06  I-07  SELF                  .  .  1924.07.20  .           AFF_BEF_55  0  51  101/105  123/127  102/104  
+F-01 I-12  M  0   .     .     MATE 2                .  .  1934.07.21  .           UNAFFECTED  0  .   105/111  117/131  100/114  
+F-01 I-13  F  0   I-06  I-07  SISTER                .  .  1931.09.29  .           UNAFFECTED  0  .   101/107  123/131   98/108  
+F-01 I-14  F  0   I-10  I-11  OFFSPRING  1          A  .  1954.04.01  .           UNAFFECTED  0  .   105/105  127/127  104/108  
+F-01 I-15  M  0   I-10  I-11  OFFSPRING  2          A  .  1954.04.02  .           UNAFFECTED  0  .   105/107  127/127  104/108  
+F-01 I-16  F  0   I-10  I-11  OFFSPRING  3          A  .  1954.04.01  .           AFF_BEF_35  0  33  105/105  123/127  102/102  
+F-01 I-17  M  0   I-10  I-11  OFFSPRING  4          .  .  1959.09.19  .           UNAFFECTED  0  .   101/105  123/127  104/104  
+F-01 I-18  .  0   I-10  I-11  OFFSPRING  5          .  .  1960.08.12  .           UNKNOWN     0  .   105/105  123/131  102/108  
+F-01 I-19  .  0   I-10  I-11  OFFSPRING  6          .  .  1961.05.09  .           UNKNOWN     1  .   101/107  123/131  102/104  
+F-01 I-20  F  0   I-12  I-11  OFFSPRING  7          .  .  1955.11.15  .           UNAFFECTED  0  .   101/105  117/123  100/102  
+F-01 I-21  F  0   I-12  I-11  OFFSPRING  8          .  .  1956.03.12  .           AFF_BEF_55  0  45  101/111  117/127  100/104  
+F-01 I-22  M  0   I-12  I-11  OFFSPRING  9          .  A  1957.12.25  .           UNAFFECTED  0  .   105/111  123/131  102/114  
+F-01 I-23  M  0   I-12  I-11  OFFSPRING 10          .  A  1957.12.25  .           UNAFFECTED  0  .   105/105  117/127  104/114  
+F-01 I-24  F  0   I-08  I-13  NIECE                 .  .  1944.08.13  .           AFF_BEF_35  0  29  107/109  131/133   98/104  
+F-01 I-25  M  0   I-08  I-13  NEPHEW                .  .  1947.09.09  .           AFF_BEF_35  0  34  101/103  131/135  108/110  

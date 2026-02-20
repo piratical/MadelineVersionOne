@@ -1,0 +1,47 @@
+CHANGES SINCE VERSION 0.932
+
+-- 2001.11.16 ET:
+---------------------------------------------------------------------------
+Version 0.933 is currently a development version.  The initial goal of this
+release is to squash remaining bugs and memory leaks.  Expect the following
+list of changes to grow over time:
+---------------------------------------------------------------------------
+
+1. The algorithm used in the RECOGNIZE command to distinguish header lines
+from data lines has been improved.  The old algorithm would not correctly 
+recognize files with fewer data lines than header lines.  Such files can
+occur in practice quite often.
+
+2. The program now verifies the existence of the system-wide initialization
+script before trying to read it.  The old version assumed the file was present 
+and would cause a segmentation fault if it in fact was not.
+
+3. The "autorun.bat" which runs at startup has been renamed to 
+"initial.script" which more clearly reflects what it is.
+
+4. A number of defaults have been aggregated into a single "config.h" header file.
+This makes it much more convenient to compile a Madeline executable tailored
+to your specific environment.  For example, if your study uses "PEDIGREE_ID"
+instead of "FAMID" for the name of the family ID field in your databases,
+you can now just change the line in src/config.h from:
+
+   #define FAMILY_ID_FIELD "FAMID"
+   
+to:
+
+   #define FAMILY_ID_FIELD "PEDIGREE_ID"
+
+... to reflect this.  In the old version of the program, you would have had 
+to make an entry into the global or local "autorun.bat" file (now called 
+"initial.script".  Of course, you can still do that by editing "initial.script", 
+but now you can also set the compiled-in defaults to reflect your 
+environment once and for all.  That way, you only need to play with scripts
+when receiving foreign data from another lab which doesn't use the same
+conventions as your lab.
+
+5. Madeline now comes with a ./configure script generated using the GNU
+autoconf system.  ./configure creates Makefiles which are customized to the
+platform and environment of your system.  Using ./configure scripts makes
+it much easier to support and much less painful to install Madeline 
+on a wide variety of platforms.
+

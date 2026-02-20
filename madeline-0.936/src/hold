@@ -1,0 +1,40 @@
+assignment.c:89:	   pT->t==USERVARIABLE     ||
+assignment.c:189:			case USERVARIABLE:
+assignment.c:243:		case USERVARIABLE:
+tokentree.c:97:	/* If the RECOGNIZEDTOKEN is a USERVARIABLE or USERARRAY,     */
+tokentree.c:102:	if(pt->t==USERVARIABLE) FreeUserVariable(pt->u.v);
+variablesandarrays.c:218:/* or USERVARIABLE (but does not free the memory for a USERVARIABLE itself): */
+variablesandarrays.c:232:/* FreeUserVariable(): Frees a USERVARIABLE: */
+assignment.c:88:	   pT->t==USERARRAY        ||
+assignment.c:118:			case USERARRAY:
+assignment.c:205:			case USERARRAY:
+assignment.c:379:		case USERARRAY:
+madeline.c:2711:		op.t==USERARRAY        ||
+madeline.c:2730:		if(op.t==INTERNALARRAY || op.t==INDIVIDUALARRAY || op.t==USERARRAY || op.t==ASSOCIATIVEARRAY){ 
+madeline.c:2798:	case USERARRAY:
+madeline.c:4824:	}else if(pT->t==INTERNALARRAY || pT->t==USERARRAY){
+madeline.c:4828:		if(pT->t==USERARRAY){
+tokentree.c:97:	/* If the RECOGNIZEDTOKEN is a USERVARIABLE or USERARRAY,     */
+tokentree.c:101:	if(pt->t==USERARRAY)    FreeUserArray(pt->u.a);
+tokentree.c:348:		case USERARRAY:
+variablesandarrays.c:171:/* or USERARRAY (but does not free a USERARRAY itself):                       */
+variablesandarrays.c:199:/* FreeUserArray(): Frees a USERARRAY */
+assignment.c:90:	   pT->t==ASSOCIATIVEARRAY
+assignment.c:132:			case ASSOCIATIVEARRAY:
+assignment.c:214:			case ASSOCIATIVEARRAY:
+assignment.c:409:		case ASSOCIATIVEARRAY:
+assignment.c:486:	if(pT->t!=ASSOCIATIVEARRAY)
+fieldlevellabels.c:150:	knownTokens.install(LabelArrayName,ProperizedLabelArrayName,NOINTERNALTOKEN,ASSOCIATIVEARRAY,0,(void *)a);
+fieldlevellabels.c:151:	knownTokens.install(ColorArrayName,ProperizedColorArrayName,NOINTERNALTOKEN,ASSOCIATIVEARRAY,0,(void *)c);
+fieldlevellabels.c:152:	knownTokens.install(GrayArrayName ,ProperizedGrayArrayName ,NOINTERNALTOKEN,ASSOCIATIVEARRAY,0,(void *)r);
+madeline.c:1371:	knownTokens.install("AFFECTIONSTATUS"        ,"AffectionStatus"        ,AAAS ,ASSOCIATIVEARRAY,0   ,(void *)&aaas          );
+madeline.c:1372:	knownTokens.install("DEATHSTATUS"            ,"DeathStatus"            ,AADS ,ASSOCIATIVEARRAY,0   ,(void *)&aads          );
+madeline.c:1373:	knownTokens.install("GENDERSTATUS"           ,"GenderStatus"           ,AAGS ,ASSOCIATIVEARRAY,0   ,(void *)&aags          );
+madeline.c:1374:	knownTokens.install("PROBANDSTATUS"          ,"ProbandStatus"          ,AAPS ,ASSOCIATIVEARRAY,0   ,(void *)&aaps          );
+madeline.c:1375:	knownTokens.install("LIABILITYCLASS"         ,"LiabilityClass"         ,AALC ,ASSOCIATIVEARRAY,0   ,(void *)&aalc          );
+madeline.c:1376:	knownTokens.install("GRAPHANNOTATIONS"       ,"GraphAnnotations"       ,AAGA ,ASSOCIATIVEARRAY,0   ,(void *)&aaga          );
+madeline.c:2713:		op.t==ASSOCIATIVEARRAY ||
+madeline.c:2730:		if(op.t==INTERNALARRAY || op.t==INDIVIDUALARRAY || op.t==USERARRAY || op.t==ASSOCIATIVEARRAY){ 
+madeline.c:2828:	case ASSOCIATIVEARRAY:
+madeline.c:4866:	}else if(pT->t==ASSOCIATIVEARRAY){
+tokentree.c:351:		case ASSOCIATIVEARRAY:

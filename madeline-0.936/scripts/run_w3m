@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# run_w3m: run the w3m browser in an xterm window:
+#
+xterm -e w3m "$1" &

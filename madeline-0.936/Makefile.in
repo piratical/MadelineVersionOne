@@ -1,0 +1,100 @@
+# ********************************************************************************* #
+#  _______________________________________________________________________________  #
+# |_______________________________________________________________________________| #
+#   __    __       _       ______     _______   _          _   __    _   _______    #
+#  |  \  /  |     / \     |  ___  \  |  _____| | |        | | |  \  | | |  _____|   #
+#  |   \/   |    / ^ \    | |   \  \ | |___    | |        | | |   \ | | | |___      #
+#  | |\  /| |   / /_\ \   | |    | | |  ___|   | |        | | | |\ \| | |  ___|     #
+#  | | \/ | |  /  ___  \  | |___/  / | |_____  | |______  | | | | \   | | |_____    #
+#  |_|    |_| /__/   \__\ |_______/  |_______| |________| |_| |_|  \__| |_______|   #
+#  _______________________________________________________________________________  #
+# |_______________________________________________________________________________| #
+#                                                                                   #
+# This is the Makefile for the Madeline software distribution.                      #
+# Written by Edward H. Trager.                                                      #
+#                                                                                   #
+# COPYRIGHT (C) 2004 THE REGENTS OF THE UNIVERSITY OF MICHIGAN,                     #
+# Ann Arbor, Michigan, USA.  ALL RIGHTS RESERVED.                                   #
+#                                                                                   #
+# This program is free software; you can redistribute it and/or                     #
+# modify it under the terms of the GNU General Public                               #
+# License as published by the Free Software Foundation; either                      #
+# version 2 of the License, or (at your option) any later version.                  #
+#                                                                                   #
+# This program is distributed in the hope that it will be useful,                   #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of                    #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU                 #
+# General Public License for more details.                                          #
+#                                                                                   #
+# You should have received a copy of the GNU General Public                         #
+# License along with this software source code distribution; if not,                #
+# write to the Free Software Foundation, Inc., 59 Temple Place -                    #
+# Suite 330, Boston, MA 02111-1307, USA.                                            #
+#                                                                                   #
+# This makefile last modified by Ed Trager, December, 2001.                         #
+#                                                                                   #
+# ********************************************************************************* #
+VERSION = 0.936
+PROGRAM_NAME = madeline
+VERSION_NAME = $(PROGRAM_NAME)-$(VERSION)
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+TAR = @TAR@
+INSTALL = @INSTALL@
+MAN_DIR = $(mandir)/man1
+SHARE_DIR = $(datadir)/madeline
+
+
+all: @MAKE_TARGETS@
+
+madeline:
+	cd src && $(MAKE) madeline
+
+debug:
+	cd src && $(MAKE) debug
+
+install: installall
+	
+
+installall:
+	cd src && $(MAKE) install
+	$(INSTALL) -d $(MAN_DIR)
+	$(INSTALL) -m 644 man/madeline.1 $(MAN_DIR)
+	$(INSTALL) -d $(SHARE_DIR)
+	$(INSTALL) -m 644 initialScript/initial.script.template $(SHARE_DIR)
+	$(TAR) cf - documentation | (cd $(SHARE_DIR) && $(TAR) xf - )
+
+clean:
+	rm -f config.status config.cache config.log
+	cd src; $(MAKE) clean
+
+allclean: clean
+	rm -f src/Makefile src/config.h
+
+distribution: allclean
+	$(TAR) czvf ../$(VERSION_NAME).tar.gz  -X exclude.list -C ../ $(VERSION_NAME)
+	$(TAR) cIvf ../$(VERSION_NAME).tar.bz2 -X exclude.list -C ../ $(VERSION_NAME)
+	###############################################################
+	#                                                             #
+	# Created ../$(VERSION_NAME) 
+	# gzip and bzip2 tar files!                                   #
+	#                                                             #
+	###############################################################
+
